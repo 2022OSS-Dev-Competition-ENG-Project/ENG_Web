@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from "../style/mainLog.module.css";
 import {Form, Button} from 'react-bootstrap';
-import {Routes, Route, Link, useNavigate} from 'react-router-dom'
+import {Routes, Route, useNavigate} from 'react-router-dom';
+import SignUp from './SignUp';
+import FindID from './FindID';
+import FindPW from './FindPW';
 
 function MainLog() {
   
@@ -10,7 +13,7 @@ function MainLog() {
 
     return (
       <body>
-        <header>
+        <header className={styles.MainLog}>
           <logo className={styles.logo}>
             <h1>!ENG?</h1><h3>for Manager</h3>
           </logo>

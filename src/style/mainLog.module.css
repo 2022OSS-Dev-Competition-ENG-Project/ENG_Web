@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
 }
-header {
+.MainLog {
   height: 100vh;
   width: 53vw;
   display: flex;
@@ -46,10 +46,16 @@ h3 {
   width: 50px;
   height: 50px;
 }
+hr{
+  padding: 0;
+  margin: 5px;
+}
 button {
+  background-color:#F5F5F5;
   margin: 0 10px 0 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 5px 10px;
   border-style: none;
+  box-shadow: 2px 3px 5px 0px #cac6ce;
 }
 
