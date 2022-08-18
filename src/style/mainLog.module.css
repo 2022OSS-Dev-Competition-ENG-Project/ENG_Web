@@ -33,7 +33,7 @@ h3 {
 }
 
 .login {
-  width: 25vw;
+  width: 450px;
   float: right;
   background-color: white;
   border-radius: 20px;
@@ -48,7 +48,8 @@ h3 {
 }
 hr{
   padding: 0;
-  margin: 5px;
+  margin: 10px;
+  width: 100%;
 }
 button {
   background-color:#F5F5F5;
@@ -59,3 +60,9 @@ button {
   box-shadow: 2px 3px 5px 0px #cac6ce;
 }
 
+
+
+.loginbutton {
+  width: 100%;
+  margin: 3px;
+}

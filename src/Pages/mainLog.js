@@ -2,9 +2,7 @@ import React from 'react';
 import styles from "../style/mainLog.module.css";
 import {Form, Button} from 'react-bootstrap';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import SignUp from './SignUp';
-import FindID from './FindID';
-import FindPW from './FindPW';
+
 
 function MainLog() {
   
@@ -31,7 +29,7 @@ function MainLog() {
                 <Form.Control type="password" placeholder="Password" />
               </Form.Group>
 
-              <button className="signin" type="submit">
+              <button className={styles.loginbutton} type="submit">
                 LOGIN
               </button>
               <hr></hr>

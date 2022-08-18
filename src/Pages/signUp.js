@@ -1,7 +1,7 @@
 import React from 'react';
-import {Form, Button} from 'react-bootstrap';
 import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 import styled from 'styled-components';
+import styles from "../style/mainLog.module.css";
 
 function SignUp() {
     let navigate = useNavigate();
@@ -32,9 +32,9 @@ function SignUp() {
 
       let Box = styled.div`
       background : white;
-      width: 600px;
+      width:500px;
       height: auto;
-      padding: 10px;
+      padding: 20px;
       border-radius: 10px;
       display: flex;
       justify-content: center;
@@ -47,6 +47,21 @@ function SignUp() {
       margin: 0;
       padding: 0;
       `
+
+      let Group = styled.div`
+        margin: 1px;
+        padding: 0;
+      `
+
+      let Input = styled.input`
+        border-style: none;
+        background : #F5F5F5;
+        float: right;
+      `
+
+      let Formbox = styled.div`
+        width: 500px
+      `
     return (
       <Body>
         <Container>
@@ -54,43 +69,43 @@ function SignUp() {
             <img alt="signup" src={process.env.PUBLIC_URL + '/img/signup.png'}></img>
           </Header>
           <Box>
-            <Form>
+            <Formbox>
               <H1>회원가입</H1>
               <hr></hr>
-              <Form.Group className="mb-3" controlId="formBasicName">
-                  <Form.Label>이름</Form.Label>
-                  <Form.Control type="text"/>
-                </Form.Group>
+              <Group controlId="formBasicName">
+                  <label>이름</label>
+                  <Input type="text"/>
+                </Group><br/>
 
-                <Form.Group className="mb-3" controlId="formBasicNickname">
-                  <Form.Label>닉네임</Form.Label>
-                  <Form.Control type="text" />
-                </Form.Group>
+                <Group controlId="formBasicNickname">
+                  <label>닉네임</label>
+                  <Input type="text" />
+                </Group><br/>
 
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>이메일</Form.Label>
-                  <Form.Control type="email"/>
-                </Form.Group>
+                <Group controlId="formBasicEmail">
+                  <label>이메일</label>
+                  <Input type="email"/>
+                </Group><br/>
 
-                <Form.Group className="mb-3" controlId="formBasicPW">
-                  <Form.Label>비밀번호</Form.Label>
-                  <Form.Control type="password"/>
-                </Form.Group>
+                <Group controlId="formBasicPW">
+                  <label>비밀번호</label>
+                  <Input type="password"/>
+                </Group><br/>
 
-                <Form.Group className="mb-3" controlId="formBasicConfirmPW">
-                  <Form.Label>비밀번호 확인</Form.Label>
-                  <Form.Control type="password" />
-                </Form.Group>
+                <Group controlId="formBasicConfirmPW">
+                  <label>비밀번호 확인</label>
+                  <Input type="password" />
+                </Group><br/>
 
-                <Form.Group controlId="formFile" className="mb-3">
-                  <Form.Label>프로필 사진</Form.Label>
-                  <Form.Control type="file" />
-                </Form.Group>
+                <Group controlId="formFile">
+                  <label>프로필 사진</label>
+                  <Input type="file" />
+                </Group><br/>
 
-                <Form.Group className="mb-3" controlId="formBasicBirth">
-                  <Form.Label>생년월일</Form.Label>
-                  <Form.Control type="date" />
-                </Form.Group>
+                <Group controlId="formBasicBirth">
+                  <label>생년월일</label>
+                  <Input type="date" />
+                </Group><br/>
                <hr></hr> 
                <button className="signin" type="submit">
                 가입하기
@@ -99,7 +114,7 @@ function SignUp() {
                 <button onClick={()=> {navigate('/findid')}}>아이디 찾기</button>
                 <button onClick={()=> {navigate('/findpw')}}>비밀번호 찾기</button>
                 <button onClick={()=> {navigate('/')}}>로그인</button>
-            </Form>
+            </Formbox>
           </Box>
 
         </Container> 
