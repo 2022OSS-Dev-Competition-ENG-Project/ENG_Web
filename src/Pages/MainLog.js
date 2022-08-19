@@ -8,7 +8,7 @@ function MainLog() {
   
 
   let navigate = useNavigate();
-  const [findIDOn, setFindIDModalOn] = useState(false);
+  const [findIDOn, setFindIDModalOn] = React.useState(false);
     return (
       <>
       <FindID show={findIDOn} onHide={()=>setFindIDModalOn(false)} />
@@ -36,6 +36,10 @@ function MainLog() {
               </button>
               <hr></hr>
               <button onClick={()=> setFindIDModalOn(true)}>아이디 찾기</button>
+                <FindID
+                  show = {findIDOn}
+                  onHide={() => setFindIDModalOn(false)}
+                />
 
               <button onClick={()=> {navigate('/findpw')}}>비밀번호 찾기</button>
 
