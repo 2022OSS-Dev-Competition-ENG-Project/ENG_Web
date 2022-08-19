@@ -3,15 +3,17 @@ import styles from "../style/mainLog.module.css";
 import {Form, Button} from 'react-bootstrap';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import FindID from './FindID';
+import FindPW from './FindPW';
 
 function MainLog() {
   
 
   let navigate = useNavigate();
   const [findIDOn, setFindIDModalOn] = React.useState(false);
+  const [findPWOn, setFindPWModalOn] = React.useState(false);
+
     return (
       <>
-      <FindID show={findIDOn} onHide={()=>setFindIDModalOn(false)} />
       <body>
         <header className={styles.MainLog}>
           <logo className={styles.logo}>
@@ -41,7 +43,11 @@ function MainLog() {
                   onHide={() => setFindIDModalOn(false)}
                 />
 
-              <button onClick={()=> {navigate('/findpw')}}>비밀번호 찾기</button>
+              <button onClick={()=> setFindPWModalOn(true)}>비밀번호 찾기</button>
+                <FindPW
+                  show = {findPWOn}
+                  onHide={() => setFindPWModalOn(false)}
+                />
 
               <button onClick={()=> {navigate('/signup')}}>회원가입</button>
           </Form>
