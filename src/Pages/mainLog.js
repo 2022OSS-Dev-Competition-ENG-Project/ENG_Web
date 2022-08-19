@@ -1,15 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from "../style/mainLog.module.css";
 import {Form, Button} from 'react-bootstrap';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-
+import FindID from './FindID';
 
 function MainLog() {
   
 
   let navigate = useNavigate();
-
+  const [findIDOn, setFindIDModalOn] = useState(false);
     return (
+      <>
+      <FindID show={findIDOn} onHide={()=>setFindIDModalOn(false)} />
       <body>
         <header className={styles.MainLog}>
           <logo className={styles.logo}>
@@ -33,12 +35,13 @@ function MainLog() {
                 LOGIN
               </button>
               <hr></hr>
-              <button onClick={()=> {navigate('/findid')}}>아이디 찾기</button>
+              <button onClick={()=> setFindIDModalOn(true)}>아이디 찾기</button>
               <button onClick={()=> {navigate('/findpw')}}>비밀번호 찾기</button>
               <button onClick={()=> {navigate('/signup')}}>회원가입</button>
           </Form>
         </side>
       </body>
+      </>
     )
   }
 
