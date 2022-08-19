@@ -9,7 +9,6 @@ function MainLog() {
 
   let navigate = useNavigate();
   const [findIDOn, setFindIDModalOn] = useState(false);
-  const [findPWOn, setFindPWModalOn] = useState(false);
     return (
       <>
       <FindID show={findIDOn} onHide={()=>setFindIDModalOn(false)} />
@@ -37,7 +36,9 @@ function MainLog() {
               </button>
               <hr></hr>
               <button onClick={()=> setFindIDModalOn(true)}>아이디 찾기</button>
-              <button onClick={()=> setFindPWModalOn(true)}>비밀번호 찾기</button>
+
+              <button onClick={()=> {navigate('/findpw')}}>비밀번호 찾기</button>
+
               <button onClick={()=> {navigate('/signup')}}>회원가입</button>
           </Form>
         </side>

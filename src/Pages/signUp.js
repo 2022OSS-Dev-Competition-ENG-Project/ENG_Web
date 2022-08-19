@@ -1,6 +1,7 @@
 import React from 'react';
 import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 import styled from 'styled-components';
+import styles from "../style/mainLog.module.css";
 
 function SignUp() {
     let navigate = useNavigate();
