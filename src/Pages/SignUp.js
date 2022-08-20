@@ -57,6 +57,8 @@ function SignUp() {
         border-style: none;
         background : #F5F5F5;
         float: right;
+        border: 1px solid #727273;
+        border-radius: 5px;
       `
 
       let Formbox = styled.div`
