@@ -3,6 +3,7 @@ import React from 'react';
 import {Routes, Route, Link } from 'react-router-dom'
 import MainLog from './Pages/MainLog';
 import SignUp from './Pages/SignUp';
+import Main from './Pages/Main';
 
 
 function App() {

@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return(
-    <h1>!ENG?</h1>
+    <h2>Footer</h2>
   );
 }
 

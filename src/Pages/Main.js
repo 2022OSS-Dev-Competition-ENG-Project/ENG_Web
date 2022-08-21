@@ -5,7 +5,12 @@ import Footer from '../Components/Footer';
 
 function Main() {
   return(
-    <h1>Navigation</h1>
+    <body>
+      <Header /> 
+      <Navigation />
+      <Footer />
+    </body>
+    
   );
 }
 

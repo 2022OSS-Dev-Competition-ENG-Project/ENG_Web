@@ -5,6 +5,7 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 import FindID from './FindID';
 import FindPW from './FindPW';
 import axios from 'axios';
+import styled from 'styled-components';
 
 function MainLog() {
   
@@ -15,9 +16,15 @@ function MainLog() {
   let [id, setId] = useState('');
   let [pw, setPw] = useState('');
 
+  let Body = styled.div`
+      background : #E4E4E4;
+      width: 100vw;
+      height: 100vh;
+      `
+
     return (
       <>
-      <body>
+      <Body>
         <header className={styles.MainLog}>
           <logo className={styles.logo}>
             <h1>!ENG?</h1><h3>for Manager</h3>
@@ -55,7 +62,7 @@ function MainLog() {
               <button onClick={()=> {navigate('/signup')}}>회원가입</button>
           </Form>
         </side>
-      </body>
+      </Body>
       </>
     )
   }

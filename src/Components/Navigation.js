@@ -2,7 +2,7 @@ import React from 'react';
 
 function Navigation() {
   return(
-    <h1>Navigation</h1>
+    <h2>Navigation</h2>
   );
 }
 
