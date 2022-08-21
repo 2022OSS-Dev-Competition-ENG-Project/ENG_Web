@@ -4,6 +4,7 @@ import {Form, Button} from 'react-bootstrap';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import FindID from './FindID';
 import FindPW from './FindPW';
+import axios from 'axios';
 
 function MainLog() {
   
@@ -11,6 +12,8 @@ function MainLog() {
   let navigate = useNavigate();
   const [findIDOn, setFindIDModalOn] = React.useState(false);
   const [findPWOn, setFindPWModalOn] = React.useState(false);
+  let [id, setId] = useState('');
+  let [pw, setPw] = useState('');
 
     return (
       <>
