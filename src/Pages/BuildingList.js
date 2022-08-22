@@ -31,7 +31,7 @@ function GetData() {
 }
 
 
-function List() {
+function BuildingList() {
   let navigate = useNavigate();
   const item = GetData();
   
@@ -120,4 +120,4 @@ function List() {
   );
 }
 
-export default List;
+export default BuildingList;

@@ -4,7 +4,7 @@ import {Routes, Route, Link } from 'react-router-dom'
 import MainLog from './Pages/MainLog';
 import SignUp from './Pages/SignUp';
 import Main from './Pages/Main';
-import List from './Pages/List';
+import List from './Pages/BuildingList';
 
 function App() {
   return (
