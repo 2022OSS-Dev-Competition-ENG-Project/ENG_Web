@@ -63,6 +63,22 @@ function SignUp() {
       let Formbox = styled.div`
         width: 500px
       `
+      let Signup_button = styled.button`
+        width: 100%;
+        margin: 3px;
+        border-radius: 5px;
+        border-style: none;
+        height: 30px ; 
+      `
+
+      let Button = styled.button`
+        background-color:#F5F5F5;
+        margin: 0 10px 0 10px;
+        border-radius: 5px;
+        padding: 5px 10px;
+        border-style: none;
+        box-shadow: 2px 3px 5px 0px #cac6ce;
+    `
     return (
       <Body>
         <Container>
@@ -108,13 +124,13 @@ function SignUp() {
                   <Input type="date" />
                 </Group><br/>
                <hr></hr> 
-               <button className="signin" type="submit">
+               <Signup_button type="submit">
                 가입하기
-               </button>
+               </Signup_button>
               <hr></hr>
-                <button onClick={()=> {navigate('/findid')}}>아이디 찾기</button>
-                <button onClick={()=> {navigate('/findpw')}}>비밀번호 찾기</button>
-                <button onClick={()=> {navigate('/')}}>로그인</button>
+                <Button onClick={()=> {navigate('/findid')}}>아이디 찾기</Button>
+                <Button onClick={()=> {navigate('/findpw')}}>비밀번호 찾기</Button>
+                <Button onClick={()=> {navigate('/')}}>로그인</Button>
             </Formbox>
           </Box>
 
