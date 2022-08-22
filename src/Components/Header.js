@@ -22,6 +22,9 @@ function Header() {
         float: right;
         font-size: 20px;
         margin: 30px 90px 10px 0px;
+        background-color: white;
+        border-style: none;
+        font-weight: 100;
       `
   return(
     <>
