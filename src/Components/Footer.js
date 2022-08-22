@@ -1,8 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 
 function Footer() {
+  let Footer = styled.div`
+  background-color: white;
+  margin:700px
+`
   return(
-    <h2>Footer</h2>
+    <Footer>Footer</Footer>
   );
 }
 
