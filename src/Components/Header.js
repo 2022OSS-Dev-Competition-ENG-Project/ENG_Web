@@ -3,14 +3,27 @@ import styled from 'styled-components';
 
 function Header() {
   let Header = styled.div`
-      background : #E4E4E4;
-      width: auto;
+      background : white;
+      width: 100%;
       height: auto;
+      display: flex;
       `
+
+      let Logo = styled.h1`
+        color: black;
+        font-size: 40px;
+        background-color: white;
+        margin: 30px 0px 10px 90px;
+        `
   return(
+    <>
     <Header>
-      <h1>ENG</h1>
+      <Logo>!ENG?</Logo>
+      
     </Header>  
+    <hr></hr>
+    </>
+
   );
 }
 
