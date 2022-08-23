@@ -13,7 +13,7 @@ import TableRow from '../Components/TableRow';
 function GetData() {
   const [data, setData] = useState({});
   useEffect(() => {
-    axios.get('http://').then((response)=> {
+    axios.get('http://localhost:10001/api/facility/content/asdadasd/2').then((response)=> {
       setData(response.data);
     })
   }, []);
