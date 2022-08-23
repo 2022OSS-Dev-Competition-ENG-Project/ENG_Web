@@ -9,6 +9,7 @@ import NoticeWrite from './Pages/NoticeWrite';
 import Layout from './Components/Layout';
 import PostWrite from './Pages/PostWrite';
 import BuildingRegister from './Pages/BuildingRegister';
+import ManagerRegister from './Pages/ManagerRegister';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/layout" element={<Layout />}> </Route>
         <Route path="/post/write" element={<PostWrite />}> </Route>
         <Route path="/register/building" element={<BuildingRegister />}> </Route>
+        <Route path="/register/manager" element={<ManagerRegister />}> </Route>
       </Routes>
       
     </div>

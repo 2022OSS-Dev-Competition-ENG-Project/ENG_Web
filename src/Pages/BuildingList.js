@@ -49,26 +49,6 @@ function BuildingList() {
   align-items: flex-start;
   justify-content: center;
 `
-    let List_menu = styled.div`
-      float: left;
-      background-color: #727272;
-      margin-left: 150px;
-      font-size: 25px;
-      font-weight: 900;
-      width: 70vw;
-      display: flex;
-      justify-content: space-between;
-      border-radius: 10px;
-      padding: 10px 40px
-      border: 5px solid;
-    `
-    
-    let List = styled.div`
-     color: white;
-     font-size: 25px;
-     margin: 5px 20px;
-     font-weight:400;
-    `
 
   let Body = styled.div`
   display: flex;
