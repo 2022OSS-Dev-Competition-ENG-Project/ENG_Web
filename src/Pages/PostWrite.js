@@ -5,7 +5,7 @@ import Footer from "../Components/Footer";
 import Navigation from "../Components/Navigation";
 import Write from "../Components/Write";
 
-function NoticeWrite() {
+function PostWrite() {
   let Div = styled.div`
   background-color: #FAFAFA;
 `
@@ -56,7 +56,7 @@ function NoticeWrite() {
       <Header/>
         <Body>
           <Box1><Navigation/></Box1>
-          <Box2><Title_box>공지사항</Title_box><hr></hr><Content_box><Write/></Content_box></Box2>
+          <Box2><Title_box>게시물</Title_box><hr></hr><Content_box><Write/></Content_box></Box2>
         </Body>
         <Footer/>
     </Div>
@@ -64,4 +64,4 @@ function NoticeWrite() {
   );
 }
 
-export default NoticeWrite;
+export default PostWrite;

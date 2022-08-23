@@ -7,6 +7,7 @@ import Main from './Pages/Main';
 import BuildingList from './Pages/BuildingList';
 import NoticeWrite from './Pages/NoticeWrite';
 import Layout from './Components/Layout';
+import PostWrite from './Pages/PostWrite';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/BuildingList" element={<BuildingList />}> </Route>
         <Route path="/notice/write" element={<NoticeWrite />}> </Route>
         <Route path="/layout" element={<Layout />}> </Route>
+        <Route path="/post/write" element={<PostWrite />}> </Route>
       </Routes>
       
     </div>
