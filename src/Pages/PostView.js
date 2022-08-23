@@ -4,8 +4,7 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Navigation from "../Components/Navigation";
 
-
-function NoticeView() {
+function PostView() {
   let Div = styled.div`
   background-color: #FAFAFA;
 `
@@ -26,8 +25,8 @@ function NoticeView() {
 
   let Box2 = styled.div`
     width: 1300px;
-    height: 70vh;
-    background-color:#FAFAFA;
+    height: 800px;
+    background-color: #FAFAFA;
     margin: 0 ;
     display: flex;
     flex-direction: column;
@@ -41,6 +40,40 @@ function NoticeView() {
     font-size: 50px;
     padding:0;
     margin:0 0 0 20px;
+  `
+
+  let Comment_box= styled.div`
+    widith: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color:#FAFAFA;
+    padding:0;
+  `
+  let Comment_title= styled.div`
+    font-size: 25px;
+  `
+
+  let Comment = styled.div`
+    width:100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    background-color: #FAFAFA;
+  `
+  let Comment_user = styled.div`
+    display:flex;
+    justify-content: flex-start;
+    font-size:20px;
+    width: auto;
+    background-color: #FAFAFA;
+    opacity: 100%;
+  `
+  let Comment_buttonbox = styled.div`
+  `
+  let Comment_button = styled.button`
+    margin: 5px;
   `
   let Box = styled.div`
     margin: 0;
@@ -76,12 +109,31 @@ function NoticeView() {
   `
   let Post = styled.div`
     font-size: 25px;
+    height: 500px;
     background-color:#FAFAFA;
   `
   let Hr = styled.hr`
     margin: 0;
     padding: 0;
   `
+  let Upload_box = styled.div`
+    width:100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #FAFAFA;
+  `
+  let Master = styled.div`
+    font-size:20px;
+    width: 100px;
+    background-color: #FAFAFA;
+    padding: 0;
+  `
+  let Upload = styled.input`
+    width:1080px;
+  `
+
+
 
   return(
     <>
@@ -91,13 +143,33 @@ function NoticeView() {
           <Box1><Navigation/></Box1>
           <Box2>
             <Title_box>
-              <Box>공지사항</Box>
+              <Box>게시물</Box>
               <Button_box>
                 <Button>수정</Button>
                 <Button>삭제</Button>
               </Button_box>
             </Title_box><Hr></Hr>
             <Content_box><Title><h2>제목:</h2> </Title><Post>내용</Post></Content_box>
+            <Hr></Hr>
+
+            <Comment_box>
+              <Comment_title>댓글</Comment_title>
+              <Hr></Hr>
+              <Comment>
+                <Comment_user>최보현 - 안녕하세요</Comment_user>
+                <Comment_buttonbox>
+                  <Comment_button>수정</Comment_button>
+                  <Comment_button>삭제</Comment_button>
+                </Comment_buttonbox>
+              </Comment>
+              <Hr></Hr>
+              <Upload_box>
+                <Master>조승현 - </Master>
+                <Upload></Upload>
+                <Comment_button>등록</Comment_button>
+              </Upload_box>
+            </Comment_box>
+
           </Box2>
         </Body>
         <Footer/>
@@ -106,4 +178,4 @@ function NoticeView() {
   );
 }
 
-export default NoticeView;
+export default PostView;
