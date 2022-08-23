@@ -8,6 +8,7 @@ import BuildingList from './Pages/BuildingList';
 import NoticeWrite from './Pages/NoticeWrite';
 import Layout from './Components/Layout';
 import PostWrite from './Pages/PostWrite';
+import BuildingRegister from './Pages/BuildingRegister';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/notice/write" element={<NoticeWrite />}> </Route>
         <Route path="/layout" element={<Layout />}> </Route>
         <Route path="/post/write" element={<PostWrite />}> </Route>
+        <Route path="/register/building" element={<BuildingRegister />}> </Route>
       </Routes>
       
     </div>
