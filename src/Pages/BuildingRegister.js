@@ -8,7 +8,7 @@ import axios from 'axios';
 
 
 
-function BuildingList() {
+function BuildingRegister() {
 
   let Div = styled.div`
   background-color: #FAFAFA;
@@ -43,11 +43,13 @@ function BuildingList() {
   `
   let Content_box=styled.div`
   widith: auto;
-  height: auto;
+  height: 500px;
   background-color: #FAFAFA;
   display:flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
+
 `
 
   let Body = styled.div`
@@ -55,8 +57,28 @@ function BuildingList() {
   justify-content: center;
   margin: 100px 0 0 0;
   background-color: #FAFAFA;
-  `
 
+  `
+  let Input_box = styled.div`
+    display:flex;
+    justify-content: flex-end;
+    width: 500px;
+    height: auto;
+    background-color:#FAFAFA;
+    margin: 5px;
+    font-size: 20px;
+  `
+  let Input = styled.input`
+    margin: 0 0 0 10px;
+    padding: 2px;
+    width: 400px;
+  `
+ let Button = styled.button`
+  margin: 10px;
+  font-size: 20px;
+  color: white;
+  background-color: #0F4C75;
+ `
       
   return(
     <>
@@ -64,7 +86,13 @@ function BuildingList() {
       <Header/>
         <Body>
           <Box1><Navigation/></Box1>
-          <Box2><Title_box>시설물리스트</Title_box><hr></hr><Content_box></Content_box></Box2>
+          <Box2><Title_box>시설물등록</Title_box><hr></hr>
+          <Content_box>
+            <Input_box>시설물명: <Input></Input></Input_box> 
+            <Input_box>위치: <Input></Input></Input_box>  
+            <Input_box>관리자: <Input></Input></Input_box>
+            <Button> 등록하기</Button> 
+          </Content_box></Box2>
         </Body>
         <Footer/>
     </Div>
@@ -76,4 +104,4 @@ function BuildingList() {
   );
 }
 
-export default BuildingList;
+export default BuildingRegister;
