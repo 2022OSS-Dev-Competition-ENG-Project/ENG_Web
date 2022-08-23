@@ -4,36 +4,11 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import styled from 'styled-components';
 import Navigation from '../Components/Navigation';
-import Table from 'react-bootstrap/Table';
 import axios from 'axios';
-import BTable from '../Components/Table';
-import TableColumn from '../Components/TableColumn';
-import TableRow from '../Components/TableRow';
 
-function GetData() {
-  const [data, setData] = useState({});
-  useEffect(() => {
-    axios.get('http://localhost:10001/api/facility/content/asdadasd/2').then((response)=> {
-      setData(response.data);
-    })
-  }, []);
-
-  const item = (Object.values(data)).map((item) => (
-    <TableRow key={item.id}>
-      <TableColumn>{item.id}</TableColumn>
-      <TableColumn>{item.title}</TableColumn>
-      <TableColumn>{item.createAt}</TableColumn>
-      <TableColumn>{item.username}</TableColumn>
-    </TableRow>
-  ));
-
-  return item;
-}
 
 
 function BuildingList() {
-  let navigate = useNavigate();
-  const item = GetData();
 
   let Div = styled.div`
   background-color: #FAFAFA;
