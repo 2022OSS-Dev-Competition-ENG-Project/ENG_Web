@@ -34,16 +34,46 @@ function GetData() {
 function BuildingList() {
   let navigate = useNavigate();
   const item = GetData();
+
+  let Div = styled.div`
+  background-color: #FAFAFA;
+`
   
+    let Box1 = styled.div`
+    width: 300px;
+    height: auto;
+    background-color: #FAFAFA;
+    margin: 0 ;
+    padding-top:120px
+  `
+
+  let Box2 = styled.div`
+    width: 1300px;
+    height: 70vh;
+    background-color:#FAFAFA;
+    margin: 0 ;
+    display: flex;
+    flex-direction: column;
+  `
   let Title_box = styled.div`
-      float: left;
-      background-color: white;
-      margin: 150px 170px 0 230px;
-      font-size: 40px;
-      font-weight: 900;
-      width: auto;
+  widith: auto;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  background-color:#FAFAFA;
+  font-size: 50px;
+  padding:0;
+  margin:0 0 0 20px;
       
   `
+  let Content_box=styled.div`
+  widith: auto;
+  height: auto;
+  background-color: #FAFAFA;
+  display:flex;
+  align-items: flex-start;
+  justify-content: center;
+`
     let List_menu = styled.div`
       float: left;
       background-color: #727272;
@@ -66,56 +96,27 @@ function BuildingList() {
     `
 
   let Body = styled.div`
-    margin:0;
-    padding:0;
-    width: 100%;
-    height: 0vh;
-    background-color: pink;
+  display: flex;
+  justify-content: center;
+  margin: 100px 0 0 0;
+  background-color: #FAFAFA;
   `
 
       
   return(
     <>
-      <Header /> 
-      <Body>
-        <Navigation>
-        </Navigation>
-        <Title_box>공지사항</Title_box>
-        <BTable headersName={['글번호', '제목', '등록일', '작성자']}>
-           {item}
-        </BTable>
-
-{/*       <Table responsive>
-          <thead>
-            <tr>
-              <th>번호</th>
-              <th>건물명</th>
-              <th>관리자</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>대구가톨릭대학교</td>
-              <td>000</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>대구가톨릭대학교</td>
-              <td>000</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>대구가톨릭대학교</td>
-              <td>000</td>
-            </tr>
-          </tbody>
-        </Table>
-*/} 
-        
-      </Body>
-
+    <Div>
+      <Header/>
+        <Body>
+          <Box1><Navigation/></Box1>
+          <Box2><Title_box>시설물리스트</Title_box><hr></hr><Content_box></Content_box></Box2>
+        </Body>
+        <Footer/>
+    </Div>
     </>
+
+
+        
     
   );
 }
