@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 function Header() {
   let Header = styled.div`
-      background : white;
+      background : #FAFAFA;
       width: 100%;
-      height: auto;
+      height: 130px;
       display: flex;
       justify-content: space-between;
       `
@@ -13,16 +13,16 @@ function Header() {
       let Logo = styled.h1`
         color: black;
         font-size: 40px;
-        background-color: white;
-        margin: 30px 0px 10px 150px;
+        background-color:#FAFAFA;
+        margin: 80px 0px 10px 390px;
         `
 
       let User = styled.button`
         color: black;
         float: right;
         font-size: 20px;
-        margin: 30px 150px 10px 0px;
-        background-color: white;
+        margin: 100px 390px 10px 0px;
+        background-color:#FAFAFA;
         border-style: none;
         font-weight: 100;
       `

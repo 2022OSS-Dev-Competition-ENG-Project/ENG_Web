@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 function Footer() {
   let Footer = styled.div`
-  background-color: pink;
-  height:  100px
+  background-color: #0F4C75;
+  height:  112px
 `
   return(
     <Footer>Footer</Footer>

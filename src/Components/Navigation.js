@@ -7,11 +7,13 @@ function Navigation() {
 
 `  
 let Menu_ul = styled.ul`
-  background-color:white;
-  font-size: 30px;
+  background-color:#FAFAFA;
+  font-size: 20px;
+  width: 150px;
   margin:0;
   padding:0;
-  border-bottom: 2px solid;
+  border-bottom: 5px solid #0F4C75 ;
+  margin:5px;
 `
   return(
     <>
