@@ -14,14 +14,14 @@ function Header() {
         color: black;
         font-size: 40px;
         background-color: white;
-        margin: 30px 0px 10px 90px;
+        margin: 30px 0px 10px 150px;
         `
 
       let User = styled.button`
         color: black;
         float: right;
         font-size: 20px;
-        margin: 30px 90px 10px 0px;
+        margin: 30px 150px 10px 0px;
         background-color: white;
         border-style: none;
         font-weight: 100;

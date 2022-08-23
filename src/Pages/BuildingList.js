@@ -80,8 +80,8 @@ function BuildingList() {
       <Body>
         <Navigation>
         </Navigation>
-        <Title_box>공지사항</Title_box>
-        <BTable headersName={['글번호', '제목', '등록일', '작성자']}>
+        <Title_box>시설리스트</Title_box>
+        <BTable headersName={['No', '시설명',  '관리자']}>
            {item}
         </BTable>
 

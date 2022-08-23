@@ -4,25 +4,22 @@ import styled from 'styled-components';
 function Navigation() {
 
   let Menu = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: White;
-  width: 250px;
-  height: 80vh;
-  margin-left: 50px;
-  float: left;
+
 `  
-let Menu_button = styled.ul`
+let Menu_ul = styled.ul`
   background-color:white;
   font-size: 30px;
   margin:0;
   padding:0;
+  border-bottom: 2px solid;
 `
   return(
-    <Menu>
-      <Menu_button>Navigation</Menu_button>
-    </Menu>
+    <>
+      <Menu_ul>건물리스트</Menu_ul>
+      <Menu_ul>건물등록</Menu_ul>
+    </>
+
+ 
     
   );
 }
