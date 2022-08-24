@@ -91,8 +91,8 @@ function SignUp() {
     let [emailcheck, setEmailcheck] = useState('');
     let [pwdcheck, setPwdcheck] = useState('');
     let [birth, setBirth] = useState('');
-
-   axios.post("http://localhost:8080/api/user-service/register", {
+{/* 
+   axios.get("http://localhost:8080/api/user-service/register", {
       id: id,
       pwd: pwd,
       name: name,
@@ -100,31 +100,31 @@ function SignUp() {
       birth: birth
     }) .then(function(response) {
         if(response.data == 201) {
-          setPopup ({
+         setPopup ({
             open: true,
             title: "Confirm",
             message: "Join Success!", 
             callback: function(){
               navigate("/");
             }
-          });
+          }); 
         }  else {
             let message = response.data.message;
             if(response.data.code == 409){
               message = "User ID is duplicated. Please enter a different User ID. "
             }
-            setPopup({
+           {/* setPopup({
               open: true,
               title: "Error",
               message: message
-            });
+            }); 
           }
       }).catch(function (error) {
         console.log(error);
 
       })
 
-
+    */}
 
     return (
       <Body>
@@ -139,7 +139,7 @@ function SignUp() {
               <hr></hr>
               <Group>
                   <label>이름</label>
-                  <Input type="text" onChange={onChangeName} value={name}/>
+                  <Input type="text" value={name}/>
                 </Group><br/>
 
                 <Group>
