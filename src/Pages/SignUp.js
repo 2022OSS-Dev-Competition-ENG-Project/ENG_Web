@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 import styled from 'styled-components';
 import axios from 'axios';
+import FindID from './FindID';
+import FindPW from './FindPW';
 
 function SignUp() {
     let navigate = useNavigate();
+
+    const [findIDOn, setFindIDModalOn] = React.useState(false);
+    const [findPWOn, setFindPWModalOn] = React.useState(false);
+
     let Body = styled.div`
       background : #B983FF;
       width: 100vw;
@@ -178,8 +184,17 @@ function SignUp() {
                 가입하기
                </Signup_button>
               <hr></hr>
-                <Button onClick={()=> {navigate('/findid')}}>아이디 찾기</Button>
-                <Button onClick={()=> {navigate('/findpw')}}>비밀번호 찾기</Button>
+                <Button onClick={()=> setFindIDModalOn(true)}>아이디 찾기</Button>
+                  <FindID
+                    show = {findIDOn}
+                    onHide={() => setFindIDModalOn(false)}
+                  />
+                <Button onClick={()=> setFindPWModalOn(true)}>비밀번호 찾기</Button>
+                  <FindPW
+                    show = {findPWOn}
+                    onHide={() => setFindPWModalOn(false)}
+                  />
+
                 <Button onClick={()=> {navigate('/')}}>로그인</Button>
             </Formbox>
           </Box>
