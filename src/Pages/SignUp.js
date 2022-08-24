@@ -51,18 +51,20 @@ function SignUp() {
       let Group = styled.div`
         margin: 1px;
         padding: 0;
+        display: flex;
+        justify-content: space-between;
       `
 
       let Input = styled.input`
         border-style: none;
         background : #F5F5F5;
-        float: right;
         border: 1px solid #727273;
         border-radius: 5px;
+        width: 250px;
       `
 
       let Formbox = styled.div`
-        width: 500px
+        width: 400px;
         
       `
       let Signup_button = styled.button`
@@ -105,11 +107,13 @@ function SignUp() {
                 <Group controlId="formBasicEmail">
                   <label>이메일</label>
                   <Input type="email"/>
+                  
                 </Group><br/>
-
+                
                 <Group controlId="formBasicEmail">
-                  <label>인증번호</label>
+                
                   <Input type="text"/>
+                  <button>인증하기</button>
                 </Group><br/>
 
                 <Group controlId="formBasicPW">
