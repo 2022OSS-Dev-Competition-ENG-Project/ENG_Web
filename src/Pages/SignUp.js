@@ -38,6 +38,7 @@ function SignUp() {
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       `
       
       let H1 = styled.h1`
@@ -62,6 +63,7 @@ function SignUp() {
 
       let Formbox = styled.div`
         width: 500px
+        
       `
       let Signup_button = styled.button`
         width: 100%;
@@ -86,8 +88,9 @@ function SignUp() {
             <img alt="signup" src={process.env.PUBLIC_URL + '/img/signup.png'}></img>
           </Header>
           <Box>
+          <H1>회원가입</H1>
             <Formbox>
-              <H1>회원가입</H1>
+              
               <hr></hr>
               <Group controlId="formBasicName">
                   <label>이름</label>
@@ -102,6 +105,11 @@ function SignUp() {
                 <Group controlId="formBasicEmail">
                   <label>이메일</label>
                   <Input type="email"/>
+                </Group><br/>
+
+                <Group controlId="formBasicEmail">
+                  <label>인증번호</label>
+                  <Input type="text"/>
                 </Group><br/>
 
                 <Group controlId="formBasicPW">
