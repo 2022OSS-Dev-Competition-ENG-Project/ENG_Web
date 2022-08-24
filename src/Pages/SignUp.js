@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 import styled from 'styled-components';
+import axios from 'axios';
 
 function SignUp() {
     let navigate = useNavigate();
@@ -83,6 +84,48 @@ function SignUp() {
         border-style: none;
         box-shadow: 2px 3px 5px 0px #cac6ce;
     `
+    let [id, setId] = useState('');
+    let [pwd, setPwd] = useState('');
+    let [name, setName] = useState('');
+    let [nickname, setNickname] = useState('');
+    let [emailcheck, setEmailcheck] = useState('');
+    let [pwdcheck, setPwdcheck] = useState('');
+    let [birth, setBirth] = useState('');
+
+   axios.post("http://localhost:8080/api/user-service/register", {
+      id: id,
+      pwd: pwd,
+      name: name,
+      nickname: nickname,
+      birth: birth
+    }) .then(function(response) {
+        if(response.data == 201) {
+          setPopup ({
+            open: true,
+            title: "Confirm",
+            message: "Join Success!", 
+            callback: function(){
+              navigate("/");
+            }
+          });
+        }  else {
+            let message = response.data.message;
+            if(response.data.code == 409){
+              message = "User ID is duplicated. Please enter a different User ID. "
+            }
+            setPopup({
+              open: true,
+              title: "Error",
+              message: message
+            });
+          }
+      }).catch(function (error) {
+        console.log(error);
+
+      })
+
+
+
     return (
       <Body>
         <Container>
@@ -94,46 +137,41 @@ function SignUp() {
             <Formbox>
               
               <hr></hr>
-              <Group controlId="formBasicName">
+              <Group>
                   <label>이름</label>
-                  <Input type="text"/>
+                  <Input type="text" onChange={onChangeName} value={name}/>
                 </Group><br/>
 
-                <Group controlId="formBasicNickname">
+                <Group>
                   <label>닉네임</label>
-                  <Input type="text" />
+                  <Input type="text" value={nickname} />
                 </Group><br/>
 
-                <Group controlId="formBasicEmail">
+                <Group>
                   <label>이메일</label>
-                  <Input type="email"/>
+                  <Input type="email" value={id}/>
                   
                 </Group><br/>
                 
-                <Group controlId="formBasicEmail">
+                <Group>
                 
-                  <Input type="text"/>
+                  <Input type="text"  value={emailcheck}/>
                   <button>인증하기</button>
                 </Group><br/>
 
-                <Group controlId="formBasicPW">
+                <Group>
                   <label>비밀번호</label>
-                  <Input type="password"/>
+                  <Input type="password" value={pwd}/>
                 </Group><br/>
 
-                <Group controlId="formBasicConfirmPW">
+                <Group>
                   <label>비밀번호 확인</label>
-                  <Input type="password" />
+                  <Input type="password" value={pwdcheck}/>
                 </Group><br/>
 
-                <Group controlId="formFile">
-                  <label>프로필 사진</label>
-                  <Input type="file" />
-                </Group><br/>
-
-                <Group controlId="formBasicBirth">
+                <Group>
                   <label>생년월일</label>
-                  <Input type="date" />
+                  <Input type="date" value={birth}/>
                 </Group><br/>
                <hr></hr> 
                <Signup_button type="submit">
