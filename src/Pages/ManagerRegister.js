@@ -110,7 +110,7 @@ function ManagerRegister() {
               <tbody>
                 <tr>
 
-                  <td>김병창</td>
+                  <td>정승균</td>
                   <td>D2</td>
                   <td>010-1234-5678</td>
                   <td><button>수정</button><button>삭제</button></td>
@@ -118,7 +118,7 @@ function ManagerRegister() {
                 </tr>
                 <tr>
 
-                  <td>서동만</td>
+                  <td>이정훈</td>
                   <td>C6</td>
                   <td>010-3569-7896</td>
                   <td><button>수정</button><button>삭제</button></td>

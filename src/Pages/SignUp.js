@@ -5,19 +5,13 @@ import axios from 'axios';
 import FindID from './FindID';
 import FindPW from './FindPW';
 
-function SignUp() {
-    let navigate = useNavigate();
+const Body = styled.div`
+        background : #B983FF;
+        width: 100vw;
+        height: 100vh;
+        `
 
-    const [findIDOn, setFindIDModalOn] = React.useState(false);
-    const [findPWOn, setFindPWModalOn] = React.useState(false);
-
-    let Body = styled.div`
-      background : #B983FF;
-      width: 100vw;
-      height: 100vh;
-      `
-
-      let Container = styled.div`
+      const Container = styled.div`
       width: 100vw;
       height: 100vh;
       display: flex;
@@ -25,7 +19,7 @@ function SignUp() {
       align-items: center;
       `
 
-      let Header = styled.div`
+      const Header = styled.div`
         height: 100vh;
         width: 50vw;
         display: flex;
@@ -36,9 +30,9 @@ function SignUp() {
         padding: 0;
       `
 
-      let Box = styled.div`
+      const Box = styled.div`
       background : white;
-      width:500px;
+      width:600px;
       height: auto;
       padding: 20px;
       border-radius: 10px;
@@ -48,33 +42,34 @@ function SignUp() {
       flex-direction: column;
       `
       
-      let H1 = styled.h1`
+      const H1 = styled.h1`
       color: black;
       font-size: 35px;
       margin: 0;
       padding: 0;
       `
 
-      let Group = styled.div`
+      const Group = styled.div`
         margin: 1px;
         padding: 0;
         display: flex;
         justify-content: space-between;
       `
 
-      let Input = styled.input`
+      const Input = styled.input`
         border-style: none;
         background : #F5F5F5;
         border: 1px solid #727273;
         border-radius: 5px;
         width: 250px;
+        padding: 2px;
       `
 
-      let Formbox = styled.div`
-        width: 400px;
+      const Formbox = styled.div`
+        width: 500px;
         
       `
-      let Signup_button = styled.button`
+      const Signup_button = styled.button`
         width: 100%;
         margin: 3px;
         border-radius: 5px;
@@ -82,7 +77,7 @@ function SignUp() {
         height: 30px ; 
       `
 
-      let Button = styled.button`
+      const Button = styled.button`
         background-color:#F5F5F5;
         margin: 0 10px 0 10px;
         border-radius: 5px;
@@ -90,47 +85,113 @@ function SignUp() {
         border-style: none;
         box-shadow: 2px 3px 5px 0px #cac6ce;
     `
-    let [id, setId] = useState('');
-    let [pwd, setPwd] = useState('');
-    let [name, setName] = useState('');
-    let [nickname, setNickname] = useState('');
-    let [emailcheck, setEmailcheck] = useState('');
-    let [pwdcheck, setPwdcheck] = useState('');
-    let [birth, setBirth] = useState('');
-{/* 
-   axios.get("http://localhost:8080/api/user-service/register", {
-      id: id,
-      pwd: pwd,
-      name: name,
-      nickname: nickname,
-      birth: birth
-    }) .then(function(response) {
-        if(response.data == 201) {
-         setPopup ({
-            open: true,
-            title: "Confirm",
-            message: "Join Success!", 
-            callback: function(){
-              navigate("/");
-            }
-          }); 
-        }  else {
-            let message = response.data.message;
-            if(response.data.code == 409){
-              message = "User ID is duplicated. Please enter a different User ID. "
-            }
-           {/* setPopup({
-              open: true,
-              title: "Error",
-              message: message
-            }); 
-          }
-      }).catch(function (error) {
-        console.log(error);
 
+
+function SignUp() {
+    let navigate = useNavigate();
+
+    const [findIDOn, setFindIDModalOn] = React.useState(false);
+    const [findPWOn, setFindPWModalOn] = React.useState(false);
+
+      
+    const [email, setEmail] = useState('');
+
+    const [name, setName] = useState('');
+    const [nickname, setNickname] = useState('');
+    const [emailcheck, setEmailcheck] = useState('');
+    const [pwd, setPwd] = useState('');
+    const [pwdcheck, setPwdcheck] = useState('');
+    const [phonenum, setPhonenum] = useState('');
+
+
+/***************회원가입버튼******************** */
+    const register = () => {
+
+      console.log(email);
+      console.log(pwd);
+      console.log(name);
+      console.log(nickname);
+      console.log(emailcheck);
+      console.log(pwdcheck);
+      console.log(phonenum);
+      axios
+      .post('http://203.250.32.29:2201/api/manager-service/signup', {
+        userEmail: email,
+        userPassword: pwd,
+        userName: name,
+        userNickname: nickname,
+        userPhoneNum: phonenum,
       })
+      .then(response => {
+        // Handle success.
+        console.log('회원가입 완료');
+        alert('회원가입완료되었습니다');
+        
+      })
+      .catch(error => {
+        // Handle error.
+        console.log('회원가입 실패', error.response);
+        alert('에러남');
+      });
+   }
 
-    */}
+   /***************이메일 인증*********************/
+
+   const emailCheck = () => {
+    
+    console.log(email);
+
+//203.250.32.29
+    axios
+    .post('http://203.250.32.29:2201/api/user-service/register/check/email/{email}', {
+      userEmail: email,
+    })
+    .then(response => {
+      // Handle success.
+      console.log('사용가능한 이메일');
+      alert('사용가능한 이메일입니다');
+      
+    })
+    .catch(error => {
+      // Handle error.
+      console.log('사용불가한 이메일', error.response);
+      alert('이미사용중인 이메일입니다');
+    });
+ }
+
+   /***************닉네임 인증*********************/
+ const nicknameCheck = () => {
+    
+  console.log(nickname);
+
+//203.250.32.29
+  axios
+  .post('http://203.250.32.29:2201/api/user-service/register/check/nickname', {
+    userNickname: nickname,
+  })
+  .then(response => {
+    // Handle success.
+    console.log('사용가능한 닉네임');
+    alert('사용가능한 닉네임입니다');
+    
+  })
+  .catch(error => {
+    // Handle error.
+    console.log('사용불가한 닉네임', error.response);
+    alert('중복된 닉네임입니다');
+  });
+}
+
+/*******************유효성 검사************************/
+const checkEmail = (e) => {
+  var emailForm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
+  // 형식에 맞는 경우 true 리턴
+  console.log('이메일 유효성 검사: ', emailForm.test(e.target.value))
+
+  if( emailForm.test(e.target.value) == false) {
+    alert('이메일형식이 맞지 않습니다');
+  } 
+}
 
     return (
       <Body>
@@ -145,42 +206,69 @@ function SignUp() {
               <hr></hr>
               <Group>
                   <label>이름</label>
-                  <Input type="text" value={name}/>
+                  <Input type="text" value={name} onChange={(e)=> {
+                 setName(e.target.value);
+              }}/>
                 </Group><br/>
 
                 <Group>
                   <label>닉네임</label>
-                  <Input type="text" value={nickname} />
+                  <Input type="text" value={nickname} placeholder="영어로 입력해주세요"  onChange={(e)=> {
+                 setNickname(e.target.value);
+              }}/>
+              <button onClick={() => {
+                nicknameCheck();
+               }}>중복확인</button> 
                 </Group><br/>
 
                 <Group>
                   <label>이메일</label>
-                  <Input type="email" value={id}/>
-                  
+                  <Input type="email" value={email}  onChange={(e)=> {
+                 setEmail(e.target.value);
+              }} onBlur={checkEmail}/>
+                <button onClick={() => {
+                emailCheck();
+               }}>중복확인</button>  
                 </Group><br/>
                 
                 <Group>
-                
-                  <Input type="text"  value={emailcheck}/>
+                  <label>이메일인증</label>
+                  <Input type="text"  value={emailcheck} onChange={(e)=> {
+                 setEmailcheck(e.target.value);
+              }}/>
                   <button>인증하기</button>
                 </Group><br/>
 
                 <Group>
                   <label>비밀번호</label>
-                  <Input type="password" value={pwd}/>
+                  <Input type="password" value={pwd}  onChange={(e)=> {
+                 setPwd(e.target.value);
+              }}/>
                 </Group><br/>
 
                 <Group>
                   <label>비밀번호 확인</label>
-                  <Input type="password" value={pwdcheck}/>
+                  <Input type="password" value={pwdcheck}  onChange={(e)=> {
+                 setPwdcheck(e.target.value);
+              }}/>
                 </Group><br/>
-
+{/*
                 <Group>
                   <label>생년월일</label>
                   <Input type="date" value={birth}/>
                 </Group><br/>
+ */}
+                <Group>
+                  <label>전화번호</label>
+                  <Input type="text" value={phonenum} onChange={(e)=> {
+                 setPhonenum(e.target.value);
+              }}/>
+                </Group><br/>
+
                <hr></hr> 
-               <Signup_button type="submit">
+               <Signup_button onClick={() => {
+                register();
+               }}>
                 가입하기
                </Signup_button>
               <hr></hr>
