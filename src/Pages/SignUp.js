@@ -103,6 +103,8 @@ function SignUp() {
     const [pwdcheck, setPwdcheck] = useState('');
     const [phonenum, setPhonenum] = useState('');
 
+    const [disabled, setDisabled] = useState('');
+
 
 /***************회원가입버튼******************** */
     const register = () => {
@@ -183,7 +185,7 @@ function SignUp() {
 }
 
 /*******************유효성 검사************************/
-const checkEmail = (e) => {
+const CheckEmail = (e) => {
   var emailForm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
   // 형식에 맞는 경우 true 리턴
   console.log('이메일 유효성 검사: ', emailForm.test(e.target.value))
@@ -191,7 +193,12 @@ const checkEmail = (e) => {
   if( emailForm.test(e.target.value) == false) {
     alert('이메일형식이 맞지 않습니다');
   } 
+
 }
+
+
+
+
 
     return (
       <Body>
@@ -223,12 +230,12 @@ const checkEmail = (e) => {
 
                 <Group>
                   <label>이메일</label>
-                  <Input type="email" value={email}  onChange={(e)=> {
+                  <Input type="email" value={email} onChange={(e)=> {
                  setEmail(e.target.value);
-              }} onBlur={checkEmail}/>
+              }} onBlur={CheckEmail}/>
                 <button onClick={() => {
                 emailCheck();
-               }}>중복확인</button>  
+               }} disabled={!email}>중복확인</button>  
                 </Group><br/>
                 
                 <Group>
@@ -289,7 +296,11 @@ const checkEmail = (e) => {
 
         </Container> 
       </Body>
+
+      
     )
+
+    
   }
 
 
