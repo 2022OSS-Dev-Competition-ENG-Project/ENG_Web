@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import FindID from './FindID';
 import FindPW from './FindPW';
+import e from 'cors';
 
 const Body = styled.div`
         background : #B983FF;
@@ -103,7 +104,7 @@ function SignUp() {
     const [pwdcheck, setPwdcheck] = useState('');
     const [phonenum, setPhonenum] = useState('');
 
-    const [disabled, setDisabled] = useState('');
+    const [actEmailCheck, setActEmailCheck] = useState(false);
 
 
 /***************회원가입버튼******************** */
@@ -145,7 +146,7 @@ function SignUp() {
 
 //203.250.32.29
     axios
-    .post('http://203.250.32.29:2201/api/user-service/register/check/email/{email}', {
+    .get('http://203.250.32.29:2201/api/user-service/register/check/email/hy@naver.com', {
       userEmail: email,
     })
     .then(response => {
@@ -168,7 +169,7 @@ function SignUp() {
 
 //203.250.32.29
   axios
-  .post('http://203.250.32.29:2201/api/user-service/register/check/nickname', {
+  .get('http://203.250.32.29:2201/api/user-service/register/check/aaaa/hy@naver.com', {
     userNickname: nickname,
   })
   .then(response => {
@@ -190,14 +191,18 @@ const CheckEmail = (e) => {
   // 형식에 맞는 경우 true 리턴
   console.log('이메일 유효성 검사: ', emailForm.test(e.target.value))
 
-  if( emailForm.test(e.target.value) == false) {
-    alert('이메일형식이 맞지 않습니다');
+  if( emailForm.test(e.target.value) == true) {
+    return setActEmailCheck(true);
   } 
+  else {
+    alert('형식이 맞지 않습니다');
+  }
 
 }
 
-
-
+function onlyAlphabet(ele) {
+  ele.value = ele.value.replace(/[^\\!-z]/gi,"");
+}
 
 
     return (
@@ -225,7 +230,7 @@ const CheckEmail = (e) => {
               }}/>
               <button onClick={() => {
                 nicknameCheck();
-               }}>중복확인</button> 
+               }} disabled={!nickname}>중복확인</button> 
                 </Group><br/>
 
                 <Group>
@@ -235,7 +240,7 @@ const CheckEmail = (e) => {
               }} onBlur={CheckEmail}/>
                 <button onClick={() => {
                 emailCheck();
-               }} disabled={!email}>중복확인</button>  
+               }} disabled={actEmailCheck == false}>중복확인</button>  
                 </Group><br/>
                 
                 <Group>
@@ -267,9 +272,9 @@ const CheckEmail = (e) => {
  */}
                 <Group>
                   <label>전화번호</label>
-                  <Input type="text" value={phonenum} onChange={(e)=> {
+                  <Input type="number" value={phonenum} onChange={(e)=> {
                  setPhonenum(e.target.value);
-              }}/>
+              }}placeholder="'-'없이 숫자로만 입력해주세요"/>
                 </Group><br/>
 
                <hr></hr> 
