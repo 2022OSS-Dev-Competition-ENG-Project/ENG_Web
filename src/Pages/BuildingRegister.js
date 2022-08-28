@@ -82,7 +82,6 @@ background-color: #0F4C75;
 
 function BuildingRegister() {
 
-
  const [facilityName, setFacilityName] = useState('');
  const [facilityAddress, setFacilityAddress] = useState('');
  const [userId, setUserId] = useState('');
