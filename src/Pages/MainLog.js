@@ -5,6 +5,71 @@ import FindID from './FindID';
 import FindPW from './FindPW';
 import axios from 'axios';
 import styled from 'styled-components';
+let Body = styled.div`
+background : #E4E4E4;
+width: 100vw;
+height: 100vh;
+`
+
+let Header = styled.div`
+height: 100vh;
+width: 53vw;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #ABC9FF;
+margin: 0;
+padding: 0;
+float: left;
+`
+
+let Logobox = styled.div`
+width: 200px;
+background-color: rgba(1, 156, 22, 0);
+`
+
+let Logo = styled.h1`
+color: white;
+font-size: 50px;
+margin: 0;
+padding: 0;
+`
+
+let Logo_sub = styled.h3`
+font-weight: 700;
+`
+
+let Side = styled.div`
+width: 450px;
+float: right;
+background-color: white;
+border-radius: 20px;
+margin-right: 200px ;
+padding: 20px;
+margin-top: 300px;
+`
+
+let Login_button = styled.button`
+width: 100%;
+margin: 3px;
+border-radius: 5px;
+border-style: none;
+`
+
+let Findbutton = styled.button`
+background-color:#F5F5F5;
+margin: 0 10px 0 10px;
+border-radius: 5px;
+padding: 5px 10px;
+border-style: none;
+box-shadow: 2px 3px 5px 0px #cac6ce;
+`
+
+let Hr = styled.hr`
+padding: 0;
+margin: 10px;
+width: 100%;
+`
 
 function MainLog() {
   
@@ -14,84 +79,44 @@ function MainLog() {
   const [findPWOn, setFindPWModalOn] = React.useState(false);
 
 
-  let Body = styled.div`
-      background : #E4E4E4;
-      width: 100vw;
-      height: 100vh;
-      `
-    
-    let Header = styled.div`
-      height: 100vh;
-      width: 53vw;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #ABC9FF;
-      margin: 0;
-      padding: 0;
-      float: left;
-    `
-    
-    let Logobox = styled.div`
-      width: 200px;
-      background-color: rgba(1, 156, 22, 0);
-    `
 
-    let Logo = styled.h1`
-      color: white;
-      font-size: 50px;
-      margin: 0;
-      padding: 0;
-    `
-
-    let Logo_sub = styled.h3`
-      font-weight: 700;
-    `
-
-    let Side = styled.div`
-      width: 450px;
-      float: right;
-      background-color: white;
-      border-radius: 20px;
-      margin-right: 200px ;
-      padding: 20px;
-      margin-top: 300px;
-    `
-
-    let Login_button = styled.button`
-      width: 100%;
-      margin: 3px;
-      border-radius: 5px;
-      border-style: none;
-    `
-
-    let Button = styled.button`
-      background-color:#F5F5F5;
-      margin: 0 10px 0 10px;
-      border-radius: 5px;
-      padding: 5px 10px;
-      border-style: none;
-      box-shadow: 2px 3px 5px 0px #cac6ce;
-    `
-
-    let Hr = styled.hr`
-      padding: 0;
-      margin: 10px;
-      width: 100%;
-    `
 
     let [id, setId] = useState('');
     let [pw, setPw] = useState('');
 
-    cosnt [button, setButton] =useState(true);
+    let [LogButton, setLogButton] = useState(true);
 
     function changeButton() {
-      id.includes('@') && pw.length >= 1 ? setButton(false) : setButton(true);
+      id.includes('@') && pw.length >= 1 ? setLogButton(false) : setLogButton(true);
     }
 
     const goMain = () => {
       navigate('/main');
     };
+
+    const Login = () => {
+    
+      console.log(id);
+      console.log(pw);
+    
+    //203.250.32.29
+      axios
+      .get('http://203.250.32.29:2201/api/manager-service/login', {
+        userEmail: id,
+        userPassword: pw,
+      })
+      .then(response => {
+        // Handle success.
+        console.log('로그인성공');
+        goMain();
+        
+      })
+      .catch(error => {
+        // Handle error.
+        console.log('로그인 실패', error.response);
+        alert('아이디 혹은 비밀번호가 일치하지 않습니다');
+      });
+    }
 
     return (
       <>
@@ -118,23 +143,23 @@ function MainLog() {
               }} onKeyUp={changeButton}/>
               </Form.Group>
 
-              <Login_button onClick={()=> {navigate('/main')}} type="submit">
+              <Login_button disabled={LogButton} onClick={()=> {Login()}} type="submit">
                 LOGIN
               </Login_button>
               <Hr></Hr>
-              <Button onClick={()=> setFindIDModalOn(true)}>아이디 찾기</Button>
+              <Findbutton onClick={()=> setFindIDModalOn(true)}>아이디 찾기</Findbutton>
                 <FindID
                   show = {findIDOn}
                   onHide={() => setFindIDModalOn(false)}
                 />
 
-              <Button onClick={()=> setFindPWModalOn(true)}>비밀번호 찾기</Button>
+              <Findbutton onClick={()=> setFindPWModalOn(true)}>비밀번호 찾기</Findbutton>
                 <FindPW
                   show = {findPWOn}
                   onHide={() => setFindPWModalOn(false)}
                 />
 
-              <Button onClick={()=> {navigate('/signup')}}>회원가입</Button>
+              <Findbutton onClick={()=> {navigate('/signup')}}>회원가입</Findbutton>
           </Form>
         </Side>
       </Body>
