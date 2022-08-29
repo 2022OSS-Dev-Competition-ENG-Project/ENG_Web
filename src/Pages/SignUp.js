@@ -134,11 +134,11 @@ function SignUp() {
       .catch(error => {
         // Handle error.
         console.log('회원가입 실패', error.response);
-        alert('에러남');
+        alert('회원가입 조건을 다시 확인해주세요');
       });
    }
 
-   /***************이메일 인증*********************/
+   /***************이메일 중복확인*********************/
 
    const emailCheck = () => {
     
@@ -185,7 +185,7 @@ function SignUp() {
   });
 }
 
-/*******************유효성 검사************************/
+/*******************이메일 형식 유효성 검사************************/
 const CheckEmail = (e) => {
   var emailForm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
   // 형식에 맞는 경우 true 리턴
@@ -200,9 +200,30 @@ const CheckEmail = (e) => {
 
 }
 
-function onlyAlphabet(ele) {
-  ele.value = ele.value.replace(/[^\\!-z]/gi,"");
+/*******************이메일 인증************************/
+const emailNumCheck = () => {
+    
+  console.log(emailcheck);
+
+//203.250.32.29
+  axios
+  .get('http://203.250.32.29:2201/api/user-service/register/check/email/hy@naver.com', {
+    userEmail: email,
+  })
+  .then(response => {
+    // Handle success.
+    console.log('사용가능한 이메일');
+    alert('사용가능한 이메일입니다');
+    
+  })
+  .catch(error => {
+    // Handle error.
+    console.log('사용불가한 이메일', error.response);
+    alert('이미사용중인 이메일입니다');
+  });
 }
+
+
 
 
     return (
@@ -225,7 +246,7 @@ function onlyAlphabet(ele) {
 
                 <Group>
                   <label>닉네임</label>
-                  <Input type="text" value={nickname} placeholder="영어로 입력해주세요"  onChange={(e)=> {
+                  <Input type="text" value={nickname} placeholder="영어로 입력해주세요" onKeyDown={(ele) => { ele.value = ele.value.replace(/[^\\!-z]/gi,"");}} onChange={(e)=> {
                  setNickname(e.target.value);
               }}/>
               <button onClick={() => {
@@ -248,7 +269,9 @@ function onlyAlphabet(ele) {
                   <Input type="text"  value={emailcheck} onChange={(e)=> {
                  setEmailcheck(e.target.value);
               }}/>
-                  <button>인증하기</button>
+                  <button onClick={() => {
+                    emailNumCheck();
+                  }}>인증하기</button>
                 </Group><br/>
 
                 <Group>
@@ -274,7 +297,7 @@ function onlyAlphabet(ele) {
                   <label>전화번호</label>
                   <Input type="number" value={phonenum} onChange={(e)=> {
                  setPhonenum(e.target.value);
-              }}placeholder="'-'없이 숫자로만 입력해주세요"/>
+              }}placeholder="'-' 없이 숫자로만 입력해주세요"/>
                 </Group><br/>
 
                <hr></hr> 
