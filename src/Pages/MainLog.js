@@ -12,8 +12,7 @@ function MainLog() {
   let navigate = useNavigate();
   const [findIDOn, setFindIDModalOn] = React.useState(false);
   const [findPWOn, setFindPWModalOn] = React.useState(false);
-  let [id, setId] = useState('');
-  let [pw, setPw] = useState('');
+
 
   let Body = styled.div`
       background : #E4E4E4;
@@ -80,6 +79,20 @@ function MainLog() {
       margin: 10px;
       width: 100%;
     `
+
+    let [id, setId] = useState('');
+    let [pw, setPw] = useState('');
+
+    cosnt [button, setButton] =useState(true);
+
+    function changeButton() {
+      id.includes('@') && pw.length >= 1 ? setButton(false) : setButton(true);
+    }
+
+    const goMain = () => {
+      navigate('/main');
+    };
+
     return (
       <>
       <Body>
@@ -93,15 +106,19 @@ function MainLog() {
               <h3>Login</h3><hr></hr>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>아이디</Form.Label>
-                <Form.Control type="email" placeholder="123456@abcd.com" />
+                <Form.Control type="email" placeholder="이메일을 입력해주세요" value={id} onChange={(e)=> {
+                 setId(e.target.value);
+              }} onKeyUp={changeButton}/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>비밀번호</Form.Label>
-                <Form.Control type="password" placeholder="비밀번호를 입력하세요" />
+                <Form.Control type="password" placeholder="비밀번호를 입력하세요" value={pw} onChange={(e)=> {
+                 setPw(e.target.value);
+              }} onKeyUp={changeButton}/>
               </Form.Group>
 
-              <Login_button type="submit">
+              <Login_button onClick={()=> {navigate('/main')}} type="submit">
                 LOGIN
               </Login_button>
               <Hr></Hr>

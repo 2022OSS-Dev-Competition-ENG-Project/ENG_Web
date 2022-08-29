@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import FindID from './FindID';
 import FindPW from './FindPW';
+import e from 'cors';
 
 const Body = styled.div`
         background : #B983FF;
@@ -103,7 +104,7 @@ function SignUp() {
     const [pwdcheck, setPwdcheck] = useState('');
     const [phonenum, setPhonenum] = useState('');
 
-    const [disabled, setDisabled] = useState('');
+    const [actEmailCheck, setActEmailCheck] = useState(false);
 
 
 /***************회원가입버튼******************** */
@@ -133,11 +134,11 @@ function SignUp() {
       .catch(error => {
         // Handle error.
         console.log('회원가입 실패', error.response);
-        alert('에러남');
+        alert('회원가입 조건을 다시 확인해주세요');
       });
    }
 
-   /***************이메일 인증*********************/
+   /***************이메일 중복확인*********************/
 
    const emailCheck = () => {
     
@@ -145,7 +146,7 @@ function SignUp() {
 
 //203.250.32.29
     axios
-    .post('http://203.250.32.29:2201/api/user-service/register/check/email/{email}', {
+    .get('http://203.250.32.29:2201/api/user-service/register/check/email/hy@naver.com', {
       userEmail: email,
     })
     .then(response => {
@@ -168,7 +169,7 @@ function SignUp() {
 
 //203.250.32.29
   axios
-  .post('http://203.250.32.29:2201/api/user-service/register/check/nickname', {
+  .get('http://203.250.32.29:2201/api/user-service/register/check/aaaa/hy@naver.com', {
     userNickname: nickname,
   })
   .then(response => {
@@ -184,18 +185,43 @@ function SignUp() {
   });
 }
 
-/*******************유효성 검사************************/
+/*******************이메일 형식 유효성 검사************************/
 const CheckEmail = (e) => {
   var emailForm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
   // 형식에 맞는 경우 true 리턴
   console.log('이메일 유효성 검사: ', emailForm.test(e.target.value))
 
-  if( emailForm.test(e.target.value) == false) {
-    alert('이메일형식이 맞지 않습니다');
+  if( emailForm.test(e.target.value) == true) {
+    return setActEmailCheck(true);
   } 
+  else {
+    alert('형식이 맞지 않습니다');
+  }
 
 }
 
+/*******************이메일 인증************************/
+const emailNumCheck = () => {
+    
+  console.log(emailcheck);
+
+//203.250.32.29
+  axios
+  .get('http://203.250.32.29:2201/api/user-service/register/check/email/hy@naver.com', {
+    userEmail: email,
+  })
+  .then(response => {
+    // Handle success.
+    console.log('사용가능한 이메일');
+    alert('사용가능한 이메일입니다');
+    
+  })
+  .catch(error => {
+    // Handle error.
+    console.log('사용불가한 이메일', error.response);
+    alert('이미사용중인 이메일입니다');
+  });
+}
 
 
 
@@ -220,12 +246,12 @@ const CheckEmail = (e) => {
 
                 <Group>
                   <label>닉네임</label>
-                  <Input type="text" value={nickname} placeholder="영어로 입력해주세요"  onChange={(e)=> {
+                  <Input type="text" value={nickname} placeholder="영어로 입력해주세요" onKeyDown={(ele) => { ele.value = ele.value.replace(/[^\\!-z]/gi,"");}} onChange={(e)=> {
                  setNickname(e.target.value);
               }}/>
               <button onClick={() => {
                 nicknameCheck();
-               }}>중복확인</button> 
+               }} disabled={!nickname}>중복확인</button> 
                 </Group><br/>
 
                 <Group>
@@ -235,7 +261,7 @@ const CheckEmail = (e) => {
               }} onBlur={CheckEmail}/>
                 <button onClick={() => {
                 emailCheck();
-               }} disabled={!email}>중복확인</button>  
+               }} disabled={actEmailCheck == false}>중복확인</button>  
                 </Group><br/>
                 
                 <Group>
@@ -243,7 +269,9 @@ const CheckEmail = (e) => {
                   <Input type="text"  value={emailcheck} onChange={(e)=> {
                  setEmailcheck(e.target.value);
               }}/>
-                  <button>인증하기</button>
+                  <button onClick={() => {
+                    emailNumCheck();
+                  }}>인증하기</button>
                 </Group><br/>
 
                 <Group>
@@ -267,9 +295,9 @@ const CheckEmail = (e) => {
  */}
                 <Group>
                   <label>전화번호</label>
-                  <Input type="text" value={phonenum} onChange={(e)=> {
+                  <Input type="number" value={phonenum} onChange={(e)=> {
                  setPhonenum(e.target.value);
-              }}/>
+              }}placeholder="'-' 없이 숫자로만 입력해주세요"/>
                 </Group><br/>
 
                <hr></hr> 
