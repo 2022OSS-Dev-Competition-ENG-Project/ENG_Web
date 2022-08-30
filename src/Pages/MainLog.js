@@ -35,7 +35,7 @@ margin: 0;
 padding: 0;
 `
 
-let Logo_sub = styled.h3`
+let LogoSub = styled.h3`
 font-weight: 700;
 `
 
@@ -49,7 +49,7 @@ padding: 20px;
 margin-top: 300px;
 `
 
-let Login_button = styled.button`
+let LoginButton = styled.button`
 width: 100%;
 margin: 3px;
 border-radius: 5px;
@@ -75,8 +75,7 @@ function MainLog() {
   
 
   let navigate = useNavigate();
-  const [findIDOn, setFindIDModalOn] = React.useState(false);
-  const [findPWOn, setFindPWModalOn] = React.useState(false);
+  
 
 
 
@@ -118,12 +117,15 @@ function MainLog() {
       });
     }
 
+  const [findIDOn, setFindIDModalOn] = React.useState(false);
+  const [findPWOn, setFindPWModalOn] = React.useState(false);
+
     return (
       <>
       <Body>
         <Header>
           <Logobox>
-            <Logo>!ENG?</Logo><Logo_sub>for Manager</Logo_sub>
+            <Logo>!ENG?</Logo><LogoSub>for Manager</LogoSub>
           </Logobox>
         </Header>
         <Side>
@@ -143,17 +145,17 @@ function MainLog() {
               }} onKeyUp={changeButton}/>
               </Form.Group>
 
-              <Login_button disabled={LogButton} onClick={()=> {Login()}} type="submit">
+              <LoginButton disabled={LogButton} onClick={()=> {Login()}} type="submit">
                 LOGIN
-              </Login_button>
+              </LoginButton>
               <Hr></Hr>
-              <Findbutton onClick={()=> setFindIDModalOn(true)}>아이디 찾기</Findbutton>
+              <Findbutton type="button" onClick={()=> setFindIDModalOn(true)}>아이디 찾기</Findbutton>
                 <FindID
                   show = {findIDOn}
                   onHide={() => setFindIDModalOn(false)}
                 />
 
-              <Findbutton onClick={()=> setFindPWModalOn(true)}>비밀번호 찾기</Findbutton>
+              <Findbutton  type="button" onClick={()=> setFindPWModalOn(true)}>비밀번호 찾기</Findbutton>
                 <FindPW
                   show = {findPWOn}
                   onHide={() => setFindPWModalOn(false)}

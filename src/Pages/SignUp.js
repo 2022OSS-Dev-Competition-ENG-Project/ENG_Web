@@ -278,7 +278,7 @@ const CheckEmail = (e) => {
 
                 <Group>
                   <label>닉네임</label>
-                  <Input type="text" value={nickname} placeholder="영어로 입력해주세요"  onChange={(e)=> {
+                  <Input type="text" value={nickname}  onChange={(e)=> {
                  setNickname(e.target.value);
               }}/>
               <button onClick={() => {
