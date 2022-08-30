@@ -105,7 +105,11 @@ function SignUp() {
     const [phonenum, setPhonenum] = useState('');
 
     const [actEmailCheck, setActEmailCheck] = useState(false);
+    let [SignupButton, setSignupButton] = useState(true);
 
+    function changeButton() {
+      name.length >= 1 && phonenum.length == 11 && pwd == pwdcheck && pwd.length >= 1 && pwdcheck.length >= 1 ? setSignupButton(false) : setSignupButton(true);
+    }
 
 /***************회원가입버튼******************** */
     const register = () => {
@@ -129,6 +133,7 @@ function SignUp() {
         // Handle success.
         console.log('회원가입 완료');
         alert('회원가입완료되었습니다');
+        goToMain();
         
       })
       .catch(error => {
@@ -138,6 +143,10 @@ function SignUp() {
       });
    }
 
+   const goToMain = () => {
+    navigate('/');
+   };
+
    /***************이메일 중복확인*********************/
 
    const emailCheck = () => {
@@ -146,7 +155,7 @@ function SignUp() {
 
 //203.250.32.29
     axios
-    .get('http://203.250.32.29:2201/api/user-service/register/check/email/hy@naver.com', {
+    .get('http://203.250.32.29:2201/api/manager-service/register/check/email/' + email , {
       userEmail: email,
     })
     .then(response => {
@@ -162,6 +171,30 @@ function SignUp() {
     });
  }
 
+ /*******************이메일 인증************************/
+const emailNumCheck = () => {
+    
+  console.log(emailcheck);
+
+//203.250.32.29
+  axios
+  .get(' http://203.250.32.29:2201/api/manager-service/register/check/email/'+ email + '/11111', {
+    userEmail: emailcheck,
+  })
+  .then(response => {
+    // Handle success.
+    console.log('이메일 인증완료');
+    alert('인증되었습니다');
+    
+  })
+  .catch(error => {
+    // Handle error.
+    console.log('인증번호 틀림', error.response);
+    alert('인증번호가 틀렸습니다.');
+  });
+}
+
+
    /***************닉네임 인증*********************/
  const nicknameCheck = () => {
     
@@ -169,7 +202,7 @@ function SignUp() {
 
 //203.250.32.29
   axios
-  .get('http://203.250.32.29:2201/api/user-service/register/check/aaaa/hy@naver.com', {
+  .get(' http://203.250.32.29:2201/api/manager-service/register/check/nickname/'+ nickname + '/' + email, {
     userNickname: nickname,
   })
   .then(response => {
@@ -200,28 +233,6 @@ const CheckEmail = (e) => {
 
 }
 
-/*******************이메일 인증************************/
-const emailNumCheck = () => {
-    
-  console.log(emailcheck);
-
-//203.250.32.29
-  axios
-  .get('http://203.250.32.29:2201/api/user-service/register/check/email/hy@naver.com', {
-    userEmail: email,
-  })
-  .then(response => {
-    // Handle success.
-    console.log('사용가능한 이메일');
-    alert('사용가능한 이메일입니다');
-    
-  })
-  .catch(error => {
-    // Handle error.
-    console.log('사용불가한 이메일', error.response);
-    alert('이미사용중인 이메일입니다');
-  });
-}
 
 
 
@@ -241,18 +252,9 @@ const emailNumCheck = () => {
                   <label>이름</label>
                   <Input type="text" value={name} onChange={(e)=> {
                  setName(e.target.value);
-              }}/>
+              }} onKeyUp={changeButton}/>
                 </Group><br/>
 
-                <Group>
-                  <label>닉네임</label>
-                  <Input type="text" value={nickname} placeholder="영어로 입력해주세요" onKeyDown={(ele) => { ele.value = ele.value.replace(/[^\\!-z]/gi,"");}} onChange={(e)=> {
-                 setNickname(e.target.value);
-              }}/>
-              <button onClick={() => {
-                nicknameCheck();
-               }} disabled={!nickname}>중복확인</button> 
-                </Group><br/>
 
                 <Group>
                   <label>이메일</label>
@@ -271,21 +273,31 @@ const emailNumCheck = () => {
               }}/>
                   <button onClick={() => {
                     emailNumCheck();
-                  }}>인증하기</button>
+                  }} disabled={!emailcheck}>인증하기</button>
+                </Group><br/>
+
+                <Group>
+                  <label>닉네임</label>
+                  <Input type="text" value={nickname}  onChange={(e)=> {
+                 setNickname(e.target.value);
+              }}/>
+              <button onClick={() => {
+                nicknameCheck();
+               }} disabled={!nickname}>중복확인</button> 
                 </Group><br/>
 
                 <Group>
                   <label>비밀번호</label>
                   <Input type="password" value={pwd}  onChange={(e)=> {
                  setPwd(e.target.value);
-              }}/>
+              }} onKeyUp={changeButton}/>
                 </Group><br/>
 
                 <Group>
                   <label>비밀번호 확인</label>
                   <Input type="password" value={pwdcheck}  onChange={(e)=> {
                  setPwdcheck(e.target.value);
-              }}/>
+              }} onKeyUp={changeButton}/>
                 </Group><br/>
 {/*
                 <Group>
@@ -297,11 +309,11 @@ const emailNumCheck = () => {
                   <label>전화번호</label>
                   <Input type="number" value={phonenum} onChange={(e)=> {
                  setPhonenum(e.target.value);
-              }}placeholder="'-' 없이 숫자로만 입력해주세요"/>
+              }}placeholder="'-' 없이 숫자로만 입력해주세요" onKeyUp={changeButton}/>
                 </Group><br/>
 
                <hr></hr> 
-               <Signup_button onClick={() => {
+               <Signup_button disabled={SignupButton} onClick={() => {
                 register();
                }}>
                 가입하기
