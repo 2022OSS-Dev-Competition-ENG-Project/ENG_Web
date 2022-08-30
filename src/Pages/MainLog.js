@@ -100,20 +100,21 @@ function MainLog() {
     
     //203.250.32.29
       axios
-      .get('http://203.250.32.29:2201/api/manager-service/login', {
+      .post('http://203.250.32.29:2201/api/manager-service/login', {
         userEmail: id,
         userPassword: pw,
       })
       .then(response => {
         // Handle success.
         console.log('로그인성공');
+        console.log(response);
         goMain();
         
       })
       .catch(error => {
         // Handle error.
         console.log('로그인 실패', error.response);
-        alert('아이디 혹은 비밀번호가 일치하지 않습니다');
+        alert(error.response.data);
       });
     }
 
@@ -145,7 +146,7 @@ function MainLog() {
               }} onKeyUp={changeButton}/>
               </Form.Group>
 
-              <LoginButton disabled={LogButton} onClick={()=> {Login()}} type="submit">
+              <LoginButton disabled={LogButton} onClick={()=> {Login()}} type="button">
                 LOGIN
               </LoginButton>
               <Hr></Hr>
