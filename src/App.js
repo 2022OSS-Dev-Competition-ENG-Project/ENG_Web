@@ -12,6 +12,8 @@ import BuildingRegister from './Pages/BuildingRegister';
 import ManagerRegister from './Pages/ManagerRegister';
 import NoticeView from './Pages/NoticeView';
 import PostView from './Pages/PostView';
+import NoticeList from './Pages/NoticeList';
+import PostList from './Pages/PostList';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/main" element={<Main />}> </Route>
         <Route path="/layout" element={<Layout />}> </Route>
         <Route path="/BuildingList" element={<BuildingList />}> </Route>
+        <Route path="/notice" element={<NoticeList />} ></Route>
+        <Route path="/post" element={<PostList />} ></Route>
 
         <Route path="/notice/write" element={<NoticeWrite />}> </Route>
         <Route path="/post/write" element={<PostWrite />}> </Route>
