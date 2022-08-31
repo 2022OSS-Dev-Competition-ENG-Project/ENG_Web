@@ -34,7 +34,8 @@ let Div = styled.div`
   widith: auto;
   height: auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: flex-end;
   background-color:#FAFAFA;
   font-size: 50px;
   padding:0;
@@ -57,9 +58,17 @@ let Div = styled.div`
   background-color: #FAFAFA;
   `
 
+  let WriteButton = styled.button`
+    width: 100px;
+    font-size: 20px;
+    height: 50px;
+  `
+  
+
 
   function GetData() {
     const [data, setData] = useState([]);
+    
 
     
     useEffect(() => {
@@ -94,6 +103,7 @@ let Div = styled.div`
 function NoticeList() {
 
   const item = GetData();
+  let navigate = useNavigate();
       
   return(
     <>
@@ -102,7 +112,7 @@ function NoticeList() {
         <Body>
           <Box1><Navigation/></Box1>
           <Box2>
-            <Title_box>공지사항</Title_box><hr></hr>
+            <Title_box>공지사항<WriteButton onClick={()=> {navigate('/notice/write')}}>작성하기</WriteButton></Title_box><hr></hr>
             <Content_box>
               <Table headersName={['글번호', '제목', '작성자', '등록일']}>
                 {item}
