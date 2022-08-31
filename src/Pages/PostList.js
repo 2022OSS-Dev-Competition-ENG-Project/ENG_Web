@@ -6,11 +6,11 @@ import styled from 'styled-components';
 import Navigation from '../Components/Navigation';
 import axios from 'axios';
 
+import Table from '../Components/Table';
+import TableColumn from '../Components/TableColumn';
+import TableRow from '../Components/TableRow';
 
-
-function PostList() {
-
-  let Div = styled.div`
+let Div = styled.div`
   background-color: #FAFAFA;
 `
   
@@ -57,6 +57,43 @@ function PostList() {
   background-color: #FAFAFA;
   `
 
+
+  function GetData() {
+    const [data, setData] = useState([]);
+
+    
+    useEffect(() => {
+      axios
+        .get('http://203.250.32.29:2200/api/facility/content/247f9839-53a4-426c-994d-878f1c05d47b/0/0/list')
+        .then((response)=> {
+          console.log(response.data);
+          console.log('성공');
+          setData(response.data);
+          
+          
+      })
+    }, []);
+    
+    
+     
+    const item = (Object.values(data)).map((item) => (
+      <TableRow key = {item.contentNum}>
+        <TableColumn>{item.contentNum}</TableColumn>
+        <TableColumn>{item.contentTitle}</TableColumn>
+        <TableColumn>{item.userName}</TableColumn>
+        <TableColumn>{item.contentDate}</TableColumn>
+      </TableRow>
+    ));
+  
+    return item; 
+
+  
+  }
+    
+
+function PostList() {
+
+  const item = GetData();
       
   return(
     <>
@@ -64,7 +101,15 @@ function PostList() {
       <Header/>
         <Body>
           <Box1><Navigation/></Box1>
-          <Box2><Title_box>게시물</Title_box><hr></hr><Content_box></Content_box></Box2>
+          <Box2>
+            <Title_box>게시물</Title_box><hr></hr>
+            <Content_box>
+              <Table headersName={['글번호', '제목', '작성자', '등록일']}>
+                {item}
+              </Table>
+            </Content_box>
+            
+          </Box2>
         </Body>
         <Footer/>
     </Div>

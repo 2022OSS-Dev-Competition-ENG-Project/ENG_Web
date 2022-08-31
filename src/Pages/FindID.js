@@ -22,6 +22,7 @@ function FindID(props) {
       .then(response => {
         // Handle success.
         console.log('성공');
+        console.log(response.data)
         alert('회원님의 아이디는 '+ (response.data) + '입니다');
         
       })
