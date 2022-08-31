@@ -15,9 +15,9 @@ function FindID(props) {
 
    const Find = () => {
     axios
-      .post('http://203.250.32.29:2201/api/user-service/FindUserid', {
-        userName: name,
-        userPhoneNumber: num,
+      .post('http://203.250.32.29:2201/api/manager-service/FindManagerId', {
+        managerName: name,
+        managerPhoneNumber: num,
       })
       .then(response => {
         // Handle success.

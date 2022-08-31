@@ -97,19 +97,22 @@ function MainLog() {
     
       console.log(id);
       console.log(pw);
+
+     
     
     //203.250.32.29
       axios
       .post('http://203.250.32.29:2201/api/manager-service/login', {
-        userEmail: id,
-        userPassword: pw,
+        managerEmail: id,
+        managerPassword: pw,
       })
       .then(response => {
         // Handle success.
         console.log('로그인성공');
         console.log(response);
+        console.log(response.data);
+        localStorage.setItem("uuid",response.data);
         goMain();
-        
       })
       .catch(error => {
         // Handle error.

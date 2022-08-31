@@ -123,11 +123,11 @@ function SignUp() {
       console.log(phonenum);
       axios
       .post('http://203.250.32.29:2201/api/manager-service/signup', {
-        userEmail: email,
-        userPassword: pwd,
-        userName: name,
-        userNickname: nickname,
-        userPhoneNum: phonenum,
+        managerEmail: email,
+        managerPassword: pwd,
+        managerName: name,
+        managerNickname: nickname,
+        managerPhoneNum: phonenum,
       })
       .then(response => {
         // Handle success.
@@ -156,7 +156,7 @@ function SignUp() {
 //203.250.32.29
     axios
     .get('http://203.250.32.29:2201/api/manager-service/register/check/email/' + email , {
-      userEmail: email,
+      managerEmail: email,
     })
     .then(response => {
       // Handle success.
@@ -179,7 +179,7 @@ const emailNumCheck = () => {
 //203.250.32.29
   axios
   .get(' http://203.250.32.29:2201/api/manager-service/register/check/email/'+ email + '/11111', {
-    userEmail: emailcheck,
+    managerEmail: emailcheck,
   })
   .then(response => {
     // Handle success.
@@ -202,8 +202,8 @@ const emailNumCheck = () => {
 
 //203.250.32.29
   axios
-  .get(' http://203.250.32.29:2201/api/manager-service/register/check/nickname/'+ nickname + '/' + email, {
-    userNickname: nickname,
+  .get('http://203.250.32.29:2201/api/manager-service/register/check/nickname/'+ nickname + '/' + email, {
+    managerNickname: nickname,
   })
   .then(response => {
     // Handle success.
