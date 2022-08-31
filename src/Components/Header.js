@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import {Routes, Route, useNavigate} from 'react-router-dom';
 function Header() {
+
+  let navigate = useNavigate();
   let Header = styled.div`
       background : #FAFAFA;
       width: 100%;
@@ -15,6 +17,7 @@ function Header() {
         font-size: 40px;
         background-color:#FAFAFA;
         margin: 80px 0px 10px 390px;
+        cursor: pointer;
         `
 
       let User = styled.button`
@@ -30,7 +33,7 @@ function Header() {
     <>
     <Header>
       <Logo>!ENG?</Logo>
-      <User>로그아웃</User>
+      <User onClick={()=> {navigate('/')}} >로그아웃</User>
     </Header>  
     <hr></hr>
     </>
