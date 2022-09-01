@@ -34,7 +34,8 @@ let Div = styled.div`
   widith: auto;
   height: auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: flex-end;
   background-color:#FAFAFA;
   font-size: 50px;
   padding:0;
@@ -56,6 +57,12 @@ let Div = styled.div`
   margin: 100px 0 0 0;
   background-color: #FAFAFA;
   `
+
+  let WriteButton = styled.button`
+  width: 100px;
+  font-size: 20px;
+  height: 50px;
+`
 
 
   function GetData() {
@@ -94,6 +101,7 @@ let Div = styled.div`
 function PostList() {
 
   const item = GetData();
+  let navigate = useNavigate();
       
   return(
     <>
@@ -102,7 +110,7 @@ function PostList() {
         <Body>
           <Box1><Navigation/></Box1>
           <Box2>
-            <Title_box>게시물</Title_box><hr></hr>
+            <Title_box>게시물<WriteButton onClick={()=> {navigate('/notice/write')}}>작성하기</WriteButton></Title_box><hr></hr>
             <Content_box>
               <Table headersName={['글번호', '제목', '작성자', '등록일']}>
                 {item}

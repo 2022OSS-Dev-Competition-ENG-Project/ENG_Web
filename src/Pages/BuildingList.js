@@ -6,11 +6,11 @@ import styled from 'styled-components';
 import Navigation from '../Components/Navigation';
 import axios from 'axios';
 
+import Table from '../Components/Table';
+import TableColumn from '../Components/TableColumn';
+import TableRow from '../Components/TableRow';
 
-
-function BuildingList() {
-
-  let Div = styled.div`
+let Div = styled.div`
   background-color: #FAFAFA;
 `
   
@@ -56,6 +56,44 @@ function BuildingList() {
   margin: 100px 0 0 0;
   background-color: #FAFAFA;
   `
+  function GetData() {
+    const [data, setData] = useState([]);
+
+    const uuid = localStorage.getItem('uuid');
+    console.log(uuid);
+
+    
+    useEffect(() => {
+      axios
+        .get('http://203.250.32.29:2200/api/facility/join/'+ uuid +'/mg/list')
+        .then((response)=> {
+          console.log(response.data);
+          console.log('성공');
+          setData(response.data);
+          
+          
+      })
+    }, []);
+    
+    
+     
+    const item = (Object.values(data)).map((item) => (
+      <TableRow key = {item.contentNum}>
+        <TableColumn>{item.facilityName}</TableColumn>
+        <TableColumn>{item.contentTitle}</TableColumn>
+        <TableColumn>{item.userName}</TableColumn>
+        <TableColumn>{item.contentDate}</TableColumn>
+      </TableRow>
+    ));
+  
+    return item; 
+
+  
+  }
+
+function BuildingList() {
+
+  const item = GetData();
 
       
   return(
@@ -64,7 +102,14 @@ function BuildingList() {
       <Header/>
         <Body>
           <Box1><Navigation/></Box1>
-          <Box2><Title_box>시설물리스트</Title_box><hr></hr><Content_box></Content_box></Box2>
+          <Box2>
+            <Title_box>시설물리스트</Title_box><hr></hr>
+            <Content_box>
+                <Table headersName={['No', '시설물명', '관리자', '삭제']}>
+                  {item}
+              </Table>
+            </Content_box>
+           </Box2>
         </Body>
         <Footer/>
     </Div>

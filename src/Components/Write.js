@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Form from 'react-bootstrap/Form';
 
 function Write() {
   let Wirte_box = styled.div`
@@ -31,7 +32,13 @@ let Title_input = styled.input`
         <span name="title" rules={[{required: true, message: '제목을 입력하세요'}]}>제목: </span><Title_input placeholder='제목을 입력하세요'></Title_input>
       </div>
       <div>
-        <div>내용<Textarea rows ={20}></Textarea>  </div>
+        <div>
+          <Form.Group controlId="formFileMultiple" className="mb-3">
+            <Form.Control type="file" multiple />
+          </Form.Group>
+      <Textarea rows ={20}></Textarea>  
+        
+        </div>
       </div>
       <Register_button>등록하기</Register_button></Wirte_box>
   );
