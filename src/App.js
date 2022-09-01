@@ -14,6 +14,7 @@ import NoticeView from './Pages/NoticeView';
 import PostView from './Pages/PostView';
 import NoticeList from './Pages/NoticeList';
 import PostList from './Pages/PostList';
+import Banner from './Pages/MainBanner';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/' element={ <MainLog/>} exact />
         <Route path="/signup" element={<SignUp />}> </Route>
         <Route path="/main" element={<Main />}> </Route>
+        <Route path="/banner" element={<Banner />}> </Route>
         <Route path="/layout" element={<Layout />}> </Route>
         <Route path="/BuildingList" element={<BuildingList />}> </Route>
         <Route path="/notice" element={<NoticeList />} ></Route>
