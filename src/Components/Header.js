@@ -29,11 +29,13 @@ function Header() {
         border-style: none;
         font-weight: 100;
       `
+
+    
   return(
     <>
     <Header>
       <Logo>!ENG?</Logo>
-      <User onClick={()=> {navigate('/')}} >로그아웃</User>
+      <User onClick={()=> {localStorage.clear(); navigate('/')}} >로그아웃</User>
     </Header>  
     <hr></hr>
     </>
