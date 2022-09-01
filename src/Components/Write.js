@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '../Style/Write.css'
-import e from 'cors';
+
 
 let Wirte_box = styled.div`
   width: auto;
@@ -38,6 +38,8 @@ function Write() {
     content: ''
   })
 
+  
+
   const getValue = e => {
     const { name, value } = e.target;
     setContent({
@@ -61,7 +63,6 @@ function Write() {
                           editor={ ClassicEditor }
                           data="<p>내용을 입력해주세요</p>"
                           onReady={ editor => {
-                              // You can store the "editor" and use when it is needed.
                               console.log( 'Editor is ready to use!', editor );
                           } }
                           onChange={(event, editor) => {
@@ -87,7 +88,7 @@ function Write() {
         
         </div>
       </div>
-      <Register_button>등록하기</Register_button></Wirte_box>
+      </Wirte_box>
   );
 }
 

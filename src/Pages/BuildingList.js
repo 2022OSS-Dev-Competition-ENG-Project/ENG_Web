@@ -70,7 +70,7 @@ let Div = styled.div`
           console.log(response.data);
           console.log('성공');
           setData(response.data);
-          
+             
           
       })
     }, []);
