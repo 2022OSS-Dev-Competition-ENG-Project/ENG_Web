@@ -1,11 +1,12 @@
-import React from "react";
+import {React, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Navigation from "../Components/Navigation";
+import axios from 'axios';
 
-function PostView() {
-  let Div = styled.div`
+
+let Div = styled.div`
   background-color: #FAFAFA;
 `
 
@@ -132,6 +133,21 @@ function PostView() {
   let Upload = styled.input`
     width:1080px;
   `
+function PostView() {
+  const [data, setData] = useState([]);
+
+    
+    useEffect(() => {
+      axios
+        .get('http://203.250.32.29:2200/facility/content/32')
+        .then((response)=> {
+          console.log(response.data);
+          console.log('성공');
+          setData(response.data);
+          
+          
+      })
+    }, []);
 
 
 
