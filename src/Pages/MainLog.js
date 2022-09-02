@@ -97,7 +97,7 @@ function MainLog() {
     
       console.log(id);
       console.log(pw);
-
+      
      
     
     //203.250.32.29
@@ -110,9 +110,11 @@ function MainLog() {
         // Handle success.
         console.log('로그인성공');
         console.log(response);
-        console.log(response.data);
-        localStorage.setItem("uuid",response.data);
+        console.log(response.data.managerUuid);
+        localStorage.setItem('managerUuid',response.data.managerUuid);
+        localStorage.setItem('managerName',response.data.managerName);
         goMain();
+      
       })
       .catch(error => {
         // Handle error.

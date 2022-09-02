@@ -9,7 +9,7 @@ function Header() {
       width: 100%;
       height: 130px;
       display: flex;
-      
+      justify-content: space-between;
       `
 
       let Logo = styled.h1`
@@ -34,7 +34,7 @@ function Header() {
   return(
     <>
     <Header>
-      <Logo>!ENG?</Logo>
+      <Logo  onClick={()=> { navigate('/main')}}>!ENG?</Logo>
       <User onClick={()=> {localStorage.clear(); navigate('/')}} >로그아웃</User>
     </Header>  
     <hr></hr>

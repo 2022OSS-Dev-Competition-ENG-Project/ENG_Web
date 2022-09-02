@@ -99,6 +99,7 @@ let Div = styled.div`
     text-align:left;
     border-radius: 10px;
     margin-top: 10px;
+    height: 300px;
   `
 
   function GetNoticeData() {
@@ -132,7 +133,9 @@ let Div = styled.div`
 
   function GetPostData() {
     const [data, setData] = useState([]);
-
+    let [address, setAddress] = useState();
+      setAddress = localStorage.getItem('facilityAddress');
+      console.log(address);
     
     useEffect(() => {
       axios
@@ -151,6 +154,7 @@ let Div = styled.div`
     const post = (Object.values(data)).map((item) => (
       <ul key = {item.contentTitle}>
         <li>{item.contentTitle}</li>
+        <li>{address}</li>
       </ul>
     ));
   
@@ -188,12 +192,53 @@ let Div = styled.div`
 
   
   }
- 
+
+  {/*
+  function GetAitData() {
+    const [data, setData] = useState([]);
+    const [address, setAdress] = useState();
+    address = localStorage.getItem('facilityAddress')
+    
+    useEffect(() => {
+      axios
+        .post('http://203.250.32.29:2222/api/ai/firePredict', {
+          
+          
+          facilityAddress : address,
+          
+      })
+        .then((response)=> {
+          console.log(response.data);
+          console.log('성공');
+          setData(response.data);
+          
+          
+      })
+    }, []);
+    
+     
+     
+    const ai = (Object.values(data)).map((item) => (
+      <ul key = {item.reportContentTitle}>
+        <li>{item.humidity}</li>
+        <li>{item.riskDegree}</li>
+        <li>{item.temperature}</li>
+      </ul>
+    ));
+  
+    return ai; 
+
+  
+  }
+ */}
 
 function Banner() {
   const notice = GetNoticeData();
   const post = GetPostData();
   const report = GetReportData();
+  {/*const ai = GetAitData();*/}
+
+
   let navigate = useNavigate();
   return(
     <>
@@ -207,7 +252,7 @@ function Banner() {
                 <Spo><Top><Sub_title>공지사항</Sub_title><TopButton onClick={()=> {navigate('/notice')}}>더보기+</TopButton></Top><Sub_content>{notice}</Sub_content></Spo>
                 <Spo><Top><Sub_title>게시물</Sub_title><TopButton onClick={()=> {navigate('/post')}}>더보기+</TopButton></Top><Sub_content>{post}</Sub_content></Spo>
                 <Spo><Top><Sub_title>신고현황</Sub_title><TopButton onClick={()=> {navigate('/report')}}>더보기+</TopButton></Top><Sub_content>{report}</Sub_content></Spo>  
-                <Spo><Top><Sub_title>오늘 주의해야할 사고</Sub_title><TopButton>더보기+</TopButton></Top></Spo>
+                <Spo><Top><Sub_title>오늘 주의해야할 사고</Sub_title><TopButton>UPDATE</TopButton></Top><Sub_content></Sub_content></Spo>
             </Content_box>
            </Box2>
         </Body>
