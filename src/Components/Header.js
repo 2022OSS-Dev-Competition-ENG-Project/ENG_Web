@@ -9,7 +9,7 @@ function Header() {
       width: 100%;
       height: 130px;
       display: flex;
-      justify-content: space-between;
+      
       `
 
       let Logo = styled.h1`

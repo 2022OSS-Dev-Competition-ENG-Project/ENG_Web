@@ -60,7 +60,7 @@ function ManagerRegister() {
 
   `
   let Menu = styled.div`
-    border: solid 5px;
+    border: solid 3px;
     width: 200px;
     font-size: 20px;
     font-weight: 1000;

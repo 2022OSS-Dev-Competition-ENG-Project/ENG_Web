@@ -58,20 +58,33 @@ let Div = styled.div`
   background-color: #FAFAFA;
   `
 
-  let WriteButton = styled.button`
-  width: 100px;
-  font-size: 20px;
-  height: 50px;
-`
+
+  let Select = styled.select`
+    width:100px;
+    height: 30px;
+    margin: 10px 20px;
+    font-size:20px;
+  `
+
+  let Option = styled.option`
+    font-size:20px;
+  `
+  
+  let Hr = styled.hr`
+    margin: 0;
+  `
+
+  
 
 
   function GetData() {
     const [data, setData] = useState([]);
+    
 
     
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/content/247f9839-53a4-426c-994d-878f1c05d47b/0/0/list')
+        .get('http://203.250.32.29:2200/facility/report/list/{facilityNo}/{reportStatus}')
         .then((response)=> {
           console.log(response.data);
           console.log('성공');
@@ -98,10 +111,17 @@ let Div = styled.div`
   }
     
 
-function PostList() {
+function ReportList() {
 
   const item = GetData();
   let navigate = useNavigate();
+
+  const selectList = ["처리", "미처리"];
+  const [Selected, setSelected] = useState("");
+
+  const handleSelect = (e) => {
+    setSelected(e.target.value);
+  };
       
   return(
     <>
@@ -110,18 +130,22 @@ function PostList() {
         <Body>
           <Box1><Navigation/></Box1>
           <Box2>
-            <Title_box>게시물<WriteButton onClick={()=> {navigate('/post/write')}}>작성하기</WriteButton></Title_box><hr></hr>
+            <Title_box>신고현황
+              <Select onChange={handleSelect} value={Selected}>
+              {selectList.map((status) => (
+                <Option value={status} key={status}>{status}
+                </Option>
+              ))}</Select>
+              </Title_box><Hr></Hr>
             <Content_box>
-              <Table headersName={['글번호', '제목', '작성자', '등록일']}>
+              <Table headersName={['번호', '제목', '종류', '작성자', '작성일']}>
                 {item}
               </Table>
             </Content_box>
             
           </Box2>
-          
         </Body>
-  
-        
+        <Footer/>
     </Div>
     </>
 
@@ -131,4 +155,4 @@ function PostList() {
   );
 }
 
-export default PostList;
+export default ReportList;

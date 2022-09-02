@@ -82,7 +82,7 @@ let Div = styled.div`
         <TableColumn>{item.facilityName}</TableColumn>
         <TableColumn>{item.contentTitle}</TableColumn>
         <TableColumn>{item.userName}</TableColumn>
-        <TableColumn>{item.contentDate}</TableColumn>
+        <TableColumn><button>삭제</button></TableColumn>
       </TableRow>
     ));
   

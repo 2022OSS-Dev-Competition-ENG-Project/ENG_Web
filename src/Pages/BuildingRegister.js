@@ -106,10 +106,10 @@ function BuildingRegister() {
     console.log(userId);
 //203.250.32.29
     axios
-    .post('http://203.250.32.29:2200/api/registerFacility', {
+    .post('http://203.250.32.29:2200/api/facility/register', {
       facilityName: facilityName,
       facilityAddress: facilityAddress,
-      userId: userId,
+      facilityOwner: userId,
     })
     .then(response => {
       // Handle success.
@@ -119,8 +119,8 @@ function BuildingRegister() {
     })
     .catch(error => {
       // Handle error.
-      console.log('이미 등록된 시설', error.response);
-      alert('이미 등록된 시설입니다.');
+      console.log(error.response);
+      alert(error.response.data);
     });
  }
 
