@@ -4,6 +4,7 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Navigation from "../Components/Navigation";
 import axios from 'axios';
+import {useParams} from 'react-router-dom';
 
 
 let Div = styled.div`
@@ -133,13 +134,12 @@ let Div = styled.div`
   let Upload = styled.input`
     width:1080px;
   `
-function PostView() {
-  const [data, setData] = useState([]);
 
-    
+  function GetData(itemI) {
+    const [data, setData] = useState({});
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/facility/content/32')
+        .get('http://localhost:2200/api/facility/content/8c6b6ca1-1725-466f-9a64-253a560b395c/59')
         .then((response)=> {
           console.log(response.data);
           console.log('성공');
@@ -149,11 +149,8 @@ function PostView() {
       })
     }, []);
 
-
-
-  return(
-    <>
-    <Div>
+    const item = (<>
+      <Div>
       <Header/>
         <Body>
           <Box1><Navigation/></Box1>
@@ -167,29 +164,25 @@ function PostView() {
             </Title_box><Hr></Hr>
             <Content_box><Title><h2>제목:</h2> </Title><Post>내용</Post></Content_box>
             <Hr></Hr>
-
-            <Comment_box>
-              <Comment_title>댓글</Comment_title>
-              <Hr></Hr>
-              <Comment>
-                <Comment_user>최보현 - 안녕하세요</Comment_user>
-                <Comment_buttonbox>
-                  <Comment_button>수정</Comment_button>
-                  <Comment_button>삭제</Comment_button>
-                </Comment_buttonbox>
-              </Comment>
-              <Hr></Hr>
-              <Upload_box>
-                <Master>조승현 - </Master>
-                <Upload></Upload>
-                <Comment_button>등록</Comment_button>
-              </Upload_box>
-            </Comment_box>
-
           </Box2>
         </Body>
         <Footer/>
     </Div>
+    </>)
+
+  return item;
+
+  }
+function PostView() {
+  const{itemI} = useParams();
+  const item = GetData(itemI);
+
+
+  return(
+    <>
+      <div>
+        {item}
+      </div>
     </>
   );
 }

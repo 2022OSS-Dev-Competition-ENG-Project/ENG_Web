@@ -70,10 +70,8 @@ let Div = styled.div`
         .get('http://203.250.32.29:2200/api/facility/join/'+ uuid +'/mg/list')
         .then((response)=> {
           console.log(response.data);
-          console.log(response.data[0].facilityName);
-          console.log(response.data[0].useFacility);
-          console.log(response.data[0]);
-          localStorage.setItem('facility',response.data[0]);
+          
+
           console.log('성공');
           setData(response.data);
           
@@ -86,7 +84,12 @@ let Div = styled.div`
     const item = (Object.values(data)).map((item,i) => (
       <TableRow key = {item.i}>
           <TableColumn>{i+1}</TableColumn>
-          <TableColumn><NavLink to={'/banner'}>{item.facilityName}</NavLink></TableColumn>
+          <TableColumn><NavLink to={'/banner'} onClick={()=>
+            {localStorage.setItem('facilityName',data[i].facilityName);
+             localStorage.setItem('useFacility',data[i].useFacility);
+             localStorage.setItem('facilityAddress',data[i].facilityAddress); }}>
+              {item.facilityName}</NavLink>
+          </TableColumn>
           <TableColumn>{item.name}</TableColumn>
         <TableColumn><button>삭제</button></TableColumn>
       </TableRow>

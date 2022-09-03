@@ -34,8 +34,8 @@ function App() {
         <Route path="/notice/write" element={<NoticeWrite />}> </Route>
         <Route path="/post/write" element={<PostWrite />}> </Route>
 
-        <Route path="/notice/detail" element={<NoticeView/>}> </Route>
-        <Route path="/post/detail" element={<PostView/>}> </Route>
+        <Route path="/notice/:itemI" element={<NoticeView/>}> </Route>
+        <Route path="/post/:itemI" element={<PostView/>}> </Route>
 
 
         <Route path="/register/building" element={<BuildingRegister />}> </Route>

@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate, NavLink} from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import styled from 'styled-components';
@@ -69,7 +69,6 @@ let Div = styled.div`
   function GetData() {
     const [data, setData] = useState([]);
     
-
     
     useEffect(() => {
       axios
@@ -78,28 +77,25 @@ let Div = styled.div`
           console.log(response.data);
           console.log('성공');
           setData(response.data);
-          
-          
+           
       })
     }, []);
-    
-    
-     
+      
     const item = (Object.values(data)).map((item) => (
       <TableRow key = {item.contentNum}>
         <TableColumn>{item.contentNum}</TableColumn>
-        <TableColumn>{item.contentTitle}</TableColumn>
-        <TableColumn>{item.userName}</TableColumn>
+        <TableColumn>
+          <NavLink to={`/notice/${item.contentNum}`}>{item.contentTitle}</NavLink>
+        </TableColumn>
+        <TableColumn>{item.name}</TableColumn>
         <TableColumn>{item.contentDate}</TableColumn>
       </TableRow>
     ));
   
     return item; 
-
   
   }
     
-
 function NoticeList() {
 
   const item = GetData();

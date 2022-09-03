@@ -101,14 +101,15 @@ let Div = styled.div`
     margin-top: 10px;
     height: 300px;
   `
-
+/******************************공지배너****************************** */
   function GetNoticeData() {
     const [data, setData] = useState([]);
+    const useFacility = localStorage.getItem('useFacility');
 
     
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/247f9839-53a4-426c-994d-878f1c05d47b/content/1/main')
+        .get('http://203.250.32.29:2200/api/facility/'+ useFacility + '/content/1/main')
         .then((response)=> {
           console.log(response.data);
           console.log('성공');
@@ -130,16 +131,14 @@ let Div = styled.div`
 
   
   }
-
+/******************************게시물 배너****************************** */
   function GetPostData() {
     const [data, setData] = useState([]);
-    let [address, setAddress] = useState();
-      setAddress = localStorage.getItem('facilityAddress');
-      console.log(address);
+    const useFacility = localStorage.getItem('useFacility');
     
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/247f9839-53a4-426c-994d-878f1c05d47b/content/0/main')
+        .get('http://203.250.32.29:2200/api/facility/'+ useFacility + '/content/0/main')
         .then((response)=> {
           console.log(response.data);
           console.log('성공');
@@ -152,7 +151,6 @@ let Div = styled.div`
     const post = (Object.values(data)).map((item) => (
       <ul key = {item.contentTitle}>
         <li>{item.contentTitle}</li>
-        <li>{address}</li>
       </ul>
     ));
   
@@ -161,14 +159,15 @@ let Div = styled.div`
   
   }
 
-  
+  /******************************신고 배너****************************** */
+
   function GetReportData() {
     const [data, setData] = useState([]);
-
+    const useFacility = localStorage.getItem('useFacility');
     
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/report/spo/247f9839-53a4-426c-994d-878f1c05d47b/')
+        .get('http://203.250.32.29:2200/api/facility/report/spo/' +  useFacility)
         .then((response)=> {
           console.log(response.data);
           console.log('성공');
@@ -239,7 +238,7 @@ function Banner(props) {
         <Body>
           <Box1><Navigation/></Box1>
           <Box2>
-            <Title_box>대구가톨릭대학교</Title_box><hr></hr>
+            <Title_box>{localStorage.getItem('facilityName')}</Title_box><hr></hr>
             <Content_box>
                 <Spo><Top><Sub_title>공지사항</Sub_title><TopButton onClick={()=> {navigate('/notice')}}>더보기+</TopButton></Top><Sub_content>{notice}</Sub_content></Spo>
                 <Spo><Top><Sub_title>게시물</Sub_title><TopButton onClick={()=> {navigate('/post')}}>더보기+</TopButton></Top><Sub_content>{post}</Sub_content></Spo>

@@ -71,7 +71,7 @@ const Input_box = styled.label`
 const Input = styled.input`
   margin: 0 0 0 10px;
   padding: 2px;
-  width: 400px;
+  width: 450px;
   border-radius: 8px;
   border: 3px solid #727272;
 `
@@ -82,14 +82,21 @@ color: white;
 background-color: #0F4C75;
 `
 
-const AddressButton = styled.button`
+const AddressBox = styled.div`
   margin: 0 0 0 10px;
   padding: 2px;
-  width: 400px;
+  width: 300px;
   border-radius: 8px;
   border: 3px solid #727272;
 `
 
+const AddressButton = styled.button`
+  margin: 0 0 0 10px;
+  padding: 2px;
+  width: auto;
+  border-radius: 8px;
+  border: 3px solid #727272;
+`
 
 
 
@@ -138,6 +145,8 @@ function BuildingRegister() {
     });
  }
 
+
+
       
   return(
     <>
@@ -152,9 +161,9 @@ function BuildingRegister() {
                 setFacilityName(e.target.value);
               }}></Input>
             </Input_box>
-            {/* 
+         
             <Input_box>
-            주소:
+            주소: <AddressBox></AddressBox>
               <AddressButton type='button' onClick={openPostCode}>우편번호 검색</AddressButton>
             </Input_box> 
             
@@ -165,13 +174,13 @@ function BuildingRegister() {
                 </PopupDom>
               )}
             </div>
-           */} 
-            <Input_box  htmlFor='facility_address'>위치: 
+       
+ {/*           <Input_box  htmlFor='facility_address'>위치: 
               <Input  type="text"  value={facilityAddress} onChange={(e)=> {
                  setFacilityAddress(e.target.value);
               }}></Input>
             </Input_box>  
-            
+*/}            
             <Button onClick={()=> {
               register();
             }}> 등록하기</Button> 

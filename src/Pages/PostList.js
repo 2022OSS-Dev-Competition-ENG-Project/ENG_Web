@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate, NavLink} from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import styled from 'styled-components';
@@ -83,10 +83,12 @@ let Div = styled.div`
     
     
      
-    const item = (Object.values(data)).map((item) => (
-      <TableRow key = {item.contentNum}>
+    const item = (Object.values(data)).map((item, i) => (
+      <TableRow key = {item.i}>
         <TableColumn>{item.contentNum}</TableColumn>
-        <TableColumn>{item.contentTitle}</TableColumn>
+        <TableColumn>
+          <NavLink to={`/post/${item.i}`}>{item.contentTitle}</NavLink>
+        </TableColumn>
         <TableColumn>{item.userName}</TableColumn>
         <TableColumn>{item.contentDate}</TableColumn>
       </TableRow>
