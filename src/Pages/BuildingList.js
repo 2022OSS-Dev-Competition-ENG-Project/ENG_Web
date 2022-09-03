@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate,NavLink} from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import styled from 'styled-components';
@@ -56,6 +56,7 @@ let Div = styled.div`
   margin: 100px 0 0 0;
   background-color: #FAFAFA;
   `
+
   function GetData() {
     const [data, setData] = useState([]);
 
@@ -78,15 +79,19 @@ let Div = styled.div`
   
      
     const item = (Object.values(data)).map((item,i) => (
-      <TableRow key = {item.item}>
-        <TableColumn>{i+1}</TableColumn>
-        <TableColumn>{item.facilityName}</TableColumn>
-        <TableColumn>{item.name}</TableColumn>
+      <TableRow key = {item.useFacility}>
+          <TableColumn>{i+1}</TableColumn>
+          <TableColumn>{item.facilityName}</TableColumn>
+          <TableColumn>{item.name}</TableColumn>
         <TableColumn><button>삭제</button></TableColumn>
       </TableRow>
     ));
   
     return item; 
+
+  }
+
+  function Move() {
 
   }
 

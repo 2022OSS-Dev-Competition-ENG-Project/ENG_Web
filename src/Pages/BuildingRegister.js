@@ -121,7 +121,7 @@ function BuildingRegister() {
 //203.250.32.29
     axios
     .post('http://203.250.32.29:2200/api/facility/register', {
-      facilityName: userId,
+      facilityName: facilityName,
       facilityAddress: facilityAddress,
       facilityOwner: userId,
     })
@@ -152,6 +152,7 @@ function BuildingRegister() {
                 setFacilityName(e.target.value);
               }}></Input>
             </Input_box>
+            {/* 
             <Input_box>
             주소:
               <AddressButton type='button' onClick={openPostCode}>우편번호 검색</AddressButton>
@@ -164,13 +165,13 @@ function BuildingRegister() {
                 </PopupDom>
               )}
             </div>
-          {/* 
+           */} 
             <Input_box  htmlFor='facility_address'>위치: 
               <Input  type="text"  value={facilityAddress} onChange={(e)=> {
                  setFacilityAddress(e.target.value);
               }}></Input>
             </Input_box>  
-            */}  
+            
             <Button onClick={()=> {
               register();
             }}> 등록하기</Button> 
