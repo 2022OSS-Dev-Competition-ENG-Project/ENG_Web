@@ -5,7 +5,7 @@ import Footer from '../Components/Footer';
 import styled from 'styled-components';
 import Navigation from '../Components/Navigation';
 import axios from 'axios';
-
+import { useParams } from 'react-router-dom';
 
 
 let Div = styled.div`
@@ -190,6 +190,7 @@ let Div = styled.div`
 
   
   }
+  
 
   {/*
   function GetAitData() {
@@ -200,22 +201,15 @@ let Div = styled.div`
     useEffect(() => {
       axios
         .post('http://203.250.32.29:2222/api/ai/firePredict', {
-          
-          
           facilityAddress : address,
-          
       })
         .then((response)=> {
           console.log(response.data);
           console.log('성공');
           setData(response.data);
-          
-          
       })
     }, []);
     
-     
-     
     const ai = (Object.values(data)).map((item) => (
       <ul key = {item.reportContentTitle}>
         <li>{item.humidity}</li>
@@ -230,7 +224,7 @@ let Div = styled.div`
   }
  */}
 
-function Banner() {
+function Banner(props) {
   const notice = GetNoticeData();
   const post = GetPostData();
   const report = GetReportData();

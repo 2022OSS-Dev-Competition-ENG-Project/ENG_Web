@@ -24,7 +24,7 @@ function App() {
         <Route path='/' element={ <MainLog/>} exact />
         <Route path="/signup" element={<SignUp />}> </Route>
         <Route path="/main" element={<Main />}> </Route>
-        <Route path="/banner/:id" element={<Banner />}> </Route>
+        <Route path="/banner" element={<Banner />}> </Route>
         <Route path="/layout" element={<Layout />}> </Route>
         <Route path="/BuildingList" element={<BuildingList />}> </Route>
         <Route path="/notice" element={<NoticeList />} ></Route>

@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import {Routes, Route, useNavigate,NavLink} from 'react-router-dom';
+import {Routes, Route, useNavigate,NavLink, Navigate} from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import styled from 'styled-components';
@@ -9,6 +9,7 @@ import axios from 'axios';
 import Table from '../Components/Table';
 import TableColumn from '../Components/TableColumn';
 import TableRow from '../Components/TableRow';
+import Banner from './MainBanner';
 
 let Div = styled.div`
   background-color: #FAFAFA;
@@ -59,7 +60,7 @@ let Div = styled.div`
 
   function GetData() {
     const [data, setData] = useState([]);
-
+    let navigate = useNavigate();
     const uuid = localStorage.getItem('managerUuid');
     console.log(uuid);
 
@@ -69,9 +70,13 @@ let Div = styled.div`
         .get('http://203.250.32.29:2200/api/facility/join/'+ uuid +'/mg/list')
         .then((response)=> {
           console.log(response.data);
+          console.log(response.data[0].facilityName);
+          console.log(response.data[0].useFacility);
+          console.log(response.data[0]);
+          localStorage.setItem('facility',response.data[0]);
           console.log('성공');
           setData(response.data);
-             
+          
           
       })
     }, []);
@@ -79,9 +84,9 @@ let Div = styled.div`
   
      
     const item = (Object.values(data)).map((item,i) => (
-      <TableRow key = {item.useFacility}>
+      <TableRow key = {item.i}>
           <TableColumn>{i+1}</TableColumn>
-          <TableColumn>{item.facilityName}</TableColumn>
+          <TableColumn><NavLink to={'/banner'}>{item.facilityName}</NavLink></TableColumn>
           <TableColumn>{item.name}</TableColumn>
         <TableColumn><button>삭제</button></TableColumn>
       </TableRow>
@@ -91,9 +96,7 @@ let Div = styled.div`
 
   }
 
-  function Move() {
 
-  }
 
 function BuildingList() {
 
