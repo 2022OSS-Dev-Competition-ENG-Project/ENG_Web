@@ -2,6 +2,7 @@ import React from 'react';
 import {Modal, Button, Form, Container} from 'react-bootstrap'
 
 function FindPW(props) {
+  
   return (
     <Modal
       {...props}

@@ -148,8 +148,6 @@ let Div = styled.div`
           
       })
     }, []);
-    
-    
      
     const post = (Object.values(data)).map((item) => (
       <ul key = {item.contentTitle}>

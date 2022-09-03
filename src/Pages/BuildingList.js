@@ -59,7 +59,7 @@ let Div = styled.div`
   function GetData() {
     const [data, setData] = useState([]);
 
-    const uuid = localStorage.getItem('uuid');
+    const uuid = localStorage.getItem('managerUuid');
     console.log(uuid);
 
     
@@ -75,20 +75,19 @@ let Div = styled.div`
       })
     }, []);
     
-    
+  
      
-    const item = (Object.values(data)).map((item) => (
-      <TableRow key = {item.contentNum}>
+    const item = (Object.values(data)).map((item,i) => (
+      <TableRow key = {item.item}>
+        <TableColumn>{i+1}</TableColumn>
         <TableColumn>{item.facilityName}</TableColumn>
-        <TableColumn>{item.contentTitle}</TableColumn>
-        <TableColumn>{item.userName}</TableColumn>
+        <TableColumn>{item.name}</TableColumn>
         <TableColumn><button>삭제</button></TableColumn>
       </TableRow>
     ));
   
     return item; 
 
-  
   }
 
 function BuildingList() {

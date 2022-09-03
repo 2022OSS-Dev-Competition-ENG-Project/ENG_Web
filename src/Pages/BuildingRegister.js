@@ -5,6 +5,9 @@ import Footer from '../Components/Footer';
 import styled from 'styled-components';
 import Navigation from '../Components/Navigation';
 import axios from 'axios';
+import DaumPostcode from "react-daum-postcode";
+import PopupDom from '../Components/PopupDom';
+import PopupPostCode from '../Components/PopupPostCode';
 
 const Div = styled.div`
 background-color: #FAFAFA;
@@ -58,7 +61,7 @@ background-color: #FAFAFA;
 const Input_box = styled.label`
   display:flex;
   justify-content: flex-end;
-  width: 500px;
+  width: 550px;
   height: auto;
   background-color:#FAFAFA;
   margin: 5px;
@@ -79,26 +82,37 @@ color: white;
 background-color: #0F4C75;
 `
 
+const AddressButton = styled.button`
+  margin: 0 0 0 10px;
+  padding: 2px;
+  width: 400px;
+  border-radius: 8px;
+  border: 3px solid #727272;
+`
+
+
+
 
 function BuildingRegister() {
 
  const [facilityName, setFacilityName] = useState('');
  const [facilityAddress, setFacilityAddress] = useState('');
- const [userId, setUserId] = useState('');
+ const [userId, setUserId] = useState(localStorage.getItem('managerUuid'));
 
-{/*
- const onChangeName = (e) => {
-  setFacilityName(e.target.value);
- };
+ const [isPopupOpen, setIsPopupOpen] = useState(false)
+ 
+	// 팝업창 열기
+    const openPostCode = () => {
+        setIsPopupOpen(true)
+    }
+ 
+	// 팝업창 닫기
+    const closePostCode = () => {
+        setIsPopupOpen(false)
+    }
 
- const onChangeAddress = (e) => {
-  setFacilityAddress(e.target.value);
- };
+ 
 
- const onChangeId = (e) => {
-  setUserId(e.target.value);
- }; 
- */}
  const register = () => {
 
     console.log(facilityName);
@@ -107,7 +121,7 @@ function BuildingRegister() {
 //203.250.32.29
     axios
     .post('http://203.250.32.29:2200/api/facility/register', {
-      facilityName: facilityName,
+      facilityName: userId,
       facilityAddress: facilityAddress,
       facilityOwner: userId,
     })
@@ -137,16 +151,26 @@ function BuildingRegister() {
               <Input type="text"  value={facilityName} onChange={(e)=> {
                 setFacilityName(e.target.value);
               }}></Input>
+            </Input_box>
+            <Input_box>
+            주소:
+              <AddressButton type='button' onClick={openPostCode}>우편번호 검색</AddressButton>
             </Input_box> 
+            
+            <div id = 'popupDom'>
+              {isPopupOpen && (
+                <PopupDom>
+                  <PopupPostCode onClose = {closePostCode} />
+                </PopupDom>
+              )}
+            </div>
+          {/* 
             <Input_box  htmlFor='facility_address'>위치: 
               <Input  type="text"  value={facilityAddress} onChange={(e)=> {
                  setFacilityAddress(e.target.value);
               }}></Input>
             </Input_box>  
-            <Input_box  htmlFor='userid'>관리자: 
-              <Input  type="text" value={userId} onChange={(e)=> {
-                setUserId(e.target.value);
-              }} ></Input></Input_box>
+            */}  
             <Button onClick={()=> {
               register();
             }}> 등록하기</Button> 
