@@ -88,7 +88,7 @@ let Hr = styled.hr`
 function GetData(itemI) {
   const [data, setData] = useState({});
   useEffect(()=> {
-    axios.get('http://203.250.32.29:2200/api/facility/content/0f797583-f9dd-4ec3-bb59-39d4cf862ed1/59')
+    axios.get('http://203.250.32.29:2200/api/facility/content/0f797583-f9dd-4ec3-bb59-39d4cf862ed1/155')
     .then((response)=> {
       console.log(response.data);
       setData(response.data);

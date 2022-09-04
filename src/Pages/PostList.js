@@ -67,11 +67,11 @@ let Div = styled.div`
 
   function GetData() {
     const [data, setData] = useState([]);
-
+    const useFacility = localStorage.getItem('useFacility');
     
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/content/247f9839-53a4-426c-994d-878f1c05d47b/0/0/list')
+        .get('http://203.250.32.29:2200/api/facility/content/'+  useFacility + '/0/0/list')
         .then((response)=> {
           console.log(response.data);
           console.log('성공');
@@ -89,7 +89,7 @@ let Div = styled.div`
         <TableColumn>
           <NavLink to={`/post/${item.i}`}>{item.contentTitle}</NavLink>
         </TableColumn>
-        <TableColumn>{item.userName}</TableColumn>
+        <TableColumn>{item.name}</TableColumn>
         <TableColumn>{item.contentDate}</TableColumn>
       </TableRow>
     ));
