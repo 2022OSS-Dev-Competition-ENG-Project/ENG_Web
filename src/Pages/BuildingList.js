@@ -103,7 +103,7 @@ let Div = styled.div`
           <Button variant="outline-secondary">QR</Button>{' '}
           <Button variant="outline-danger" 
             onClick={() =>{ 
-              if(data[i].facilityOwner != data[i].uuid)
+              if(data[i].facilityOwner == data[i].uuid)
                 {onRemove(data[i].facilityName);
                   axios
                     .get('http://203.250.32.29:2200/api/facility/my/delete/mg/'+ uuid + '/' + data[i].useFacility)
