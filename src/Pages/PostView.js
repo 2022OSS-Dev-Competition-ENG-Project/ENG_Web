@@ -162,7 +162,7 @@ let Div = styled.div`
                 <Button>삭제</Button>
               </Button_box>
             </Title_box><Hr></Hr>
-            <Content_box><Title><h2>제목:</h2> </Title><Post>내용</Post></Content_box>
+            <Content_box><Title><h2>{data.contentTitle}</h2> </Title><Post>{data.contentText}</Post></Content_box>
             <Hr></Hr>
           </Box2>
         </Body>

@@ -2,13 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 let Td = styled.td`
-    margin: 20px 0;
-    
+    border-bottom: 1px solid grey;
+    padding: 10px;
   `
 
-let Hr = styled.hr `
-  width: 300px;
-`
+
 
 
 const TableColumn = ({ children }) => {
@@ -19,7 +17,6 @@ const TableColumn = ({ children }) => {
         children
         
       }
-      <Hr></Hr>
     </Td>
     </>
 

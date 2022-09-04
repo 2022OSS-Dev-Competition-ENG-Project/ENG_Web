@@ -14,6 +14,7 @@ let Td = styled.td`
   font-size: 16px;
   padding: 10px 5px;
   font-weight: bold;
+  
 `
 
 const Table = props => {

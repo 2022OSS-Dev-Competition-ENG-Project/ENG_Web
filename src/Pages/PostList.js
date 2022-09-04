@@ -84,10 +84,10 @@ let Div = styled.div`
     
      
     const item = (Object.values(data)).map((item, i) => (
-      <TableRow key = {item.i}>
+      <TableRow key = {item.contentNum}>
         <TableColumn>{item.contentNum}</TableColumn>
         <TableColumn>
-          <NavLink to={`/post/${item.i}`}>{item.contentTitle}</NavLink>
+          <NavLink to={`/post/${item.contentNum}`}>{item.contentTitle}</NavLink>
         </TableColumn>
         <TableColumn>{item.name}</TableColumn>
         <TableColumn>{item.contentDate}</TableColumn>

@@ -5,11 +5,11 @@ import Footer from '../Components/Footer';
 import styled from 'styled-components';
 import Navigation from '../Components/Navigation';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
 
 import Table from '../Components/Table';
 import TableColumn from '../Components/TableColumn';
 import TableRow from '../Components/TableRow';
-import Banner from './MainBanner';
 
 let Div = styled.div`
   background-color: #FAFAFA;
@@ -58,6 +58,11 @@ let Div = styled.div`
   background-color: #FAFAFA;
   `
 
+  const StyledNavLink = styled(NavLink)`
+    color:black;
+    text-decoration: none;
+  `
+
   function GetData() {
     const [data, setData] = useState([]);
     let navigate = useNavigate();
@@ -70,8 +75,6 @@ let Div = styled.div`
         .get('http://203.250.32.29:2200/api/facility/join/'+ uuid +'/mg/list')
         .then((response)=> {
           console.log(response.data);
-          
-
           console.log('성공');
           setData(response.data);
           
@@ -79,19 +82,38 @@ let Div = styled.div`
       })
     }, []);
     
-  
+    const onRemove = facilityName => {
+        setData(data.filter(data => data.facilityName !== facilityName));
+        
+      }
+      
+    
      
     const item = (Object.values(data)).map((item,i) => (
-      <TableRow key = {item.i}>
+      <TableRow key = {data[i].facilityName}>
           <TableColumn>{i+1}</TableColumn>
-          <TableColumn><NavLink to={'/banner'} onClick={()=>
+          <TableColumn><StyledNavLink to={'/banner'} onClick={()=>
             {localStorage.setItem('facilityName',data[i].facilityName);
              localStorage.setItem('useFacility',data[i].useFacility);
              localStorage.setItem('facilityAddress',data[i].facilityAddress); }}>
-              {item.facilityName}</NavLink>
+              {item.facilityName}</StyledNavLink>
           </TableColumn>
           <TableColumn>{item.name}</TableColumn>
-        <TableColumn><button>삭제</button></TableColumn>
+        <TableColumn>
+          <Button variant="outline-secondary">QR</Button>{' '}
+          <Button variant="outline-danger" 
+            onClick={() =>{ 
+              if(data[i].facilityOwner != data[i].uuid)
+                {onRemove(data[i].facilityName);
+                  axios
+                    .get('http://203.250.32.29:2200/api/facility/my/delete/mg/'+ uuid + '/' + data[i].useFacility)
+                    .then(()=> {
+                      console.log('성공');
+                    })
+                }
+              }
+            }>삭제</Button>{' '} 
+        </TableColumn>
       </TableRow>
     ));
   
@@ -115,7 +137,7 @@ function BuildingList() {
           <Box2>
             <Title_box>시설물리스트</Title_box><hr></hr>
             <Content_box>
-                <Table headersName={['No', '시설물명', '관리자', '삭제']}>
+                <Table headersName={['No', '시설물명', '관리자', '관리']}>
                   {item}
               </Table>
             </Content_box>
