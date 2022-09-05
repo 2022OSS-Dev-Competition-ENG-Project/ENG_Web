@@ -67,6 +67,7 @@ let Div = styled.div`
     const [data, setData] = useState([]);
     let navigate = useNavigate();
     const uuid = localStorage.getItem('managerUuid');
+    
     console.log(uuid);
 
     
@@ -100,10 +101,15 @@ let Div = styled.div`
           </TableColumn>
           <TableColumn>{item.name}</TableColumn>
         <TableColumn>
-          <Button variant="outline-secondary">QR</Button>{' '}
+          <NavLink to={`/building/${data[i].facilityName}`}><Button variant="outline-secondary"
+             onClick={()=>{
+              localStorage.setItem('facilityName',data[i].facilityName);
+              localStorage.setItem('facilityAddress',data[i].facilityAddress);
+             }}>QR</Button>
+          </NavLink>
           <Button variant="outline-danger" 
             onClick={() =>{ 
-              if(data[i].facilityOwner == data[i].uuid)
+              if(data[i].facilityOwner != data[i].uuid)
                 {onRemove(data[i].facilityName);
                   axios
                     .get('http://203.250.32.29:2200/api/facility/my/delete/mg/'+ uuid + '/' + data[i].useFacility)
@@ -112,7 +118,7 @@ let Div = styled.div`
                     })
                 }
               }
-            }>삭제</Button>{' '} 
+            }>삭제</Button>
         </TableColumn>
       </TableRow>
     ));

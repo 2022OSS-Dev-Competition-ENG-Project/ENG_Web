@@ -121,8 +121,8 @@ let Div = styled.div`
     
     
      
-    const notice = (Object.values(data)).map((item) => (
-      <ul key = {item.contentTitle}>
+    const notice = (Object.values(data)).map((item,i) => (
+      <ul key = {item.i}>
         <li>{item.contentTitle}</li>
       </ul>
     ));
@@ -143,13 +143,14 @@ let Div = styled.div`
           console.log(response.data);
           console.log('성공');
           setData(response.data);
+          console.log(response.status);
           
           
       })
     }, []);
      
-    const post = (Object.values(data)).map((item) => (
-      <ul key = {item.contentTitle}>
+    const post = (Object.values(data)).map((item,i) => (
+      <ul key = {item.i}>
         <li>{item.contentTitle}</li>
       </ul>
     ));
@@ -179,8 +180,8 @@ let Div = styled.div`
     
     
      
-    const report = (Object.values(data)).map((item) => (
-      <ul key = {item.reportContentTitle}>
+    const report = (Object.values(data)).map((item,i) => (
+      <ul key = {item.i}>
         <li>{item.reportContentTitle}</li>
       </ul>
     ));
@@ -194,8 +195,7 @@ let Div = styled.div`
   {/*
   function GetAitData() {
     const [data, setData] = useState([]);
-    const [address, setAdress] = useState();
-    address = localStorage.getItem('facilityAddress')
+    const address = localStorage.getItem('facilityAddress')
     
     useEffect(() => {
       axios
