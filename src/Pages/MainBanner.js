@@ -192,10 +192,16 @@ let Div = styled.div`
   }
   
 
-  {/*
-  function GetAitData() {
-    const [data, setData] = useState([]);
-    const address = localStorage.getItem('facilityAddress')
+    /******************************AI****************************** */
+ 
+
+function Banner(props) {
+  const notice = GetNoticeData();
+  const post = GetPostData();
+  const report = GetReportData();
+  const [data, setData] = useState([]);
+
+  const address = localStorage.getItem('facilityAddress')
     
     useEffect(() => {
       axios
@@ -208,27 +214,6 @@ let Div = styled.div`
           setData(response.data);
       })
     }, []);
-    
-    const ai = (Object.values(data)).map((item) => (
-      <ul key = {item.reportContentTitle}>
-        <li>{item.humidity}</li>
-        <li>{item.riskDegree}</li>
-        <li>{item.temperature}</li>
-      </ul>
-    ));
-  
-    return ai; 
-
-  
-  }
- */}
-
-function Banner(props) {
-  const notice = GetNoticeData();
-  const post = GetPostData();
-  const report = GetReportData();
-  {/*const ai = GetAitData();*/}
-
 
   let navigate = useNavigate();
   return(
@@ -243,7 +228,15 @@ function Banner(props) {
                 <Spo><Top><Sub_title>공지사항</Sub_title><TopButton onClick={()=> {navigate('/notice')}}>더보기+</TopButton></Top><Sub_content>{notice}</Sub_content></Spo>
                 <Spo><Top><Sub_title>게시물</Sub_title><TopButton onClick={()=> {navigate('/post')}}>더보기+</TopButton></Top><Sub_content>{post}</Sub_content></Spo>
                 <Spo><Top><Sub_title>신고현황</Sub_title><TopButton onClick={()=> {navigate('/report')}}>더보기+</TopButton></Top><Sub_content>{report}</Sub_content></Spo>  
-                <Spo><Top><Sub_title>오늘 주의해야할 사고</Sub_title><TopButton>UPDATE</TopButton></Top><Sub_content></Sub_content></Spo>
+                <Spo><Top><Sub_title>오늘 주의해야할 사고</Sub_title><TopButton>UPDATE</TopButton></Top>
+                <Sub_content>
+                  <ul>
+                    <li>{data.humidity}</li>
+                    <li>{data.riskDegree}</li>
+                    <li>{data.temperature}</li>
+                  </ul>
+                </Sub_content>
+                </Spo>
             </Content_box>
            </Box2>
         </Body>
