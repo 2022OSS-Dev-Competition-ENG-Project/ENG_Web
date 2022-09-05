@@ -5,9 +5,11 @@ import Footer from '../Components/Footer';
 import styled from 'styled-components';
 import Navigation from '../Components/Navigation';
 import axios from 'axios';
-import DaumPostcode from "react-daum-postcode";
 import PopupDom from '../Components/PopupDom';
 import PopupPostCode from '../Components/PopupPostCode';
+import { propTypes } from 'react-bootstrap/esm/Image';
+import DaumPostcode from "react-daum-postcode";
+ 
 
 const Div = styled.div`
 background-color: #FAFAFA;
@@ -144,8 +146,6 @@ function BuildingRegister() {
       alert(error.response.data);
     });
  }
-
-
 
       
   return(

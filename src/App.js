@@ -16,6 +16,7 @@ import NoticeList from './Pages/NoticeList';
 import PostList from './Pages/PostList';
 import Banner from './Pages/MainBanner';
 import ReportList from './Pages/ReportList';
+import Qr from './Pages/Qr';
 
 function App() {
   return (
@@ -27,15 +28,18 @@ function App() {
         <Route path="/banner" element={<Banner />}> </Route>
         <Route path="/layout" element={<Layout />}> </Route>
         <Route path="/BuildingList" element={<BuildingList />}> </Route>
-        <Route path="/notice" element={<NoticeList />} ></Route>
-        <Route path="/post" element={<PostList />} ></Route>
+        <Route path="/building/:itemI" element={<Qr />}> </Route>
+        
         <Route path="/report" element={<ReportList />} ></Route>
 
+        <Route path="/notice" element={<NoticeList />} ></Route>
         <Route path="/notice/write" element={<NoticeWrite />}> </Route>
-        <Route path="/post/write" element={<PostWrite />}> </Route>
-
         <Route path="/notice/:itemI" element={<NoticeView/>}> </Route>
+        
+        <Route path="/post" element={<PostList />} ></Route>
+        <Route path="/post/write" element={<PostWrite />}> </Route>
         <Route path="/post/:itemI" element={<PostView/>}> </Route>
+        
 
 
         <Route path="/register/building" element={<BuildingRegister />}> </Route>
