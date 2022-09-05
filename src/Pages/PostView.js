@@ -137,9 +137,10 @@ let Div = styled.div`
 
   function GetData(itemI) {
     const [data, setData] = useState({});
+    const uuid = localStorage.getItem('managerUuid');
     useEffect(() => {
       axios
-        .get('http://localhost:2200/api/facility/content/8c6b6ca1-1725-466f-9a64-253a560b395c/59')
+        .get('http://203.250.32.29:2200/api/facility/content/'+uuid+'/'+ itemI)
         .then((response)=> {
           console.log(response.data);
           console.log('성공');

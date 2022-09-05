@@ -87,8 +87,9 @@ let Hr = styled.hr`
 
 function GetData(itemI) {
   const [data, setData] = useState({});
+  const uuid = localStorage.getItem('managerUuid');
   useEffect(()=> {
-    axios.get('http://203.250.32.29:2200/api/facility/content/0f797583-f9dd-4ec3-bb59-39d4cf862ed1/155')
+    axios.get('http://203.250.32.29:2200/api/facility/content/'+uuid+'/'+ itemI)
     .then((response)=> {
       console.log(response.data);
       setData(response.data);
