@@ -4,7 +4,7 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Navigation from "../Components/Navigation";
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Navigate } from 'react-router-dom';
 
 
 let Div = styled.div`
@@ -85,15 +85,19 @@ let Hr = styled.hr`
 `
 function Delete(itemI) {
   const useFacility = localStorage.getItem('useFacility');
+  {/*const navigate = useNavigate();*/}
 
   if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){
     axios
      .get('http://203.250.32.29:2200/api/facility/content/delete/mg/'+useFacility+'/' + itemI)
      .then((response)=> {
         alert("삭제되었습니다.");
+      {/*  navigate('/notice');*/}
+        
      })
      .catch(error => {
       alert('게시물삭제를 실패하였습니다.')
+      
      })
   } else {
     alert("취소합니다.");
