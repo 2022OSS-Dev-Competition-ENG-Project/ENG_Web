@@ -4,6 +4,7 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Navigation from "../Components/Navigation";
 import Write from "../Components/Write";
+import {Routes, Route, useNavigate, NavLink} from 'react-router-dom';
 
 function NoticeWrite() {
   let Div = styled.div`
@@ -50,12 +51,24 @@ function NoticeWrite() {
     align-items: flex-start;
     justify-content: center;
   `
+  let Menu_ul = styled.ul`
+  background-color:#FAFAFA;
+  font-size: 20px;
+  width: 150px;
+  margin:0;
+  padding:0;
+  border-bottom: 5px solid #0F4C75 ;
+  margin:5px;
+  cursor: pointer;
+`
+
+let navigate = useNavigate();
   return(
     <>
     <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/></Box1>
+          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
           <Box2><Title_box>공지사항</Title_box><hr></hr><Content_box><Write/></Content_box></Box2>
         </Body>
         <Footer/>

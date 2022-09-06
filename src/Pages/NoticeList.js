@@ -62,7 +62,16 @@ let Div = styled.div`
     font-size: 20px;
     height: 50px;
   `
-  
+  let Menu_ul = styled.ul`
+  background-color:#FAFAFA;
+  font-size: 20px;
+  width: 150px;
+  margin:0;
+  padding:0;
+  border-bottom: 5px solid #0F4C75 ;
+  margin:5px;
+  cursor: pointer;
+`
 
 
   function GetData() {
@@ -105,7 +114,7 @@ function NoticeList() {
     <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/></Box1>
+          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
           <Box2>
             <Title_box>공지사항<WriteButton onClick={()=> {navigate('/notice/write')}}>작성하기</WriteButton></Title_box><hr></hr>
             <Content_box>

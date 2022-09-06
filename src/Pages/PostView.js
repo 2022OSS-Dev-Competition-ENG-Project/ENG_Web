@@ -5,6 +5,7 @@ import Footer from "../Components/Footer";
 import Navigation from "../Components/Navigation";
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
+import {Routes, Route, useNavigate, NavLink} from 'react-router-dom';
 
 
 let Div = styled.div`
@@ -135,9 +136,21 @@ let Div = styled.div`
     width:1080px;
   `
 
+  let Menu_ul = styled.ul`
+    background-color:#FAFAFA;
+    font-size: 20px;
+    width: 150px;
+    margin:0;
+    padding:0;
+    border-bottom: 5px solid #0F4C75 ;
+    margin:5px;
+    cursor: pointer;
+  `
+
   function GetData(itemI) {
     const [data, setData] = useState({});
     const uuid = localStorage.getItem('managerUuid');
+    let navigate = useNavigate();
     useEffect(() => {
       axios
         .get('http://203.250.32.29:2200/api/facility/content/'+uuid+'/'+ itemI)
@@ -154,7 +167,7 @@ let Div = styled.div`
       <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/></Box1>
+          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
           <Box2>
             <Title_box>
               <Box>게시물</Box>

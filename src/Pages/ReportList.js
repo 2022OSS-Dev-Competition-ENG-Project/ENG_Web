@@ -73,6 +73,16 @@ let Div = styled.div`
   let Hr = styled.hr`
     margin: 0;
   `
+  let Menu_ul = styled.ul`
+    background-color:#FAFAFA;
+    font-size: 20px;
+    width: 150px;
+    margin:0;
+    padding:0;
+    border-bottom: 5px solid #0F4C75 ;
+    margin:5px;
+    cursor: pointer;
+  `
 
   
 
@@ -129,7 +139,7 @@ function ReportList() {
     <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/></Box1>
+          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
           <Box2>
             <Title_box>신고현황
               <Select onChange={handleSelect} value={Selected}>
