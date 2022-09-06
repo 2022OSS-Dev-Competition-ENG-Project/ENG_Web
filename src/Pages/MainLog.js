@@ -77,9 +77,6 @@ function MainLog() {
   let navigate = useNavigate();
   
 
-
-
-
     let [id, setId] = useState('');
     let [pw, setPw] = useState('');
 

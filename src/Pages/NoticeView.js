@@ -89,7 +89,7 @@ function Delete(itemI) {
 
   if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){
     axios
-     .get('http://203.250.32.29:2200/api/facility/content/delete/mg/'+useFacility+'/' + itemI)
+     .get('http://203.250.32.29:2200/api/facility/content/delete/mg/'+useFacility+'/' + 152)
      .then((response)=> {
         alert("삭제되었습니다.");
       {/*  navigate('/notice');*/}

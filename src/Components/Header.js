@@ -44,7 +44,7 @@ function Header() {
     <Header>
       <Logo  onClick={()=> { navigate('/main')}}>!ENG?</Logo>
       <UserBox>
-        <Button onClick={()=> navigate('mypage')}>{user}</Button>
+        <Button onClick={()=> navigate('/mypage')}>{user}</Button>
         <Button onClick={()=> {localStorage.clear(); navigate('/')}} >로그아웃</Button>
       </UserBox>
       

@@ -7,7 +7,6 @@ import Main from './Pages/Main';
 import BuildingList from './Pages/BuildingList';
 import NoticeWrite from './Pages/NoticeWrite';
 import Layout from './Components/Layout';
-import PostWrite from './Pages/PostWrite';
 import BuildingRegister from './Pages/BuildingRegister';
 import ManagerRegister from './Pages/ManagerRegister';
 import NoticeView from './Pages/NoticeView';
@@ -17,6 +16,7 @@ import PostList from './Pages/PostList';
 import Banner from './Pages/MainBanner';
 import ReportList from './Pages/ReportList';
 import Qr from './Pages/Qr';
+import ResetPw from './Pages/ResetPw';
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
         <Route path="/layout" element={<Layout />}> </Route>
         <Route path="/BuildingList" element={<BuildingList />}> </Route>
         <Route path="/building/:itemI" element={<Qr />}> </Route>
+        <Route path="/mypage" element={<ResetPw />}> </Route>
         
         <Route path="/report" element={<ReportList />} ></Route>
 
@@ -37,7 +38,6 @@ function App() {
         <Route path="/notice/:itemI" element={<NoticeView/>}> </Route>
         
         <Route path="/post" element={<PostList />} ></Route>
-        <Route path="/post/write" element={<PostWrite />}> </Route>
         <Route path="/post/:itemI" element={<PostView/>}> </Route>
         
 
