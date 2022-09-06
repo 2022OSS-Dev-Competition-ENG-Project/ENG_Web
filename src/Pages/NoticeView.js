@@ -4,7 +4,7 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Navigation from "../Components/Navigation";
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 let Div = styled.div`
@@ -83,6 +83,22 @@ let Hr = styled.hr`
   margin: 0;
   padding: 0;
 `
+function Delete(itemI) {
+  const useFacility = localStorage.getItem('useFacility');
+
+  if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){
+    axios
+     .get('http://203.250.32.29:2200/api/facility/content/delete/mg/'+useFacility+'/' + itemI)
+     .then((response)=> {
+        alert("삭제되었습니다.");
+     })
+     .catch(error => {
+      alert('게시물삭제를 실패하였습니다.')
+     })
+  } else {
+    alert("취소합니다.");
+  }
+}
 
 
 function GetData(itemI) {
@@ -106,10 +122,10 @@ function GetData(itemI) {
               <Box>공지사항</Box>
               <Button_box>
                 <Button>수정</Button>
-                <Button>삭제</Button>
+                <Button onClick={Delete}>삭제</Button>
               </Button_box>
             </Title_box><Hr></Hr>
-            <Content_box><Title><h2>{data.contentTitle}</h2> </Title><Post>{data.contentText}</Post></Content_box>
+            <Content_box><Title><h2>{data.contentTitle}</h2> </Title><Post>{data.contentText}<img src={data.contentImg}></img></Post></Content_box>
           </Box2>
         </Body>
         <Footer/>
