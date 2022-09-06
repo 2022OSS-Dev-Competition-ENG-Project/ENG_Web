@@ -5,7 +5,6 @@ import Footer from '../Components/Footer';
 import styled from 'styled-components';
 import Navigation from '../Components/Navigation';
 import axios from 'axios';
-
 import Table from '../Components/Table';
 import TableColumn from '../Components/TableColumn';
 import TableRow from '../Components/TableRow';
@@ -85,7 +84,7 @@ let Div = styled.div`
       <TableRow key = {item.contentNum}>
         <TableColumn>{item.contentNum}</TableColumn>
         <TableColumn>
-          <NavLink to={`/notice/${item.contentNum}`}>{item.contentTitle}</NavLink>
+          <NavLink to={`/notice/${item.contentNum}`} >{item.contentTitle}</NavLink>
         </TableColumn>
         <TableColumn>{item.name}</TableColumn>
         <TableColumn>{item.contentDate}</TableColumn>

@@ -115,22 +115,31 @@ function ResetPw() {
     console.log(pw1);
     console.log(pw2);
 
+    if(pw1==pw2){
       axios
-        .get('http://203.250.32.29:2201/api/manager-service/myPage/changePW/' + managerUuid, {
-        managerPassword: pw1,
-        })
-        .then(response => {
-        // Handle success.
-          console.log('변경완료');
-          alert('비밀번호가 변경되었습니다');
-          goMain();
+      .post('http://203.250.32.29:2201/api/manager-service/myPage/changePW/', {
+      managerPassword: pw1,
+      managerUuid: managerUuid,
+      })
+      .then(response => {
+      // Handle success.
+        console.log('변경완료');
+        alert(response.data);
+        goMain();
+      
+      })
+      .catch(error => {
+      // Handle error.
+        console.log(error.response);
         
-        })
-        .catch(error => {
-        // Handle error.
-          console.log(error.response);
-          alert(error.response.data);
-        });
+      });
+
+
+    }
+    else if(pw1!=pw2){
+      alert('비밀번호와 비밀번호확인을 다시 확인해주세요');
+    }
+
 
       }
     
@@ -143,8 +152,9 @@ function ResetPw() {
           <Box2><Title_box>로그인</Title_box><hr></hr>
 
           <Content_box>
+          <FaKey size="55" color="#0F4C75"/>
             <Sub_Title>
-              <FaKey size="55" color="#0F4C75"/>비밀번호 재설정
+              비밀번호 재설정
             </Sub_Title>
           
             <Input_box>

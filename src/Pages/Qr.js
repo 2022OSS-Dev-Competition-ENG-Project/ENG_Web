@@ -65,23 +65,20 @@ let Content_box=styled.div`
   height: auto;
   background-color: #FAFAFA;
   display:flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
   padding: 5px 0 0 20px;
+  align-items:center;
+  font-size: 30px;
 `
-let Title =  styled.div`
-  font-size: 25px;
-  background-color:#FAFAFA;
-  display:flex;
-  justify-content: flex-start;
-`
-let Post = styled.div`
-  font-size: 25px;
-  background-color:#FAFAFA;
-`
+
 let Hr = styled.hr`
   margin: 0;
   padding: 0;
+`
+
+let Img = styled.img`
+  width: 200px;
 `
 
 
@@ -92,7 +89,7 @@ function GetData(itemI) {
 
   useEffect(()=> {
     axios
-    .get('http://203.250.32.29:2200/api/facility/qr/getUrl', {
+    .post('http://203.250.32.29:2200/api/facility/qr/getUrl', {
       facilityName: facilityName,
       facilityAddress: facilityAddress,
     })
@@ -112,7 +109,7 @@ function GetData(itemI) {
             <Title_box>
               <Box>QR</Box>
             </Title_box><Hr></Hr>
-            <Content_box>SIBAL</Content_box>
+            <Content_box><div>QR코드를 프린트하여 쓰십시오</div><Img src={data} width></Img></Content_box>
           </Box2>
         </Body>
         <Footer/>

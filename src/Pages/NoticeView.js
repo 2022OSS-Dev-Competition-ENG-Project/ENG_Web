@@ -83,13 +83,13 @@ let Hr = styled.hr`
   margin: 0;
   padding: 0;
 `
-function Delete(itemI) {
+function Delete() {
   const useFacility = localStorage.getItem('useFacility');
   {/*const navigate = useNavigate();*/}
 
   if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){
     axios
-     .get('http://203.250.32.29:2200/api/facility/content/delete/mg/'+useFacility+'/' + 152)
+     .get('http://203.250.32.29:2200/api/facility/content/delete/mg/'+useFacility+'/')
      .then((response)=> {
         alert("삭제되었습니다.");
       {/*  navigate('/notice');*/}

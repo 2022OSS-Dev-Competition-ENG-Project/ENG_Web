@@ -101,6 +101,14 @@ let Div = styled.div`
     margin-top: 10px;
     height: 300px;
   `
+
+  let Ul = styled.ul`
+    list-style:none;
+  `
+
+  let Li = styled.li`
+    list-style:none;
+  `
 /******************************공지배너****************************** */
   function GetNoticeData() {
     const [data, setData] = useState([]);
@@ -168,7 +176,7 @@ let Div = styled.div`
     
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/report/spo/' +  useFacility)
+        .get('http://203.250.32.29:2200/api/facility/report/spo/247f9839-53a4-426c-994d-878f1c05d47b')
         .then((response)=> {
           console.log(response.data);
           console.log('성공');
@@ -230,11 +238,11 @@ function Banner(props) {
                 <Spo><Top><Sub_title>신고현황</Sub_title><TopButton onClick={()=> {navigate('/report')}}>더보기+</TopButton></Top><Sub_content>{report}</Sub_content></Spo>  
                 <Spo><Top><Sub_title>오늘 주의해야할 사고</Sub_title><TopButton>UPDATE</TopButton></Top>
                 <Sub_content>
-                  <ul>
-                    <li>습도 : {data.humidity}</li>
-                    <li>위험도 : {data.riskDegree}</li>
-                    <li>온도 : {data.temperature}</li>
-                  </ul>
+                  <Ul>
+                    <Li>습도 : {data.humidity}</Li>
+                    <Li>위험도 : {data.riskDegree}</Li>
+                    <Li>온도 : {data.temperature}</Li>
+                  </Ul>
                 </Sub_content>
                 </Spo>
             </Content_box>
