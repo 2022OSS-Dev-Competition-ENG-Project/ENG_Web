@@ -159,7 +159,6 @@ let Div = styled.div`
             <Title_box>
               <Box>게시물</Box>
               <Button_box>
-                <Button>수정</Button>
                 <Button>삭제</Button>
               </Button_box>
             </Title_box><Hr></Hr>
