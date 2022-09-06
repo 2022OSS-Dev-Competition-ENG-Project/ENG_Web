@@ -84,7 +84,7 @@ let Div = styled.div`
     
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/facility/report/list/{facilityNo}/{reportStatus}')
+        .get('http://203.250.32.29:2200/facility/report/list/247f9839-53a4-426c-994d-878f1c05d47b/미해결')
         .then((response)=> {
           console.log(response.data);
           console.log('성공');

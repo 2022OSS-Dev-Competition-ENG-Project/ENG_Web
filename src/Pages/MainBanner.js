@@ -231,9 +231,9 @@ function Banner(props) {
                 <Spo><Top><Sub_title>오늘 주의해야할 사고</Sub_title><TopButton>UPDATE</TopButton></Top>
                 <Sub_content>
                   <ul>
-                    <li>{data.humidity}</li>
-                    <li>{data.riskDegree}</li>
-                    <li>{data.temperature}</li>
+                    <li>습도 : {data.humidity}</li>
+                    <li>위험도 : {data.riskDegree}</li>
+                    <li>온도 : {data.temperature}</li>
                   </ul>
                 </Sub_content>
                 </Spo>

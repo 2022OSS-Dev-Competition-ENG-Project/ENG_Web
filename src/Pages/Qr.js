@@ -98,8 +98,8 @@ function GetData(itemI) {
     })
     .then((response)=> {
       console.log(response);
+      console.log('성공');
       setData(response.data);
-      this.qrImg = data;
     })
   },[]);
 
@@ -112,7 +112,7 @@ function GetData(itemI) {
             <Title_box>
               <Box>QR</Box>
             </Title_box><Hr></Hr>
-            <Content_box><img src="data" alt='QR코드'></img></Content_box>
+            <Content_box>SIBAL</Content_box>
           </Box2>
         </Body>
         <Footer/>
