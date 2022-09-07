@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate,NavLink} from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import styled from 'styled-components';
@@ -83,6 +83,10 @@ let Div = styled.div`
     margin:5px;
     cursor: pointer;
   `
+  const StyledNavLink = styled(NavLink)`
+    color:black;
+    text-decoration: none;
+  `
 
 function ReportList() {
 
@@ -144,7 +148,9 @@ function ReportList() {
  const item = (Object.values(data)).map((item) => (
    <TableRow key = {item.reportNum}>
      <TableColumn>{item.reportNum}</TableColumn>
-     <TableColumn>{item.reportTitle}</TableColumn>
+     <TableColumn>
+      <StyledNavLink to={`/report/${item.reportNum}`} >{item.reportTitle}</StyledNavLink>
+     </TableColumn>
      <TableColumn>{item.reportType}</TableColumn>
      <TableColumn>{item.userNickname}</TableColumn>
      <TableColumn>{item.reportDate}</TableColumn>
