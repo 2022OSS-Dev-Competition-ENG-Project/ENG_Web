@@ -122,8 +122,28 @@ function GetData(itemI) {
             <Title_box>
               <Box>신고현황</Box>
               <Button_box>
-                <Button type="button">처리</Button>
-                <Button type="button">반려</Button>
+                <Button type="button" onClick={()=> {
+                    axios
+                     .get('http://203.250.32.29:2200/api/report/'+ itemI +'/1')
+                     .then((response)=> {
+                        alert("처리완료");
+                        navigate('/report');
+                     })
+                     .catch(error => {
+                      alert('처리실패')
+                     })
+                }}>처리</Button>
+                <Button type="button" onClick={()=> {
+                    axios
+                     .get('http://203.250.32.29:2200/api/report/'+ itemI +'/2')
+                     .then((response)=> {
+                        alert("반려완료");
+                        navigate('/report');
+                     })
+                     .catch(error => {
+                      alert('반려실패')
+                     })
+                }}>반려</Button>
               </Button_box>
             </Title_box><Hr></Hr>
             <Content_box><Title><h2>제목: {data.reportTitle}</h2> </Title><Post>{data.reportText}<Img src={data.reportImg}></Img></Post></Content_box>
