@@ -6,7 +6,8 @@ import styled from 'styled-components';
 import Navigation from '../Components/Navigation';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
+import { BsDropletFill,BsThermometerHalf } from "react-icons/bs";
+import { AiFillAlert } from "react-icons/ai";
 
 let Div = styled.div`
   background-color: #FAFAFA;
@@ -101,13 +102,24 @@ let Div = styled.div`
     margin-top: 10px;
     height: 300px;
   `
+  let Sub_licontent = styled.div`
+    padding: 20px;
+    background-color:  #EDEDED;
+    border-radius: 10px;
+    margin-top: 10px;
+    height: 300px;
+    font-size: 30px;
+    flex-wrap: wrap;
+    flex-direction: raw;
+  `
 
   let Ul = styled.ul`
     list-style:none;
   `
 
-  let Li = styled.li`
+  let Li = styled.div`
     list-style:none;
+    width: 200px;
   `
 
   let Menu_ul = styled.ul`
@@ -247,14 +259,15 @@ function Banner(props) {
                 <Spo><Top><Sub_title>공지사항</Sub_title><TopButton onClick={()=> {navigate('/notice')}}>더보기+</TopButton></Top><Sub_content>{notice}</Sub_content></Spo>
                 <Spo><Top><Sub_title>게시물</Sub_title><TopButton onClick={()=> {navigate('/post')}}>더보기+</TopButton></Top><Sub_content>{post}</Sub_content></Spo>
                 <Spo><Top><Sub_title>신고현황</Sub_title><TopButton onClick={()=> {navigate('/report')}}>더보기+</TopButton></Top><Sub_content>{report}</Sub_content></Spo>  
-                <Spo><Top><Sub_title>오늘 주의해야할 사고</Sub_title><TopButton>UPDATE</TopButton></Top>
-                <Sub_content>
-                  <Ul>
-                    <Li>습도 : {data.humidity}</Li>
-                    <Li>위험도 : {data.riskDegree}</Li>
-                    <Li>온도 : {data.temperature}</Li>
-                  </Ul>
-                </Sub_content>
+                <Spo><Top><Sub_title>AI를 통한 화재 예측</Sub_title><TopButton>UPDATE</TopButton></Top>
+                <Sub_licontent>
+                  
+                    <Li><BsDropletFill size="70" color='blue'/>습도  {data.humidity}</Li>
+                    <Li><BsThermometerHalf size="70" color='yellow'/>온도  {data.temperature}</Li>
+                    <Li><AiFillAlert size="70" color='red'/>위험도 {data.riskDegree}</Li>
+                    
+                  
+                </Sub_licontent>
                 </Spo>
             </Content_box>
            </Box2>

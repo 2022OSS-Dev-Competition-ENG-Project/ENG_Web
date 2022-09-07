@@ -151,6 +151,7 @@ let Div = styled.div`
     const [data, setData] = useState({});
     const uuid = localStorage.getItem('managerUuid');
     let navigate = useNavigate();
+    const useFacility = localStorage.getItem('useFacility');
     useEffect(() => {
       axios
         .get('http://203.250.32.29:2200/api/facility/content/'+uuid+'/'+ itemI)
@@ -172,7 +173,24 @@ let Div = styled.div`
             <Title_box>
               <Box>게시물</Box>
               <Button_box>
-                <Button>삭제</Button>
+                <Button type="button" onClick={()=> {
+                   if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){
+                    axios
+                     .get('http://203.250.32.29:2200/api/facility/content/delete/mg/'+useFacility+'/'+itemI)
+                     .then((response)=> {
+                        alert("삭제되었습니다.");
+                        navigate('/notice');
+                        
+                     })
+                     .catch(error => {
+                      alert('게시물삭제를 실패하였습니다.')
+                      
+                     })
+                  } else {
+                    alert("취소합니다.");
+                  }
+
+                }}>삭제</Button>
               </Button_box>
             </Title_box><Hr></Hr>
             <Content_box><Title><h2>{data.contentTitle}</h2> </Title><Post>{data.contentText}</Post></Content_box>

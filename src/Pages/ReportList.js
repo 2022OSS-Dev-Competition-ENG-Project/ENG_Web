@@ -90,35 +90,35 @@ let Div = styled.div`
   function GetData() {
     const [data, setData] = useState([]);
     
-
+    const facilityNo = localStorage.getItem('facilityNo');
     
     useEffect(() => {
-      {/*/facility/report/list/{facilityNo}/{reportStatus} */}
+       {/*  203.250.32.29:2200/api/report/list/{facilityNo}/{reportStatus}*/}
       axios
-        .get('http://203.250.32.29:2200/facility/report/list/247f9839-53a4-426c-994d-878f1c05d47b/0')
+        .get('http://203.250.32.29:2200/api/report/list/247f9839-53a4-426c-994d-878f1c05d47b/0')
         .then((response)=> {
           console.log(response.data);
           console.log('성공');
           setData(response.data);
           
-          
       })
     }, []);
     
-    {/** 
+    
      
     const item = (Object.values(data)).map((item) => (
-      <TableRow key = {item.contentNum}>
-        <TableColumn>{item.contentNum}</TableColumn>
-        <TableColumn>{item.contentTitle}</TableColumn>
-        <TableColumn>{item.userName}</TableColumn>
-        <TableColumn>{item.contentDate}</TableColumn>
+      <TableRow key = {item.reportNum}>
+        <TableColumn>{item.reportNum}</TableColumn>
+        <TableColumn>{item.reportTitle}</TableColumn>
+        <TableColumn>{item.reportType}</TableColumn>
+        <TableColumn>{item.userNickname}</TableColumn>
+        <TableColumn>{item.reportDate}</TableColumn>
       </TableRow>
     ));
   
     return item; 
 
-  */}
+  
   }
     
 

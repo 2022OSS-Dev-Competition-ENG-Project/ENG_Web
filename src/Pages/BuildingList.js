@@ -110,13 +110,22 @@ let Div = styled.div`
           <Button variant="outline-danger" 
             onClick={() =>{ 
               if(data[i].facilityOwner != data[i].uuid)
-                {onRemove(data[i].facilityName);
+                { 
+                
+                onRemove(data[i].facilityName);
                   axios
                     .get('http://203.250.32.29:2200/api/facility/my/delete/mg/'+ uuid + '/' + data[i].useFacility)
                     .then(()=> {
                       console.log('성공');
+                      alert('시설물이 삭제되었습니다')
                     })
-                }
+                    .catch(error => {
+                      alert('시설물삭제에 실패하였습니다')
+                    })
+               } 
+               else if (data[i].facilityOwner == data[i].uuid) {
+                alert('자신이 마스터로 관리하는 건물은 삭제할 수 없습니다')
+               }
               }
             }>삭제</Button>
         </TableColumn>
