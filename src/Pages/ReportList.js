@@ -109,7 +109,7 @@ function ReportList() {
    
    203.250.32.29:2200/api/report/list/{facilityNo}/{reportStatus}*/}
    axios
-     .get('http://203.250.32.29:2200/api/report/list/247f9839-53a4-426c-994d-878f1c05d47b/0')
+     .get('http://203.250.32.29:2200/api/report/list/'+ useFacility+'/0')
      .then((response)=> {
        console.log(response.data);
        console.log('성공');
@@ -121,7 +121,7 @@ function ReportList() {
 
   if(reportStatus=='처리') {
     axios
-    .get('http://203.250.32.29:2200/api/report/list/247f9839-53a4-426c-994d-878f1c05d47b/1')
+    .get('http://203.250.32.29:2200/api/report/list/'+ useFacility+'/1')
     .then((response)=> {
       console.log(response.data);
       console.log('성공');
@@ -133,7 +133,7 @@ function ReportList() {
 
   if(reportStatus=='미처리') {
     axios
-    .get('http://203.250.32.29:2200/api/report/list/247f9839-53a4-426c-994d-878f1c05d47b/0')
+    .get('http://203.250.32.29:2200/api/report/list/'+ useFacility+'/0')
     .then((response)=> {
       console.log(response.data);
       console.log('성공');

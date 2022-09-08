@@ -143,7 +143,7 @@ let Div = styled.div`
         .get('http://203.250.32.29:2200/api/facility/'+ useFacility + '/content/1/main')
         .then((response)=> {
           console.log(response.data);
-          console.log('성공');
+          console.log('공지성공');
           setData(response.data);
           
           
@@ -172,7 +172,7 @@ let Div = styled.div`
         .get('http://203.250.32.29:2200/api/facility/'+ useFacility + '/content/0/main')
         .then((response)=> {
           console.log(response.data);
-          console.log('성공');
+          console.log('게시물성공');
           setData(response.data);
           console.log(response.status);
           
@@ -199,7 +199,7 @@ let Div = styled.div`
     
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/report/spo/247f9839-53a4-426c-994d-878f1c05d47b')
+        .get('http://203.250.32.29:2200/api/report/list/mg/lt/'+ useFacility)
         .then((response)=> {
           console.log(response.data);
           console.log('성공');
@@ -213,7 +213,7 @@ let Div = styled.div`
      
     const report = (Object.values(data)).map((item,i) => (
       <ul key = {item.i}>
-        <li>{item.reportContentTitle}</li>
+        <li>{item.reportTitle}</li>
       </ul>
     ));
   
@@ -262,9 +262,9 @@ function Banner(props) {
                 <Spo><Top><Sub_title>AI를 통한 화재 예측</Sub_title><TopButton>UPDATE</TopButton></Top>
                 <Sub_licontent>
                   
-                    <Li><BsDropletFill size="70" color='blue'/>습도  {data.humidity}</Li>
-                    <Li><BsThermometerHalf size="70" color='yellow'/>온도  {data.temperature}</Li>
-                    <Li><AiFillAlert size="70" color='red'/>위험도 {data.riskDegree}</Li>
+                    <Li><BsDropletFill size="60" color='blue'/>습도  {data.humidity}</Li>
+                    <Li><BsThermometerHalf size="60" color='yellow'/>온도  {data.temperature}</Li>
+                    <Li><AiFillAlert size="60" color='red'/>위험도 {data.riskDegree}</Li>
                     
                   
                 </Sub_licontent>
