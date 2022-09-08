@@ -154,8 +154,6 @@ function BuildingRegister() {
     }
 
 //203.250.32.29
-    
-
       
   return(
     <>
