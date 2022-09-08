@@ -50,7 +50,6 @@ display:flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
-
 `
 
 const Body = styled.div`
@@ -58,7 +57,6 @@ display: flex;
 justify-content: center;
 margin: 100px 0 0 0;
 background-color: #FAFAFA;
-
 `
 const Input_box = styled.label`
   display:flex;
@@ -100,13 +98,11 @@ const AddressButton = styled.button`
   border: 3px solid #727272;
 `
 
-
-
 function BuildingRegister() {
-
  const [facilityName, setFacilityName] = useState('');
- const facilityAddress= localStorage.getItem('facilityAddress');
+ const facilityAddress = localStorage.getItem('facilityAddress');
  const [userId, setUserId] = useState(localStorage.getItem('managerUuid'));
+ const [fix,setFix] = useState('');
 
  const [isPopupOpen, setIsPopupOpen] = useState(false)
  
@@ -119,41 +115,41 @@ function BuildingRegister() {
     const closePostCode = () => {
         setIsPopupOpen(false)
     }
- 
 
  const register = () => {
 
     console.log(facilityName);
     console.log(facilityAddress);
     console.log(userId);
-
-    if (facilityName.lenth >= 1) {
+    
+    if(facilityName.length >= 1) {
 
       axios
-        .post('http://203.250.32.29:2200/api/facility/register', {
-        facilityName: facilityName,
-        facilityAddress: facilityAddress,
-        facilityOwner: userId,
-      })
-      .then(response => {
-        // Handle success.
-        console.log('시설물등록완료');
-        alert('시설물이 등록되었습니다.');
-        
-      })
+    .post('http://203.250.32.29:2200/api/facility/register', {
+      facilityName: facilityName,
+      facilityAddress: facilityAddress,
+      facilityOwner: userId,
+    })
+    .then(response => {
+      // Handle success.
+      console.log('시설물등록완료');
+      alert('시설물이 등록되었습니다.');
+      
+    })
     .catch(error => {
       // Handle error.
       console.log(error.response);
       alert(error.response.data);
     });
- }
-  else if(facilityName.length == 0 ) {
-    alert('시설물명을 입력해주세요');
-  }
 
     }
 
-//203.250.32.29
+    else if(facilityName.length == 0) {
+      alert('시설물명을 입력해주세요');
+    }
+    
+ }
+
       
   return(
     <>
@@ -171,7 +167,7 @@ function BuildingRegister() {
          
             <Input_box>
             주소: <AddressBox></AddressBox>
-              <AddressButton type='button' onClick={openPostCode}>우편번호 검색</AddressButton>
+              <AddressButton type='button' onClick={()=>{openPostCode(); setFix(facilityAddress);}}>우편번호 검색</AddressButton>
             </Input_box> 
             
             <div id = 'popupDom'>
@@ -181,7 +177,13 @@ function BuildingRegister() {
                 </PopupDom>
               )}
             </div>
-           
+       
+ {/*           <Input_box  htmlFor='facility_address'>위치: 
+              <Input  type="text"  value={facilityAddress} onChange={(e)=> {
+                 setFacilityAddress(e.target.value);
+              }}></Input>
+            </Input_box>  
+*/}            
             <Button onClick={()=> {
               register();
             }}> 등록하기</Button> 
