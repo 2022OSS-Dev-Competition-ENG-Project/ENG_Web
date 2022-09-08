@@ -105,7 +105,7 @@ const AddressButton = styled.button`
 function BuildingRegister() {
 
  const [facilityName, setFacilityName] = useState('');
- const [facilityAddress, setFacilityAddress] = useState('');
+ const facilityAddress= localStorage.getItem('facilityAddress');
  const [userId, setUserId] = useState(localStorage.getItem('managerUuid'));
 
  const [isPopupOpen, setIsPopupOpen] = useState(false)
@@ -119,7 +119,6 @@ function BuildingRegister() {
     const closePostCode = () => {
         setIsPopupOpen(false)
     }
-
  
 
  const register = () => {
@@ -127,8 +126,10 @@ function BuildingRegister() {
     console.log(facilityName);
     console.log(facilityAddress);
     console.log(userId);
-//203.250.32.29
-    axios
+
+    if (facilityName.lenth >= 1) {
+
+      axios
     .post('http://203.250.32.29:2200/api/facility/register', {
       facilityName: facilityName,
       facilityAddress: facilityAddress,
@@ -146,6 +147,14 @@ function BuildingRegister() {
       alert(error.response.data);
     });
  }
+  else if(facilityName.length == 0 ) {
+    alert('시설물명을 입력해주세요');
+  }
+
+    }
+
+//203.250.32.29
+    
 
       
   return(

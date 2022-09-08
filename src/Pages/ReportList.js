@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate,NavLink} from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import styled from 'styled-components';
@@ -83,56 +83,19 @@ let Div = styled.div`
     margin:5px;
     cursor: pointer;
   `
-
-  
-
-
-  function GetData() {
-    const [data, setData] = useState([]);
-    
-    const useFacility = localStorage.getItem('useFacility');
-    
-    useEffect(() => {
-       {/*  'http://203.250.32.29:2200/api/report/list/'+ useFacility+'/0'
-      
-      203.250.32.29:2200/api/report/list/{facilityNo}/{reportStatus}*/}
-      axios
-        .get('http://203.250.32.29:2200/api/report/list/247f9839-53a4-426c-994d-878f1c05d47b/0')
-        .then((response)=> {
-          console.log(response.data);
-          console.log('성공');
-          setData(response.data);
-          
-          
-      })
-    }, []);
-    
-    
-     
-    const item = (Object.values(data)).map((item) => (
-      <TableRow key = {item.reportNum}>
-        <TableColumn>{item.reportNum}</TableColumn>
-        <TableColumn>{item.reportTitle}</TableColumn>
-        <TableColumn>{item.reportType}</TableColumn>
-        <TableColumn>{item.userNickname}</TableColumn>
-        <TableColumn>{item.reportDate}</TableColumn>
-      </TableRow>
-    ));
-  
-    return item; 
-
-  
-  }
-    
+  const StyledNavLink = styled(NavLink)`
+    color:black;
+    text-decoration: none;
+  `
 
 function ReportList() {
 
-  const item = GetData();
   let navigate = useNavigate();
   const [reportStatus, setReportStatus] = useState('');
-
-  const selectList = ["처리", "미처리"];
+  const selectList = ["미처리", "처리"];
   const [Selected, setSelected] = useState("");
+  const [data, setData] = useState([]);
+  const useFacility = localStorage.getItem('useFacility');
 
   const handleSelect = (e) => {
     setSelected(e.target.value);
@@ -141,8 +104,59 @@ function ReportList() {
     console.log(reportStatus);
   };
 
-  
+  useEffect(() => {
+    {/*  'http://203.250.32.29:2200/api/report/list/'+ useFacility+'/0'
+   
+   203.250.32.29:2200/api/report/list/{facilityNo}/{reportStatus}*/}
+   axios
+     .get('http://203.250.32.29:2200/api/report/list/'+ useFacility+'/0')
+     .then((response)=> {
+       console.log(response.data);
+       console.log('성공');
+       setData(response.data);
+       
+       
+   })
+ }, []);
+
+  if(reportStatus=='처리') {
+    axios
+    .get('http://203.250.32.29:2200/api/report/list/'+ useFacility+'/1')
+    .then((response)=> {
+      console.log(response.data);
+      console.log('성공');
+      setData(response.data);
       
+      
+  })
+  }
+
+  if(reportStatus=='미처리') {
+    axios
+    .get('http://203.250.32.29:2200/api/report/list/'+ useFacility+'/0')
+    .then((response)=> {
+      console.log(response.data);
+      console.log('성공');
+      setData(response.data);
+      
+      
+  })
+  }
+ 
+ 
+  
+ const item = (Object.values(data)).map((item) => (
+   <TableRow key = {item.reportNum}>
+     <TableColumn>{item.reportNum}</TableColumn>
+     <TableColumn>
+      <StyledNavLink to={`/report/${item.reportNum}`} >{item.reportTitle}</StyledNavLink>
+     </TableColumn>
+     <TableColumn>{item.reportType}</TableColumn>
+     <TableColumn>{item.userNickname}</TableColumn>
+     <TableColumn>{item.reportDate}</TableColumn>
+   </TableRow>
+ ));
+
   return(
     <>
     <Div>
@@ -168,10 +182,7 @@ function ReportList() {
         <Footer/>
     </Div>
     </>
-
-
-        
-    
+  
   );
 }
 
