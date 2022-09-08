@@ -174,13 +174,7 @@ function BuildingRegister() {
                 </PopupDom>
               )}
             </div>
-       
- {/*           <Input_box  htmlFor='facility_address'>위치: 
-              <Input  type="text"  value={facilityAddress} onChange={(e)=> {
-                 setFacilityAddress(e.target.value);
-              }}></Input>
-            </Input_box>  
-*/}            
+           
             <Button onClick={()=> {
               register();
             }}> 등록하기</Button> 
