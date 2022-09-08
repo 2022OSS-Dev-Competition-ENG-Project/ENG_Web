@@ -1,9 +1,6 @@
 import {React, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import Form from 'react-bootstrap/Form';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import '../Style/Write.css'
 
 
 let Wirte_box = styled.form`
@@ -37,23 +34,6 @@ let Title_input = styled.input`
 
 function Write() {
 
-  const [content, setContent] = useState({
-    title : '',
-    content: ''
-  })
-
-  
-
-  const getValue = e => {
-    const { name, value } = e.target;
-    setContent({
-      ...content,
-      [name]: value
-    })
-    console.log(content);
-  };
-  
-  
   
   return(
     <>
