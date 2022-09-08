@@ -102,7 +102,7 @@ function BuildingRegister() {
  const [facilityName, setFacilityName] = useState('');
  const facilityAddress = localStorage.getItem('facilityAddress');
  const [userId, setUserId] = useState(localStorage.getItem('managerUuid'));
- const [change,setChange] = useState('');
+ const [fix,setFix] = useState('');
 
  const [isPopupOpen, setIsPopupOpen] = useState(false)
  
@@ -167,7 +167,7 @@ function BuildingRegister() {
          
             <Input_box>
             주소: <AddressBox></AddressBox>
-              <AddressButton type='button' onClick={openPostCode}>우편번호 검색</AddressButton>
+              <AddressButton type='button' onClick={()=>{openPostCode(); setFix(facilityAddress);}}>우편번호 검색</AddressButton>
             </Input_box> 
             
             <div id = 'popupDom'>
