@@ -1,26 +1,26 @@
 import {React, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import Form from 'react-bootstrap/Form';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import '../Style/Write.css'
 
-
-let Wirte_box = styled.div`
-  width: auto;
+let Wirte_box = styled.form`
+  width: 1200px;
   height: auto;
-  background-color: white;
+  background-color: #FAFAFA;
 `
 
 let Title_input = styled.input`
-  width: 1000px;
-  margin-bottom : 30px;
+  width: 100%;
+  margin-bottom : 10px;
+  height: 40px;
+  border: solid 3px grey;
+  border-radius: 10px;
 `
  let Textarea = styled.textarea`
   resize: none;
   border-radius:10px;
-  width: 1300px;
+  width: 1200px;
   padding: 20px;
+  margin-top: 10px;
  `
 
  let Register_button = styled.button`
@@ -33,62 +33,20 @@ let Title_input = styled.input`
 
 function Write() {
 
-  const [content, setContent] = useState({
-    title : '',
-    content: ''
-  })
 
-  
-
-  const getValue = e => {
-    const { name, value } = e.target;
-    setContent({
-      ...content,
-      [name]: value
-    })
-    console.log(content);
-  };
-  
   
   
   return(
-    <Wirte_box>
-      <div>
-        <span name="title">제목: </span><Title_input placeholder='제목을 입력하세요' name='title' onChange={getValue}></Title_input>
-      </div>
-      <div>
-        <div>
-          <Form.Group controlId="formFileMultiple" className="mb-3">
-                <CKEditor
-                          editor={ ClassicEditor }
-                          data="<p>내용을 입력해주세요</p>"
-                          onReady={ editor => {
-                              console.log( 'Editor is ready to use!', editor );
-                          } }
-                          onChange={(event, editor) => {
-                            const data = editor.getData();
-                            console.log({ event, editor, data });
-                            setContent({
-                              ...content,
-                              content: data
-                            })
-                            console.log(content);
-                          }}
-                          onBlur={ ( event, editor ) => {
-                              console.log( 'Blur.', editor );
-                          } }
-                          onFocus={ ( event, editor ) => {
-                              console.log( 'Focus.', editor );
-                          } }
-                          
-                      />
-          {/*   <Form.Control type="file" multiple />*/}
-          </Form.Group>
-     {/*  <Textarea rows ={20}></Textarea>  */}
-        
-        </div>
-      </div>
+    <>
+      <Wirte_box action='http://203.250.32.29:2200//api/facility/content/register' name="photo" method="post" encType="multipart/form-data">
+          <Title_input placeholder='제목을 입력하세요' name='title'></Title_input> 
+          <Form.Control type="file"  />
+          <Textarea rows ={20}></Textarea>
+          <button type='submit'>등록하기</button>
       </Wirte_box>
+    
+    </>
+    
   );
 }
 

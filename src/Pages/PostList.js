@@ -123,7 +123,7 @@ function PostList() {
         <Body>
           <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
           <Box2>
-            <Title_box>게시물<WriteButton onClick={()=> {navigate('/post/write')}}>작성하기</WriteButton></Title_box><hr></hr>
+            <Title_box>게시물</Title_box><hr></hr>
             <Content_box>
               <Table headersName={['글번호', '제목', '작성자', '등록일']}>
                 {item}
