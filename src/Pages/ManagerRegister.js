@@ -76,10 +76,19 @@ function ManagerRegister() {
     margin: 5px;
     font-size: 20px;
   `
-  let Input = styled.input`
+  let Input = styled.div`
     padding: 2px;
-    width: 300px;
-    margin: 0 50px 0 10px;
+    width: 400px;
+    margin: 0 10px;
+    border: solid 1px;
+    border-radius: 10px;
+  `
+  let Uuid = styled.button`
+    padding: 2px;
+    width: 400px;
+    margin: 0 10px;
+    border: solid 1px;
+    border-radius: 10px;
   `
 
   let Register_button = styled.button`
@@ -129,7 +138,8 @@ function ManagerRegister() {
             <Menu>
               추가
             </Menu>
-            <Input_box>이름: <Input></Input>전화번호: <Input></Input><Register_button>등록</Register_button></Input_box> 
+            <Input_box>매니저고유번호 :<Uuid>검색하기</Uuid>시설물번호: <Input> {localStorage.getItem('useFacility')}</Input>
+            </Input_box> 
           </Content_box></Box2>
         </Body>
         <Footer/>

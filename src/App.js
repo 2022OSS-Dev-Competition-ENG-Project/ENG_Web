@@ -17,6 +17,7 @@ import Banner from './Pages/MainBanner';
 import ReportList from './Pages/ReportList';
 import Qr from './Pages/Qr';
 import ResetPw from './Pages/ResetPw';
+import ReportView from './Pages/ReportView';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/mypage" element={<ResetPw />}> </Route>
         
         <Route path="/report" element={<ReportList />} ></Route>
+        <Route path="/report/:itemI" element={<ReportView />} ></Route>
 
         <Route path="/notice" element={<NoticeList />} ></Route>
         <Route path="/notice/write" element={<NoticeWrite />}> </Route>

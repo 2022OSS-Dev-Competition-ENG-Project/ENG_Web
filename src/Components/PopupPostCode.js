@@ -5,7 +5,7 @@ function PopupPostCode(props) {
   
 	// 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
     const handlePostCode = (data) => {
-        let fullAddress = data.address;
+        let fullAddress = data.jibunAddress;
         let extraAddress = ''; 
         
         
@@ -21,10 +21,12 @@ function PopupPostCode(props) {
         console.log(data)
         console.log(fullAddress)
         console.log(data.zonecode)
-        props.onClose()
+        props.onClose();
+
+        localStorage.setItem('facilityAddress', fullAddress);
       
     }
- 
+    
     const postCodeStyle = {
         position: "absolute",
         top: "20%",
@@ -42,4 +44,4 @@ function PopupPostCode(props) {
     )  
 }
  
-export default PopupPostCode;
+export default PopupPostCode ;
