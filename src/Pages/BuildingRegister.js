@@ -130,17 +130,17 @@ function BuildingRegister() {
     if (facilityName.lenth >= 1) {
 
       axios
-    .post('http://203.250.32.29:2200/api/facility/register', {
-      facilityName: facilityName,
-      facilityAddress: facilityAddress,
-      facilityOwner: userId,
-    })
-    .then(response => {
-      // Handle success.
-      console.log('시설물등록완료');
-      alert('시설물이 등록되었습니다.');
-      
-    })
+        .post('http://203.250.32.29:2200/api/facility/register', {
+        facilityName: facilityName,
+        facilityAddress: facilityAddress,
+        facilityOwner: userId,
+      })
+      .then(response => {
+        // Handle success.
+        console.log('시설물등록완료');
+        alert('시설물이 등록되었습니다.');
+        
+      })
     .catch(error => {
       // Handle error.
       console.log(error.response);
