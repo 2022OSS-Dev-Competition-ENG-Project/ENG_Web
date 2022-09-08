@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useEffect, useState} from 'react';
 import DaumPostcode from "react-daum-postcode";
  
 function PopupPostCode(props) {
@@ -18,15 +18,14 @@ function PopupPostCode(props) {
           }
           fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
-        console.log(data)
-        console.log(fullAddress)
-        console.log(data.zonecode)
+        console.log(data);
+        console.log(fullAddress);
+        console.log(data.jibunAddress);
         props.onClose();
-
-        localStorage.setItem('facilityAddress', fullAddress);
+        localStorage.setItem('facilityAddress', data.jibunAddress);
       
     }
-    
+ 
     const postCodeStyle = {
         position: "absolute",
         top: "20%",
@@ -44,4 +43,4 @@ function PopupPostCode(props) {
     )  
 }
  
-export default PopupPostCode ;
+export default PopupPostCode;
