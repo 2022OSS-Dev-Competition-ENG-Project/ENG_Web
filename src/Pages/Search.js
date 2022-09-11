@@ -15,7 +15,7 @@ function Search(props) {
 
    const Find = () => {
     axios
-      .post('http://203.250.32.29:2201/api/facility/find/manager/{managerName}/{managerPhoneNumber}', {
+      .get('http://203.250.32.29:2200/api/facility/find/manager/'+ name +'/' + num, {
         managerName: name,
         managerPhoneNumber: num,
       })
@@ -23,12 +23,14 @@ function Search(props) {
         // Handle success.
         console.log('성공');
         console.log(response.data)
-        alert('회원님의 아이디는 '+ (response.data) + '입니다');
+        alert( name +'의 UUID는 \n'+ (response.data.managerUuid) + '입니다');
         
       })
       .catch(error => {
         // Handle error.
-        console.log('로그인 실패', error.response);
+        console.log('실패', error.response);
+        console.log(name);
+        console.log(num);
         alert(error.response.data);
       });
    }
