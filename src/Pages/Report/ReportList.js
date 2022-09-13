@@ -15,7 +15,7 @@ let Div = styled.div`
 `
   
     let Box1 = styled.div`
-    width: 300px;
+    width: 200px;
     height: auto;
     background-color: #FAFAFA;
     margin: 0 ;
@@ -74,14 +74,17 @@ let Div = styled.div`
     margin: 0;
   `
   let Menu_ul = styled.ul`
-    background-color:#FAFAFA;
-    font-size: 20px;
-    width: 150px;
-    margin:0;
-    padding:0;
-    border-bottom: 5px solid #0F4C75 ;
-    margin:5px;
-    cursor: pointer;
+  background-color:#FAFAFA;
+  font-size: 20px;
+  width: 130px;
+  margin:0;
+  padding:5px;
+  border-bottom: 2px solid  grey;
+  cursor: pointer;
+  &:hover {
+    background-color :  #0F4C75;
+    color: white;
+  }
   `
   const StyledNavLink = styled(NavLink)`
     color:black;

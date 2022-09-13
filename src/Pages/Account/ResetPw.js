@@ -13,7 +13,7 @@ background-color: #FAFAFA;
 `
 
   const Box1 = styled.div`
-  width: 300px;
+  width: 200px;
   height: auto;
   background-color: #FAFAFA;
   margin: 0 ;

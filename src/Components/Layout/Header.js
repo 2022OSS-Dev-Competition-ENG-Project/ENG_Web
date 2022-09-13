@@ -32,7 +32,7 @@ function Header() {
         font-size: 20px;
         background-color: #FAFAFA;
         border-style: none;
-        font-weight: 100;
+        font-weight: 500;
       `
 
       let Hr = styled.hr`

@@ -16,11 +16,12 @@ let Div = styled.div`
 `
   
     let Box1 = styled.div`
-    width: 300px;
+    width: 200px;
     height: auto;
     background-color: #FAFAFA;
     margin: 0 ;
     padding-top:120px
+    
   `
 
   let Box2 = styled.div`

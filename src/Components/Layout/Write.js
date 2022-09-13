@@ -52,7 +52,7 @@ const Write = () =>  {
     const onFileChange = (e) => {
       console.log(e.target.files[0])
       if(e.target && e.target.files[0]) {
-        formData.append("images", e.target.files[0], "a.png");
+        formData.append("images", e.target.files[0], "notice.png");
         console.log(formData)
       }
       

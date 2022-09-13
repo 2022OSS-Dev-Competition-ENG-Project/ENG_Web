@@ -25,7 +25,7 @@ height: 79.9vh;
 `
 
   const Box1 = styled.div`
-  width: 400px;
+  width: 200px;
   height: 80vh;
   background-color:#FAFAFA;
   margin: 0 ;

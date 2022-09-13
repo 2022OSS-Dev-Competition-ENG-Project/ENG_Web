@@ -19,7 +19,7 @@ let Div = styled.div`
   background-color: #FAFAFA;
 `
   let Box1 = styled.div`
-    width: 300px;
+    width: 200px;
     height: auto;
     background-color: #FAFAFA;
     margin: 0 ;
@@ -45,39 +45,6 @@ let Div = styled.div`
     margin:0 0 0 20px;
   `
 
-  let Comment_box= styled.div`
-    widith: auto;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color:#FAFAFA;
-    padding:0;
-  `
-  let Comment_title= styled.div`
-    font-size: 25px;
-  `
-
-  let Comment = styled.div`
-    width:100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    background-color: #FAFAFA;
-  `
-  let Comment_user = styled.div`
-    display:flex;
-    justify-content: flex-start;
-    font-size:20px;
-    width: auto;
-    background-color: #FAFAFA;
-    opacity: 100%;
-  `
-  let Comment_buttonbox = styled.div`
-  `
-  let Comment_button = styled.button`
-    margin: 5px;
-  `
   let Box = styled.div`
     margin: 0;
     padding: 0;
@@ -119,32 +86,19 @@ let Div = styled.div`
     margin: 0;
     padding: 0;
   `
-  let Upload_box = styled.div`
-    width:100%;
-    height: auto;
-    display: flex;
-    justify-content: flex-start;
-    background-color: #FAFAFA;
-  `
-  let Master = styled.div`
-    font-size:20px;
-    width: 100px;
-    background-color: #FAFAFA;
-    padding: 0;
-  `
-  let Upload = styled.input`
-    width:1080px;
-  `
 
   let Menu_ul = styled.ul`
-    background-color:#FAFAFA;
-    font-size: 20px;
-    width: 150px;
-    margin:0;
-    padding:0;
-    border-bottom: 5px solid #0F4C75 ;
-    margin:5px;
-    cursor: pointer;
+  background-color:#FAFAFA;
+  font-size: 20px;
+  width: 130px;
+  margin:0;
+  padding:5px;
+  border-bottom: 2px solid  grey;
+  cursor: pointer;
+  &:hover {
+    background-color :  #0F4C75;
+    color: white;
+  }
   `
 
   function GetData(itemI) {

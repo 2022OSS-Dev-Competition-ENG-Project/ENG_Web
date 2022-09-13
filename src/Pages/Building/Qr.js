@@ -18,7 +18,7 @@ margin: 100px 0 0 0;
 background-color: #FAFAFA;
 `
 let Box1 = styled.div`
-  width: 300px;
+  width: 200px;
   height: auto;
   background-color: #FAFAFA;
   margin: 0 ;
@@ -47,29 +47,20 @@ let Box = styled.div`
   margin: 0;
   padding: 0;
 `
-let Button_box = styled.div`
-  margin: 0;
-  padding: 0;
-` 
-let Button = styled.button`
-font-size: 20px;
-font-weight: 500;
-margin-right: 10px;
-color: black;
-background-color: #C6C6C6;
-border-radius:  5px;
-border-style:none;
-`
 let Content_box=styled.div`
   widith: auto;
   height: auto;
   background-color: #FAFAFA;
   display:flex;
   justify-content: center;
-  flex-direction: column;
-  padding: 5px 0 0 20px;
+  padding: 70px 0 0 20px;
   align-items:center;
   font-size: 30px;
+`
+
+let Text_box =  styled.div`
+  width: 500px;
+  font-weight: 600;
 `
 
 let Hr = styled.hr`
@@ -109,7 +100,10 @@ function GetData(itemI) {
             <Title_box>
               <Box>QR</Box>
             </Title_box><Hr></Hr>
-            <Content_box><div>QR코드를 프린트하여 쓰십시오</div><Img src={data} width></Img></Content_box>
+            <Content_box>
+              <Img src={data} width></Img>
+              <Text_box>방문자들이 잘 볼 수 있는 곳에 해당 QR코드를 프린트하여 붙이십시오</Text_box>
+            </Content_box>
           </Box2>
         </Body>
         <Footer/>
