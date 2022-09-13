@@ -58,7 +58,7 @@ function FindPW(props) {
 
         <Form.Group className="mb-3">
           <Form.Label>이메일</Form.Label>
-          <Form.Control type="email" placeholder="12345@abc.com" value={email} onChange={(e)=> {
+          <Form.Control type="email" placeholder="example@company.com" value={email} onChange={(e)=> {
                  setEmail(e.target.value);
               }}onKeyUp={changeButton}/>
         </Form.Group>

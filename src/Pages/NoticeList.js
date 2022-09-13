@@ -73,6 +73,11 @@ let Div = styled.div`
   cursor: pointer;
 `
 
+const StyledNavLink = styled(NavLink)`
+    color:black;
+    text-decoration: none;
+  `
+
 
   function GetData() {
     const [data, setData] = useState([]);
@@ -93,7 +98,7 @@ let Div = styled.div`
       <TableRow key = {item.contentNum}>
         <TableColumn>{item.contentNum}</TableColumn>
         <TableColumn>
-          <NavLink to={`/notice/${item.contentNum}`} >{item.contentTitle}</NavLink>
+          <StyledNavLink to={`/notice/${item.contentNum}`} >{item.contentTitle}</StyledNavLink>
         </TableColumn>
         <TableColumn>{item.name}</TableColumn>
         <TableColumn>{item.contentDate}</TableColumn>

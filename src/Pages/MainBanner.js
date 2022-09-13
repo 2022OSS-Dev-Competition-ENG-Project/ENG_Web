@@ -257,7 +257,7 @@ function Banner(props) {
             <Title_box>{localStorage.getItem('facilityName')}</Title_box><hr></hr>
             <Content_box>
                 <Spo><Top><Sub_title>공지사항</Sub_title><TopButton onClick={()=> {navigate('/notice')}}>더보기+</TopButton></Top><Sub_content>{notice}</Sub_content></Spo>
-                <Spo><Top><Sub_title>게시물</Sub_title><TopButton onClick={()=> {navigate('/post')}}>더보기+</TopButton></Top><Sub_content>{post}</Sub_content></Spo>
+                <Spo><Top><Sub_title>안전소통게시판</Sub_title><TopButton onClick={()=> {navigate('/post')}}>더보기+</TopButton></Top><Sub_content>{post}</Sub_content></Spo>
                 <Spo><Top><Sub_title>신고현황</Sub_title><TopButton onClick={()=> {navigate('/report')}}>더보기+</TopButton></Top><Sub_content>{report}</Sub_content></Spo>  
                 <Spo><Top><Sub_title>AI를 통한 화재 예측</Sub_title><TopButton>UPDATE</TopButton></Top>
                 <Sub_licontent>

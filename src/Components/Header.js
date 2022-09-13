@@ -7,7 +7,7 @@ function Header() {
   let Header = styled.div`
       background : #FAFAFA;
       width: 100%;
-      height: 130px;
+      height: 11vh;
       display: flex;
       justify-content: space-between;
       `
@@ -16,26 +16,28 @@ function Header() {
         color: black;
         font-size: 40px;
         background-color:#FAFAFA;
-        margin: 80px 0px 10px 390px;
+        margin: 5vh 0 0 17vw;
         cursor: pointer;
         `
 
       let UserBox = styled.div`
         background-color: #FAFAFA;
         display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
-        margin-right: 390px;
+        height: 50px;
+        margin: 6vh 17vw 0 0 ;
       `
 
       let Button = styled.button`
         color: black;
-        float: right;
         font-size: 20px;
-        height: 50px;
-        background-color:  #FAFAFA;
+        background-color: #FAFAFA;
         border-style: none;
         font-weight: 100;
+      `
+
+      let Hr = styled.hr`
+        margin: 0;
+        padding: 0;
       `
   const  user = localStorage.getItem('managerName');
     
@@ -49,7 +51,7 @@ function Header() {
       </UserBox>
       
     </Header>  
-    <hr></hr>
+    <Hr></Hr>
     </>
 
   );

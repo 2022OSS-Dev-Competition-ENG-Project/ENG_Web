@@ -15,21 +15,30 @@ const Div = styled.div`
 background-color: #FAFAFA;
 `
 
+const Body = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+margin:0;
+background-color:#FAFAFA;
+height: 79.9vh;
+`
+
   const Box1 = styled.div`
-  width: 300px;
-  height: auto;
-  background-color: #FAFAFA;
+  width: 400px;
+  height: 80vh;
+  background-color:#FAFAFA;
   margin: 0 ;
-  padding-top:120px
+  padding-top:300px;
 `
 
 const Box2 = styled.div`
   width: 1300px;
-  height: 70vh;
   background-color:#FAFAFA;
   margin: 0 ;
   display: flex;
   flex-direction: column;
+  height: 80vh;
 `
 const Title_box = styled.div`
 widith: auto;
@@ -39,7 +48,7 @@ justify-content: flex-start;
 background-color:#FAFAFA;
 font-size: 50px;
 padding:0;
-margin:0 0 0 20px;
+margin: 200px 0 0 20px;
     
 `
 const Content_box=styled.div`
@@ -52,12 +61,7 @@ justify-content: center;
 flex-direction: column;
 `
 
-const Body = styled.div`
-display: flex;
-justify-content: center;
-margin: 100px 0 0 0;
-background-color: #FAFAFA;
-`
+
 const Input_box = styled.label`
   display:flex;
   justify-content: flex-end;

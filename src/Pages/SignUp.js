@@ -161,7 +161,7 @@ function SignUp() {
     .then(response => {
       // Handle success.
       console.log('사용가능한 이메일');
-      alert('사용가능한 이메일입니다');
+      alert('사용가능한 이메일입니다.\n해당 이메일로 인증번호가 전송되었습니다.');
       
     })
     .catch(error => {
@@ -184,7 +184,7 @@ const emailNumCheck = () => {
   .then(response => {
     // Handle success.
     console.log('이메일 인증완료');
-    alert('인증되었습니다');
+    alert('인증되었습니다 \n 해당 이메일로 인증번호가');
     
   })
   .catch(error => {

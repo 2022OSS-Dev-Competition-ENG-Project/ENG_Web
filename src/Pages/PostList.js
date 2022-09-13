@@ -75,6 +75,11 @@ let Menu_ul = styled.ul`
   cursor: pointer;
 `
 
+const StyledNavLink = styled(NavLink)`
+    color:black;
+    text-decoration: none;
+  `
+
 
   function GetData() {
     const [data, setData] = useState([]);
@@ -98,7 +103,7 @@ let Menu_ul = styled.ul`
       <TableRow key = {item.contentNum}>
         <TableColumn>{item.contentNum}</TableColumn>
         <TableColumn>
-          <NavLink to={`/post/${item.contentNum}`}>{item.contentTitle}</NavLink>
+          <StyledNavLink to={`/post/${item.contentNum}`}>{item.contentTitle}</StyledNavLink>
         </TableColumn>
         <TableColumn>{item.name}</TableColumn>
         <TableColumn>{item.contentDate}</TableColumn>
@@ -123,7 +128,7 @@ function PostList() {
         <Body>
           <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
           <Box2>
-            <Title_box>게시물</Title_box><hr></hr>
+            <Title_box>안전소통게시판</Title_box><hr></hr>
             <Content_box>
               <Table headersName={['글번호', '제목', '작성자', '등록일']}>
                 {item}
@@ -133,7 +138,7 @@ function PostList() {
           </Box2>
           
         </Body>
-  
+        <Footer/>
         
     </Div>
     </>

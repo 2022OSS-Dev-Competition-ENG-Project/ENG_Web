@@ -20,7 +20,7 @@ let Menu_ul = styled.ul`
 `
   return(
     <>
-      <Menu_ul onClick={()=>{navigate('/mypage')}}>마이페이지</Menu_ul>
+      <Menu_ul onClick={()=>{navigate('/mypage')}}>계정관리</Menu_ul>
       <Menu_ul onClick={()=>{navigate('/BuildingList')}}>시설물리스트</Menu_ul>
       <Menu_ul onClick={()=>{navigate('/register/building')}}>시설물등록</Menu_ul>
       

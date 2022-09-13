@@ -11,7 +11,8 @@ function Main() {
       display: flex;
       justify-content: center;
       align-items: center;
-      
+      background-color: #FAFAFA;
+      height: 80vh;
     `  
   let Main_button = styled.button`
         width: 550px;
@@ -35,8 +36,8 @@ function Main() {
     <body>
       <Header /> 
       <Menu>
-        <Main_button onClick={()=> {navigate('/BuildingList')}}>나의 건물 <br/>리스트 보기</Main_button>
-        <Main_button onClick={()=> {navigate('/register/building')}}>관리 건물 <br/>등록하기</Main_button>
+        <Main_button onClick={()=> {navigate('/BuildingList')}}>나의 시설물 <br/>리스트 보기</Main_button>
+        <Main_button onClick={()=> {navigate('/register/building')}}>관리 시설물 <br/>등록하기</Main_button>
       </Menu>
       <Footer />
     </body>

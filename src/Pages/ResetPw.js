@@ -173,7 +173,7 @@ function ResetPw() {
             
             <Button onClick={()=> {
               changePw();
-            }}> 등록하기</Button> 
+            }}> 변경하기</Button> 
           </Content_box></Box2>
         </Body>
         <Footer/>
