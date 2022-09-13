@@ -52,24 +52,30 @@ const Write = () =>  {
     const onFileChange = (e) => {
       console.log(e.target.files[0])
       if(e.target && e.target.files[0]) {
-        formData.append("files", e.target.files[0]);
+        formData.append("images", e.target.files[0], "a.png");
+        console.log(formData)
       }
       
     }
 
     let dataSet = {
-      "contentTitle" : title,
-      "contentText" : content,
+      contentTitle : title,
+      contentText : content,
       contentLook : 100,
       contentType : 1,
-      "facilityNo" : facilityNo,
-      "userUuid" :  managerUuid
+      facilityNo : facilityNo,
+      userUuid :  managerUuid
     }
 
-    formData.append("data", JSON.stringify(dataSet));
-
+    formData.append("facilityContentDto", new Blob([JSON.stringify(dataSet)], {
+      type: "application/json"
+  }));
 
     const SubmitFileData = () => {
+
+      for(var pair of formData.entries()) {
+        console.log(pair[0]+ ', '+ pair[1]);
+      }
       axios({
         url:'http://203.250.32.29:2200/api/facility/content/register',
         method: "POST",
@@ -79,9 +85,13 @@ const Write = () =>  {
         data: formData
       }).then((res)=>{
         console.log('등록되었습니다');
+        alert('공지가 등록되었습니다');
 
       },(err)=>{
-        console.log(dataSet);
+        console.log("-------> 에러 데이터셋" + dataSet);
+        console.log(dataSet)
+        console.log("------> 에러 폼데이터" + formData);
+        console.log(formData)
       })
 
     }
@@ -95,7 +105,7 @@ const Write = () =>  {
                  setTitle(e.target.value);
               }}
         ></Title_input> 
-        <input type = "file"  name="file_upload" onChange={onFileChange}/>
+        <input type = "file"  name="files" onChange={onFileChange}/>
         <Content_input placeholder='내용을 입력하세요' name='content' type="text"  value={content} onChange={(e)=> {
                  setContent(e.target.value);
               }}></Content_input> 
