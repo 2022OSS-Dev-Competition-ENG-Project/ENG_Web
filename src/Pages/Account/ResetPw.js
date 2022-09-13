@@ -1,4 +1,3 @@
-import {React, useEffect, useState} from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import Header from '../../Components/Layout/Header';
 import Footer from '../../Components/Layout/Footer';
@@ -6,6 +5,8 @@ import styled from 'styled-components';
 import Navigation from '../../Components/Layout/Navigation';
 import axios from 'axios';
 import {FaKey} from "react-icons/fa";
+import React, { useEffect, useState } from 'react';
+
 
 const Div = styled.div`
 background-color: #FAFAFA;
@@ -87,6 +88,7 @@ const Input = styled.input`
   border: 3px solid #727272;
   height: 60px;
 `
+
 const Button = styled.button`
 margin: 10px;
 font-size: 20px;

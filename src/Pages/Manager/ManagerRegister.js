@@ -1,12 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import Header from '../../Components/Layout/Header';
 import Footer from '../../Components/Layout/Footer';
 import styled from 'styled-components';
 import Navigation from '../../Components/Layout/Navigation';
-import Table from 'react-bootstrap/Table';
 import axios from 'axios';
-import Search from './Search'
+import Search from './Search';
+import Button from 'react-bootstrap/Button';
+
+import Table from '../../Components/Table/Table';
+import TableColumn from '../../Components/Table/TableColumn';
+import TableRow from '../../Components/Table/TableRow';
 
 let Div = styled.div`
 background-color: #FAFAFA;
@@ -46,7 +50,6 @@ background-color: #FAFAFA;
 display:flex;
 justify-content: center;
 flex-direction: column;
-
 `
 
 let Body = styled.div`
@@ -54,7 +57,6 @@ let Body = styled.div`
   justify-content: center;
   margin: 100px 0 0 0;
   background-color: #FAFAFA;
-
 `
 let Menu = styled.div`
   border: solid 3px;
@@ -89,13 +91,56 @@ let Uuid = styled.button`
 `
 
 let Register_button = styled.button`
-
 `
 
+function GetData() {
+  const [data,setData] = useState([]);
+  let navigate = useNavigate();
+  const uuid = localStorage.getItem('managerUuid');
+  const facilityNo = localStorage.getItem('useFacility');
 
+  useEffect(() => {
+    axios
+      .get('http://203.250.32.29:2200/api/facility/manager/'+ facilityNo +'/list')
+      .then((response)=> {
+        console.log(response.data);
+        console.log('성공');
+        setData(response.data);
+
+    })
+  }, []);
+  
+  const onRemove = managerName => {
+      setData(data.filter(data => data.managerName !== managerName));
+      
+    }
+
+    const item = (Object.values(data)).map((item,i) => (
+      <TableRow key = {data[i].managerName}>
+          <TableColumn>{i+1}</TableColumn>
+          <TableColumn> {item.managerName}</TableColumn> 
+          <TableColumn>{item.facilityName}</TableColumn>
+          <TableColumn>{item.managerPhoneNumber}</TableColumn>
+          <TableColumn>    
+            <Button variant="outline-danger" 
+              onClick={() =>{ 
+                onRemove(data[i].managerName); 
+                }
+              }>삭제</Button>
+          </TableColumn>
+      </TableRow>
+    ));
+
+    return item;
+
+
+}
+
+/**********************************Main************************************** */
 function ManagerRegister() {
 
   const [findOn, setFindModalOn] = React.useState(false);
+  const item = GetData();
       
   return(
     <>
@@ -108,35 +153,10 @@ function ManagerRegister() {
             <Menu>
               관리자
             </Menu>
-            <Table hover>
-              <thead>
-                <tr>
-
-                  <th>이름</th>
-                  <th>담당위치</th>
-                  <th>전화번호</th>
-                  <th>권한</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-
-                  <td>정승균</td>
-                  <td>D2</td>
-                  <td>010-1234-5678</td>
-                  <td><button>수정</button><button>삭제</button></td>
-                  
-                </tr>
-                <tr>
-
-                  <td>이정훈</td>
-                  <td>C6</td>
-                  <td>010-3569-7896</td>
-                  <td><button>수정</button><button>삭제</button></td>
-                </tr>
-
-              </tbody>
-            </Table>
+            <Table headersName={['No', '이름', '담당위치', '전화번호', '관리']}>
+                  {item}
+              </Table>
+            
             <Menu>
               추가
             </Menu>

@@ -1,10 +1,9 @@
 import './App.css';
 import React from 'react';
-import {Routes, Route, Link } from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 import MainLog from './Pages/Main/MainLog';
-import SignUp from './Pages/Account/SignUp';
-
 import Main from './Pages/Main/Main';
+import SignUp from './Pages/Account/SignUp';
 import Banner from './Pages/Main/MainBanner';
 
 import BuildingList from './Pages/Building/BuildingList';
@@ -50,8 +49,6 @@ function App() {
         <Route path="/post" element={<PostList />} ></Route>
         <Route path="/post/:itemI" element={<PostView/>}> </Route>
         
-
-
         <Route path="/register/building" element={<BuildingRegister />}> </Route>
         <Route path="/register/manager" element={<ManagerRegister />}> </Route>
       </Routes>

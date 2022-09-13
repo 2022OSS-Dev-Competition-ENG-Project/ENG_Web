@@ -76,7 +76,7 @@ let Div = styled.div`
 
   let Sub_title = styled.div`
    background-color:#FAFAFA;
-   padding: 0 20px;
+   padding: 0 10px;
    text-align: left;
    width: auto;
    height: 45px;

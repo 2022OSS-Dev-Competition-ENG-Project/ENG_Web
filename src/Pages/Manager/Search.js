@@ -22,8 +22,9 @@ function Search(props) {
       .then(response => {
         // Handle success.
         console.log('성공');
-        console.log(response.data)
-        alert( name +'의 UUID는 \n'+ (response.data.managerUuid) + '입니다');
+        console.log(response.data.managerUuid)
+        alert( name +'님의 UUID가 등록되었습니다');
+        localStorage.setItem('registerManager',response.data.managerUuid);
         
       })
       .catch(error => {
