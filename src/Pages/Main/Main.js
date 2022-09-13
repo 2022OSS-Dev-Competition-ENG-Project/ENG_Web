@@ -1,7 +1,7 @@
 import React from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
+import Header from '../../Components/Layout/Header';
+import Footer from '../../Components/Layout/Footer';
 import styled from 'styled-components';
 
 function Main() {

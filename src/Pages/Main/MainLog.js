@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import FindID from './FindID';
-import FindPW from './FindPW';
+import FindID from '../Account/FindID';
+import FindPW from '../Account/FindPW';
 import axios from 'axios';
 import styled from 'styled-components';
 let Body = styled.div`

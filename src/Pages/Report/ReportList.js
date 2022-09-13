@@ -1,14 +1,14 @@
 import {React, useEffect, useState} from 'react';
 import {Routes, Route, useNavigate,NavLink} from 'react-router-dom';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
+import Header from '../../Components/Layout/Header';
+import Footer from '../../Components/Layout/Footer';
 import styled from 'styled-components';
-import Navigation from '../Components/Navigation';
+import Navigation from '../../Components/Layout/Navigation';
 import axios from 'axios';
 
-import Table from '../Components/Table';
-import TableColumn from '../Components/TableColumn';
-import TableRow from '../Components/TableRow';
+import Table from '../../Components/Table/Table';
+import TableColumn from '../../Components/Table/TableColumn';
+import TableRow from '../../Components/Table/TableRow';
 
 let Div = styled.div`
   background-color: #FAFAFA;

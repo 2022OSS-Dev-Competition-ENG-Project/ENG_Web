@@ -1,12 +1,12 @@
 import {React, useEffect, useState} from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
+import Header from '../../Components/Layout/Header';
+import Footer from '../../Components/Layout/Footer';
 import styled from 'styled-components';
-import Navigation from '../Components/Navigation';
+import Navigation from '../../Components/Layout/Navigation';
 import axios from 'axios';
-import PopupDom from '../Components/PopupDom';
-import PopupPostCode from '../Components/PopupPostCode';
+import PopupDom from '../../Components/Address/PopupDom';
+import PopupPostCode from '../../Components/Address/PopupPostCode';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import DaumPostcode from "react-daum-postcode";
  

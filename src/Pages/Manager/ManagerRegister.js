@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
+import Header from '../../Components/Layout/Header';
+import Footer from '../../Components/Layout/Footer';
 import styled from 'styled-components';
-import Navigation from '../Components/Navigation';
+import Navigation from '../../Components/Layout/Navigation';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import Search from './Search'

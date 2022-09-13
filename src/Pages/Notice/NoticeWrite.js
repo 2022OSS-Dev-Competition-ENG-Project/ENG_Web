@@ -1,9 +1,9 @@
 import React from "react";
 import styled from 'styled-components';
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
-import Navigation from "../Components/Navigation";
-import Write from "../Components/Write";
+import Header from "../../Components/Layout/Header";
+import Footer from "../../Components/Layout/Footer";
+import Navigation from "../../Components/Layout/Navigation";
+import Write from "../../Components/Layout/Write";
 import {Routes, Route, useNavigate, NavLink} from 'react-router-dom';
 
 function NoticeWrite() {

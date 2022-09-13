@@ -1,14 +1,13 @@
 import {React, useEffect, useState} from 'react';
 import {Routes, Route, useNavigate, NavLink} from 'react-router-dom';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
+import Header from '../../Components/Layout/Header';
+import Footer from '../../Components/Layout/Footer';
 import styled from 'styled-components';
-import Navigation from '../Components/Navigation';
+import Navigation from '../../Components/Layout/Navigation';
 import axios from 'axios';
-
-import Table from '../Components/Table';
-import TableColumn from '../Components/TableColumn';
-import TableRow from '../Components/TableRow';
+import Table from '../../Components/Table/Table';
+import TableColumn from '../../Components/Table/TableColumn';
+import TableRow from '../../Components/Table/TableRow';
 
 let Div = styled.div`
   background-color: #FAFAFA;
@@ -59,12 +58,11 @@ let Div = styled.div`
   `
 
   let WriteButton = styled.button`
-  width: 100px;
-  font-size: 20px;
-  height: 50px;
-`
-
-let Menu_ul = styled.ul`
+    width: 100px;
+    font-size: 20px;
+    height: 50px;
+  `
+  let Menu_ul = styled.ul`
   background-color:#FAFAFA;
   font-size: 20px;
   width: 150px;
@@ -87,23 +85,20 @@ const StyledNavLink = styled(NavLink)`
     
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/content/'+  useFacility + '/0/0/list')
+        .get('http://203.250.32.29:2200/api/facility/content/'+ useFacility +'/1/0/list')
         .then((response)=> {
           console.log(response.data);
           console.log('성공');
           setData(response.data);
-          
-          
+           
       })
     }, []);
-    
-    
-     
-    const item = (Object.values(data)).map((item, i) => (
+      
+    const item = (Object.values(data)).map((item) => (
       <TableRow key = {item.contentNum}>
         <TableColumn>{item.contentNum}</TableColumn>
         <TableColumn>
-          <StyledNavLink to={`/post/${item.contentNum}`}>{item.contentTitle}</StyledNavLink>
+          <StyledNavLink to={`/notice/${item.contentNum}`} >{item.contentTitle}</StyledNavLink>
         </TableColumn>
         <TableColumn>{item.name}</TableColumn>
         <TableColumn>{item.contentDate}</TableColumn>
@@ -111,12 +106,10 @@ const StyledNavLink = styled(NavLink)`
     ));
   
     return item; 
-
   
   }
     
-
-function PostList() {
+function NoticeList() {
 
   const item = GetData();
   let navigate = useNavigate();
@@ -128,7 +121,7 @@ function PostList() {
         <Body>
           <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
           <Box2>
-            <Title_box>안전소통게시판</Title_box><hr></hr>
+            <Title_box>공지사항<WriteButton onClick={()=> {navigate('/notice/write')}}>작성하기</WriteButton></Title_box><hr></hr>
             <Content_box>
               <Table headersName={['글번호', '제목', '작성자', '등록일']}>
                 {item}
@@ -136,10 +129,8 @@ function PostList() {
             </Content_box>
             
           </Box2>
-          
         </Body>
         <Footer/>
-        
     </Div>
     </>
 
@@ -149,4 +140,4 @@ function PostList() {
   );
 }
 
-export default PostList;
+export default NoticeList;

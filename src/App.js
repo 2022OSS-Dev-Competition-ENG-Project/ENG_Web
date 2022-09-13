@@ -1,23 +1,31 @@
 import './App.css';
 import React from 'react';
 import {Routes, Route, Link } from 'react-router-dom'
-import MainLog from './Pages/MainLog';
-import SignUp from './Pages/SignUp';
-import Main from './Pages/Main';
-import BuildingList from './Pages/BuildingList';
-import NoticeWrite from './Pages/NoticeWrite';
-import Layout from './Components/Layout';
-import BuildingRegister from './Pages/BuildingRegister';
-import ManagerRegister from './Pages/ManagerRegister';
-import NoticeView from './Pages/NoticeView';
-import PostView from './Pages/PostView';
-import NoticeList from './Pages/NoticeList';
-import PostList from './Pages/PostList';
-import Banner from './Pages/MainBanner';
-import ReportList from './Pages/ReportList';
-import Qr from './Pages/Qr';
-import ResetPw from './Pages/ResetPw';
-import ReportView from './Pages/ReportView';
+import MainLog from './Pages/Main/MainLog';
+import SignUp from './Pages/Account/SignUp';
+
+import Main from './Pages/Main/Main';
+import Banner from './Pages/Main/MainBanner';
+
+import BuildingList from './Pages/Building/BuildingList';
+import BuildingRegister from './Pages/Building/BuildingRegister';
+import Qr from './Pages/Building/Qr';
+
+import NoticeWrite from './Pages/Notice/NoticeWrite';
+import NoticeList from './Pages/Notice/NoticeList';
+import NoticeView from './Pages/Notice/NoticeView';
+
+import PostView from './Pages/Post/PostView';
+import PostList from './Pages/Post/PostList';
+
+import ReportView from './Pages/Report/ReportView';
+import ReportList from './Pages/Report/ReportList';
+
+import ResetPw from './Pages/Account/ResetPw';
+import ManagerRegister from './Pages/Manager/ManagerRegister';
+
+
+
 
 function App() {
   return (
@@ -27,7 +35,7 @@ function App() {
         <Route path="/signup" element={<SignUp />}> </Route>
         <Route path="/main" element={<Main />}> </Route>
         <Route path="/banner" element={<Banner />}> </Route>
-        <Route path="/layout" element={<Layout />}> </Route>
+
         <Route path="/BuildingList" element={<BuildingList />}> </Route>
         <Route path="/building/:itemI" element={<Qr />}> </Route>
         <Route path="/mypage" element={<ResetPw />}> </Route>

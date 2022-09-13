@@ -1,8 +1,8 @@
 import {React, useEffect, useState} from 'react';
 import styled from 'styled-components';
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
-import Navigation from "../Components/Navigation";
+import Header from "../../Components/Layout/Header";
+import Footer from "../../Components/Layout/Footer";
+import Navigation from "../../Components/Layout/Navigation";
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
 import {Routes, Route, useNavigate, NavLink} from 'react-router-dom';
