@@ -28,7 +28,7 @@ let Div = styled.div`
 
   let Box2 = styled.div`
     width: 1300px;
-    height: 800px;
+    height: 70vh;
     background-color: #FAFAFA;
     margin: 0 ;
     display: flex;
@@ -73,14 +73,24 @@ let Div = styled.div`
   `
   let Title =  styled.div`
     font-size: 25px;
-    background-color:#FAFAFA;
+    background-color: #EFEFEF;
+    height: 90px;
+    width: 1280px;
     display:flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    color: ##100F0F;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: solid 2px grey;
+    margin-bottom : 20px;
+    margin-right: 15px;
+    align-items: flex-end;
   `
   let Post = styled.div`
     font-size: 25px;
-    height: 500px;
     background-color:#FAFAFA;
+    flex-direction: column;
+    width: 1100px;
   `
   let Hr = styled.hr`
     margin: 0;
@@ -125,7 +135,7 @@ let Div = styled.div`
           <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
           <Box2>
             <Title_box>
-              <Box>게시물</Box>
+              <Box>안전소통게시판</Box>
               <Button_box>
                 <Button type="button" onClick={()=> {
                    if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){

@@ -71,14 +71,24 @@ let Content_box=styled.div`
 `
 let Title =  styled.div`
   font-size: 25px;
-  background-color:#FAFAFA;
+  background-color: #EFEFEF;
+  height: 90px;
+  width: 1280px;
   display:flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  color: ##100F0F;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: solid 2px grey;
+  margin-bottom : 20px;
+  margin-right: 15px;
+  align-items: flex-end;
 `
 let Post = styled.div`
   font-size: 25px;
   background-color:#FAFAFA;
   flex-direction: column;
+  width: 1100px;
 `
 let Hr = styled.hr`
   margin: 0;
@@ -100,7 +110,10 @@ let Menu_ul = styled.ul`
   `
 
 let Img = styled.img`
-  width: 400px;
+  background-color:#FAFAFA;
+  font-size: 20px;
+  width: 300px;
+  margin:50px;
 `
 
 function GetData(itemI) {
@@ -149,7 +162,7 @@ function GetData(itemI) {
                 }}>반려</Button>
               </Button_box>
             </Title_box><Hr></Hr>
-            <Content_box><Title><h2>제목: {data.reportTitle}</h2> </Title><Post>{data.reportText}<Img src={data.reportImg}></Img></Post></Content_box>
+            <Content_box><Title><h2>{data.reportTitle}</h2> </Title><Post>{data.reportText}<Img src={data.reportImg}></Img></Post></Content_box>
           </Box2>
         </Body>
         <Footer/>

@@ -1,6 +1,7 @@
 import {React, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {Routes, Route, useNavigate} from 'react-router-dom';
+import { FaUser } from "react-icons/fa";
 function Header() {
 
   let navigate = useNavigate();
@@ -46,7 +47,7 @@ function Header() {
     <Header>
       <Logo  onClick={()=> { navigate('/main')}}>!ENG?</Logo>
       <UserBox>
-        <Button onClick={()=> navigate('/mypage')}>{user}</Button>
+        <Button onClick={()=> navigate('/mypage')}><FaUser  size="25" color='grey'/> {user}</Button>
         <Button onClick={()=> {localStorage.clear(); navigate('/')}} >로그아웃</Button>
       </UserBox>
       

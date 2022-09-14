@@ -8,6 +8,7 @@ import axios from 'axios';
 import Table from '../../Components/Table/Table';
 import TableColumn from '../../Components/Table/TableColumn';
 import TableRow from '../../Components/Table/TableRow';
+import { FaPen } from "react-icons/fa";
 
 let Div = styled.div`
   background-color: #FAFAFA;
@@ -58,9 +59,11 @@ let Div = styled.div`
   `
 
   let WriteButton = styled.button`
-    width: 100px;
-    font-size: 20px;
+    width: 130px;
+    font-size: 18px;
     height: 50px;
+    border: none;
+    background-color: #FAFAFA;
   `
   let Menu_ul = styled.ul`
   background-color:#FAFAFA;
@@ -124,7 +127,7 @@ function NoticeList() {
         <Body>
           <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
           <Box2>
-            <Title_box>공지사항<WriteButton onClick={()=> {navigate('/notice/write')}}>작성하기</WriteButton></Title_box><hr></hr>
+            <Title_box>공지사항<WriteButton onClick={()=> {navigate('/notice/write')}}><FaPen/> 작성하기</WriteButton></Title_box><hr></hr>
             <Content_box>
               <Table headersName={['글번호', '제목', '작성자', '등록일']}>
                 {item}

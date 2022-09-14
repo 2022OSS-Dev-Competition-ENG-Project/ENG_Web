@@ -65,19 +65,40 @@ let Content_box=styled.div`
   height: auto;
   background-color: #FAFAFA;
   display:flex;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   padding: 5px 0 0 20px;
 `
 let Title =  styled.div`
   font-size: 25px;
-  background-color:#FAFAFA;
+  background-color: #EFEFEF;
+  height: 90px;
+  width: 1280px;
   display:flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  color: ##100F0F;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: solid 2px grey;
+  margin-bottom : 20px;
+  margin-right: 15px;
+  align-items: flex-end;
+`
+
+let Date = styled.div`
+ font-size: 20px;
+ margin-right:  10px;
 `
 let Post = styled.div`
   font-size: 25px;
   background-color:#FAFAFA;
+  flex-direction: column;
+  width: 1100px;
+`
+let Text = styled.div`
+  width: auto;
+  text-align: left
 `
 let Hr = styled.hr`
   margin: 0;
@@ -96,6 +117,14 @@ let Menu_ul = styled.ul`
     background-color :  #0F4C75;
     color: white;
   }
+  `
+
+  let Img = styled.img`
+  background-color:#FAFAFA;
+  font-size: 20px;
+  width: 300px;
+  margin:50px;
+  
   `
 
 function GetData(itemI) {
@@ -122,7 +151,6 @@ function GetData(itemI) {
             <Title_box>
               <Box>공지사항</Box>
               <Button_box>
-                <Button>수정</Button>
                 <Button type="button" onClick={()=> {
                    if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){
                     axios
@@ -143,7 +171,7 @@ function GetData(itemI) {
                 }}>삭제</Button>
               </Button_box>
             </Title_box><Hr></Hr>
-            <Content_box><Title><h2>{data.contentTitle}</h2> </Title><Post>{data.contentText}<img src={data.contentImg}></img></Post></Content_box>
+            <Content_box><Title><h2>{data.contentTitle}</h2><Date>등록일 : {data.contentDate}</Date> </Title><Post><Text>{data.contentText}</Text><Img src={data.contentImg}></Img></Post></Content_box>
           </Box2>
         </Body>
         <Footer/>

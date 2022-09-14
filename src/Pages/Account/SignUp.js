@@ -299,12 +299,7 @@ const CheckEmail = (e) => {
                  setPwdcheck(e.target.value);
               }} onKeyUp={changeButton}/>
                 </Group><br/>
-{/*
-                <Group>
-                  <label>생년월일</label>
-                  <Input type="date" value={birth}/>
-                </Group><br/>
- */}
+
                 <Group>
                   <label>전화번호</label>
                   <Input type="number" value={phonenum} onChange={(e)=> {
