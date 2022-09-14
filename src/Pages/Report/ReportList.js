@@ -100,6 +100,7 @@ function ReportList() {
   const [Selected, setSelected] = useState("");
   const [data, setData] = useState([]);
   const useFacility = localStorage.getItem('useFacility');
+  
 
   const handleSelect = (e) => {
     setSelected(e.target.value);
@@ -118,6 +119,7 @@ function ReportList() {
        console.log(response.data);
        console.log('성공');
        setData(response.data);
+       
        
        
    })
@@ -157,7 +159,7 @@ function ReportList() {
      </TableColumn>
      <TableColumn>{item.reportType}</TableColumn>
      <TableColumn>{item.userNickname}</TableColumn>
-     <TableColumn>{item.reportDate}</TableColumn>
+     <TableColumn>{item.reportDate.substring(0,10)}</TableColumn>
    </TableRow>
  ));
 

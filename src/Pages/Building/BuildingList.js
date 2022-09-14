@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import {Routes, Route, useNavigate,NavLink, Navigate} from 'react-router-dom';
+import { useNavigate, NavLink} from 'react-router-dom';
 import Header from '../../Components/Layout/Header';
 import Footer from '../../Components/Layout/Footer';
 import styled from 'styled-components';
@@ -11,19 +11,23 @@ import Table from '../../Components/Table/Table';
 import TableColumn from '../../Components/Table/TableColumn';
 import TableRow from '../../Components/Table/TableRow';
 
-let Div = styled.div`
-  background-color: #FAFAFA;
-`
-  
-    let Box1 = styled.div`
+// styled-componet
+  let Div = styled.div`
+    background-color: #FAFAFA;
+  `
+  let Body = styled.div`
+    display: flex;
+    justify-content: center;
+    background-color: #FAFAFA;
+    margin: 100px 0 0 0;
+  `
+  let Box1 = styled.div`
     width: 200px;
     height: auto;
     background-color: #FAFAFA;
     margin: 0 ;
     padding-top:120px
-    
   `
-
   let Box2 = styled.div`
     width: 1300px;
     height: 70vh;
@@ -33,32 +37,23 @@ let Div = styled.div`
     flex-direction: column;
   `
   let Title_box = styled.div`
-  widith: auto;
-  height: auto;
-  display: flex;
-  justify-content: flex-start;
-  background-color:#FAFAFA;
-  font-size: 50px;
-  padding:0;
-  margin:0 0 0 20px;
-      
+    widith: auto;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    background-color:#FAFAFA;
+    font-size: 50px;
+    padding:0;
+    margin:0 0 0 20px;
   `
   let Content_box=styled.div`
-  widith: auto;
-  height: auto;
-  background-color: #FAFAFA;
-  display:flex;
-  align-items: flex-start;
-  justify-content: center;
-`
-
-  let Body = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 100px 0 0 0;
-  background-color: #FAFAFA;
+    widith: auto;
+    height: auto;
+    background-color: #FAFAFA;
+    display:flex;
+    align-items: flex-start;
+    justify-content: center;
   `
-
   const StyledNavLink = styled(NavLink)`
     color:black;
     text-decoration: none;
@@ -68,6 +63,7 @@ let Div = styled.div`
     const [data, setData] = useState([]);
     let navigate = useNavigate();
     const uuid = localStorage.getItem('managerUuid');
+    
     
     console.log(uuid);
 

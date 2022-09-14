@@ -56,16 +56,17 @@ font-size: 20px;
 font-weight: 500;
 margin-right: 10px;
 color: black;
-background-color: #C6C6C6;
+background-color: white;
 border-radius:  5px;
-border-style:none;
+border-style: 1px solid #C6C6C6;
 `
 let Content_box=styled.div`
   widith: auto;
   height: auto;
   background-color: #FAFAFA;
   display:flex;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   padding: 5px 0 0 20px;
 `
@@ -80,7 +81,7 @@ let Title =  styled.div`
   padding-left: 10px;
   padding-right: 10px;
   border-bottom: solid 2px grey;
-  margin-bottom : 20px;
+  margin-bottom : 5px;
   margin-right: 15px;
   align-items: flex-end;
 `
@@ -88,7 +89,7 @@ let Post = styled.div`
   font-size: 25px;
   background-color:#FAFAFA;
   flex-direction: column;
-  width: 1100px;
+  width: 1200px;
 `
 let Hr = styled.hr`
   margin: 0;
@@ -108,7 +109,11 @@ let Menu_ul = styled.ul`
     color: white;
   }
   `
-
+  let Text = styled.div`
+  width: auto;
+  text-align: left;
+  background-color: #FAFAFA;
+`
 let Img = styled.img`
   background-color:#FAFAFA;
   font-size: 20px;
@@ -116,20 +121,49 @@ let Img = styled.img`
   margin:50px;
 `
 
+let Date = styled.div`
+ font-size: 20px;
+ margin-right:  10px;
+`
+
+let Info = styled.div`
+ font-size: 20px;
+ float: right;
+ width: 1250px;
+ display: flex;
+ justify-content: flex-end;
+ background-color: #FAFAFA;
+ margin-bottom: 20px;
+`
+let Img_box = styled.div`
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+`
+
 function GetData(itemI) {
   let navigate = useNavigate();
   const [data, setData] = useState({});
-  
+  const [image, setImage] = useState("");
 
-  useEffect(()=> {
+  useEffect((props)=> {
     axios.get('http://203.250.32.29:2200/api/report/' + itemI)
     .then((response)=> {
       console.log(response.data);
       setData(response.data);
+
+      console.log(response.data.reportImg);
+      setImage(response.data.reportImg);
+      console.log(image);
+      
     })
   },[]);
 
-  const item = (<>
+  let arr = image.split(" ");
+  console.log(arr);
+
+  const item =  (
+  <>
       <Div>
       <Header/>
         <Body>
@@ -162,7 +196,10 @@ function GetData(itemI) {
                 }}>반려</Button>
               </Button_box>
             </Title_box><Hr></Hr>
-            <Content_box><Title><h2>{data.reportTitle}</h2> </Title><Post>{data.reportText}<Img src={data.reportImg}></Img></Post></Content_box>
+            <Content_box>
+              <Title><h2>{data.reportTitle}</h2> </Title>
+              <Info><Date>등록일 : {data.reportDate}  신고종류: {data.reportType}</Date></Info>
+              <Post><Text>{data.reportText}</Text><Img_box><Img src={arr[0]}></Img><Img src={arr[1]}></Img><Img src={arr[2]}></Img></Img_box></Post></Content_box>
           </Box2>
         </Body>
         <Footer/>

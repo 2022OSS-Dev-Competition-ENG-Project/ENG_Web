@@ -73,12 +73,12 @@ const Write = () =>  {
       axios({
         url:'http://203.250.32.29:2200/api/facility/content/register',
         method: "POST",
-        headers:{                                /******* Header에 서버에 맞는 데이터 타입 명시 *******/
-          'Content-Type': 'multipart/form-data', /******* 사진은 두종류의 content type이 필요=> multipart/form-data ******/
+        headers:{                                // Header에 서버에 맞는 데이터 타입 명시
+          'Content-Type': 'multipart/form-data', // 사진은 두종류의 content type이 필요=> multipart/form-data 
         },
         data: formData
       }).then((res)=>{
-        alert('공지가 등록되었습니다');          /******* 공지가 등록되었을 때 알림창 ******/
+        alert('공지가 등록되었습니다');          // 공지가 등록되었을 때 알림창
 
       },(err)=>{
         console.log(err);

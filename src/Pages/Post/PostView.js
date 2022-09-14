@@ -70,6 +70,7 @@ let Div = styled.div`
     justify-content: flex-start;
     flex-direction: column;
     padding: 5px 0 0 20px;
+    font-weight: 900;
   `
   let Title =  styled.div`
     font-size: 25px;
@@ -78,8 +79,8 @@ let Div = styled.div`
     width: 1280px;
     display:flex;
     justify-content: space-between;
-    color: ##100F0F;
-    padding-left: 10px;
+    color: #100F0F;
+    padding-left: 15px;
     padding-right: 10px;
     border-bottom: solid 2px grey;
     margin-bottom : 20px;
@@ -90,6 +91,7 @@ let Div = styled.div`
     font-size: 25px;
     background-color:#FAFAFA;
     flex-direction: column;
+    justify-content: flex-start;
     width: 1100px;
   `
   let Hr = styled.hr`
@@ -110,6 +112,11 @@ let Div = styled.div`
     color: white;
   }
   `
+  let Date = styled.div`
+ font-size: 20px;
+ font-weight: 500;
+ margin-right:  10px;
+`
 
   function GetData(itemI) {
     const [data, setData] = useState({});
@@ -157,8 +164,10 @@ let Div = styled.div`
                 }}>삭제</Button>
               </Button_box>
             </Title_box><Hr></Hr>
-            <Content_box><Title><h2>{data.contentTitle}</h2> </Title><Post>{data.contentText}</Post></Content_box>
-            <Hr></Hr>
+            <Content_box>
+              <Title><h2>{data.contentTitle}</h2> <Date>등록일 : {data.contentDate} 작성자: {data.writerNickname}</Date></Title>
+              <Post>{data.contentText}</Post></Content_box>
+            
           </Box2>
         </Body>
         <Footer/>

@@ -69,11 +69,13 @@ let Menu = styled.div`
   let Input_box = styled.div`
   display:flex;
   justify-content: center;
+  align-items: center;
   width: auto;
   height: auto;
   background-color:#FAFAFA;
   margin: 5px;
   font-size: 20px;
+  flex-direction: column;
 `
 let Input = styled.div`
   padding: 2px;
@@ -91,6 +93,18 @@ let Uuid = styled.button`
 `
 
 let Register_button = styled.button`
+ width: 100px;
+ border-radius: 10px;
+ background-color:  #0F4C75;
+ color: white;
+`
+
+let Flex = styled.div`
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #FAFAFA;
+  width: 1100px;
 `
 
 function GetData() {
@@ -136,11 +150,40 @@ function GetData() {
 
 }
 
+
+
 /**********************************Main************************************** */
 function ManagerRegister() {
 
   const [findOn, setFindModalOn] = React.useState(false);
   const item = GetData();
+  const registerManager = localStorage.getItem('registerManager');
+  const useFacility = localStorage.getItem('useFacility');
+
+  const register = () => {
+
+  
+    axios
+    .post('http://203.250.32.29:2200/api/facility/join/mg', {
+      uuid: registerManager,
+      facilityNo : useFacility,
+      
+    })
+    .then(response => {
+      // Handle success.
+      console.log('시설물등록완료');
+      alert('매니저가 등록되었습니다');
+      
+    })
+    .catch(error => {
+      // Handle error.
+      console.log(error.response);
+      alert(error.response.data);
+    });
+  
+   
+    
+  }
       
   return(
     <>
@@ -160,21 +203,27 @@ function ManagerRegister() {
             <Menu>
               추가
             </Menu>
-            <Input_box>매니저고유번호 :<Uuid type="button" onClick={()=> setFindModalOn(true)}>검색하기</Uuid>
+            <Input_box>
+            <Flex> 매니저고유번호 :<Uuid type="button" onClick={()=> setFindModalOn(true)}>검색하기</Uuid>
               <Search
                   show = {findOn}
                   onHide={() => setFindModalOn(false)}
                 />
-            시설물번호: <Input> {localStorage.getItem('useFacility')}</Input>
+              시설물번호: <Input> {localStorage.getItem('useFacility')}</Input>
+            </Flex>
+            <Register_button onClick={() => {
+              register();
+            }}>등록하기</Register_button>
             </Input_box> 
-          </Content_box></Box2>
+            
+          </Content_box>
+         </Box2>
+          
         </Body>
         <Footer/>
     </Div>
     </>
-
-
-        
+    
     
   );
 }

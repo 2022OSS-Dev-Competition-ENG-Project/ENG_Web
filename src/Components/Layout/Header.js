@@ -5,7 +5,7 @@ import { FaUser } from "react-icons/fa";
 function Header() {
 
       let navigate = useNavigate();
-      /*** styled-components를 이용한 헤더스타일 ***/
+    /***** styled-components를 이용한 헤더스타일 *****/
 
       let Header = styled.div`
         background : #FAFAFA;

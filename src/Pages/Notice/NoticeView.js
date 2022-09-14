@@ -139,6 +139,7 @@ function GetData(itemI) {
     .then((response)=> {
       console.log(response.data);
       setData(response.data);
+      
     })
   },[]);
 
@@ -171,7 +172,8 @@ function GetData(itemI) {
                 }}>삭제</Button>
               </Button_box>
             </Title_box><Hr></Hr>
-            <Content_box><Title><h2>{data.contentTitle}</h2><Date>등록일 : {data.contentDate}</Date> </Title><Post><Text>{data.contentText}</Text><Img src={data.contentImg}></Img></Post></Content_box>
+            <Content_box><Title><h2>{data.contentTitle}</h2><Date>등록일 : {data.contentDate}</Date> </Title>
+            <Post><Text>{data.contentText}</Text><Img src={data.contentImg}></Img></Post></Content_box>
           </Box2>
         </Body>
         <Footer/>

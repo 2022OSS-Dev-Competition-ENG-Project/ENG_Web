@@ -109,7 +109,7 @@ const StyledNavLink = styled(NavLink)`
           <StyledNavLink to={`/post/${item.contentNum}`}>{item.contentTitle}</StyledNavLink>
         </TableColumn>
         <TableColumn>{item.name}</TableColumn>
-        <TableColumn>{item.contentDate}</TableColumn>
+        <TableColumn>{item.contentDate.substring(0,10)}</TableColumn>
       </TableRow>
     ));
   
