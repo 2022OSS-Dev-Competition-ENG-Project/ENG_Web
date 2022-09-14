@@ -16,7 +16,7 @@ let Td = styled.td`
   font-weight: bold;
   
 `
-
+/*********** 제목 컬렴명을 받아 render *********/
 const Table = props => {
   const { headersName, children } = props;
 

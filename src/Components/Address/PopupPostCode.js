@@ -1,5 +1,10 @@
-import {React, useEffect, useState} from 'react';
+import React from 'react';
 import DaumPostcode from "react-daum-postcode";
+import styled from 'styled-components';
+
+let Button = styled.button`
+  border: none;
+`
  
 function PopupPostCode(props) {
   
@@ -7,7 +12,6 @@ function PopupPostCode(props) {
     const handlePostCode = (data) => {
         let fullAddress = data.jibunAddress;
         let extraAddress = ''; 
-        
         
         if (data.addressType === 'R') {
           if (data.bname !== '') {
@@ -18,14 +22,13 @@ function PopupPostCode(props) {
           }
           fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
-        console.log(data);
-        console.log(fullAddress);
-        console.log(data.jibunAddress);
+      
         props.onClose();
         localStorage.setItem('facilityAddress', data.jibunAddress);
       
     }
- 
+    
+  /*******팝업의 위치 및 디자인*******/
     const postCodeStyle = {
         position: "absolute",
         top: "20%",
@@ -38,7 +41,7 @@ function PopupPostCode(props) {
     return(
         <div>
             <DaumPostcode style={postCodeStyle} onComplete={handlePostCode} autoclose />
-            {/*<button type='button' onClick={() => {props.onClose()}} className='postCode_btn'>닫기</button>*/}
+       {/*  <Button type='button' onClick={() => {props.onClose()}} className='postCode_btn'>닫기</Button>*/}
         </div>
     )  
 }

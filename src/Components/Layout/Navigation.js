@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom'
 
+/********************페이지 기본 메뉴 리스트****************/
+
 function Navigation() {
   let navigate = useNavigate();
 
@@ -17,7 +19,6 @@ let Menu_ul = styled.ul`
     background-color :  #0F4C75;
     color: white;
   }
-  
 `
   return(
     <>
@@ -26,8 +27,6 @@ let Menu_ul = styled.ul`
       <Menu_ul onClick={()=>{navigate('/register/building')}}>시설물등록</Menu_ul>
       
     </>
-
-
     
   );
 }

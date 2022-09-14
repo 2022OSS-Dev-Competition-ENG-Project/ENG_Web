@@ -6,20 +6,16 @@ let Td = styled.td`
     padding: 10px;
   `
 
-
-
-
+/****** 하위 컴포넌트 render ******/
 const TableColumn = ({ children }) => {
   return (
     <>
-          <Td className="common-table-column">
-      {
-        children
-        
-      }
-    </Td>
+      <Td className="common-table-column">
+        {
+          children
+        }
+      </Td>
     </>
-
   )
 }
 

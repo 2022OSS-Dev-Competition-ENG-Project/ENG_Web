@@ -1,7 +1,7 @@
-import {React, useEffect, useState, useRef, useCallback, Component} from 'react';
+import {React, useState} from 'react';
 import styled from 'styled-components';
-import Form from 'react-bootstrap/Form';
-import axios, { Axios } from 'axios';
+import axios from 'axios';
+/*******************공지글 작성 페이지에서 작성 부분*****************/
 
 let Wirte_box = styled.form`
   width: 1000px;
@@ -24,13 +24,6 @@ let Content_input = styled.input`
   border: solid 3px grey;
   border-radius: 10px;
 `
- let Textarea = styled.textarea`
-  resize: none;
-  border-radius:10px;
-  width: 1200px;
-  padding: 20px;
-  margin-top: 10px;
- `
 
  let Register_button = styled.button`
   background-color: #0F4C75;
@@ -40,7 +33,7 @@ let Content_input = styled.input`
   height: 40px;
  `
   
-
+/********** multipart/form-data 형식으로 데이터를 전송하여 공지글 등록 기능 구현 **************/
 const Write = () =>  {
 
   let formData = new FormData();      
@@ -49,15 +42,15 @@ const Write = () =>  {
   const facilityNo = localStorage.getItem('useFacility')
   const managerUuid = localStorage.getItem('managerUuid')
 
+/*********** 파일선택시 파일 정보 저장 **********/
+
     const onFileChange = (e) => {
-      console.log(e.target.files[0])
       if(e.target && e.target.files[0]) {
         formData.append("images", e.target.files[0], "notice.png");
-        console.log(formData)
       }
       
     }
-
+/************ 파일 제외 필요한 정보 저장 *********/
     let dataSet = {
       contentTitle : title,
       contentText : content,
@@ -66,11 +59,12 @@ const Write = () =>  {
       facilityNo : facilityNo,
       userUuid :  managerUuid
     }
-
+/************ formData에 해당 key(facilityContentDto)값과 value값을 application/json타입으로 저장 ************/
     formData.append("facilityContentDto", new Blob([JSON.stringify(dataSet)], {
       type: "application/json"
   }));
 
+/************ 입력된 파일 및 정보를 axios를 통해 전송 ************/
     const SubmitFileData = () => {
 
       for(var pair of formData.entries()) {
@@ -79,26 +73,22 @@ const Write = () =>  {
       axios({
         url:'http://203.250.32.29:2200/api/facility/content/register',
         method: "POST",
-        headers:{
-          'Content-Type': 'multipart/form-data',
+        headers:{                                /******* Header에 서버에 맞는 데이터 타입 명시 *******/
+          'Content-Type': 'multipart/form-data', /******* 사진은 두종류의 content type이 필요=> multipart/form-data ******/
         },
         data: formData
       }).then((res)=>{
-        console.log('등록되었습니다');
-        alert('공지가 등록되었습니다');
+        alert('공지가 등록되었습니다');          /******* 공지가 등록되었을 때 알림창 ******/
 
       },(err)=>{
-        console.log("-------> 에러 데이터셋" + dataSet);
-        console.log(dataSet)
-        console.log("------> 에러 폼데이터" + formData);
-        console.log(formData)
+        console.log(err);
       })
 
     }
-
-  
+ 
   return (
       <>
+      {/************** onChange함수를 이용하여 입력값 변경 ************/}
       <Wirte_box encType='multipart/formdata'>
       <div>
         <Title_input placeholder='제목을 입력하세요' name='title' type="text" value={title} onChange={(e)=> {

@@ -8,7 +8,7 @@ let Tr = styled.tr`
       color : black;
     }
   `
-
+/****** 하위 컴포넌트 render ******/
 const TableRow = ({ children }) => {
   return (
     <Tr className="common-table-row">
