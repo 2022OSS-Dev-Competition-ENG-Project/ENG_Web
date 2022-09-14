@@ -7,15 +7,16 @@ import Write from "../../Components/Layout/Write";
 import {Routes, Route, useNavigate, NavLink} from 'react-router-dom';
 
 function NoticeWrite() {
-  let Div = styled.div`
-  background-color: #FAFAFA;
-`
 
+  // styled-component
+  let Div = styled.div`
+    background-color: #FAFAFA;
+`
   let Body = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 100px 0 0 0;
-  background-color: #FAFAFA;
+    display: flex;
+    justify-content: center;
+    margin: 100px 0 0 0;
+    background-color: #FAFAFA;
 `
   let Box1 = styled.div`
     width: 200px;
@@ -52,16 +53,16 @@ function NoticeWrite() {
     justify-content: center;
   `
   let Menu_ul = styled.ul`
-  background-color:#FAFAFA;
-  font-size: 20px;
-  width: 130px;
-  margin:0;
-  padding:5px;
-  border-bottom: 2px solid  grey;
-  cursor: pointer;
-  &:hover {
-    background-color :  #0F4C75;
-    color: white;
+    background-color:#FAFAFA;
+    font-size: 20px;
+    width: 130px;
+    margin:0;
+    padding:5px;
+    border-bottom: 2px solid  grey;
+    cursor: pointer;
+    &:hover {
+      background-color :  #0F4C75;
+      color: white;
   }
   `
 
@@ -71,8 +72,8 @@ let navigate = useNavigate();
     <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
-          <Box2><Title_box>공지사항</Title_box><hr></hr><Content_box><Write/></Content_box></Box2>
+          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>  {/* 메뉴바에 관리자 등록항목 추가 */}
+          <Box2><Title_box>공지사항</Title_box><hr></hr><Content_box><Write/></Content_box></Box2>               {/* Write Component를 이용하여 공지작성 페이지 구현 */}
         </Body>
         <Footer/>
     </Div>

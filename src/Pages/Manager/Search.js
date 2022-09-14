@@ -6,37 +6,31 @@ function Search(props) {
 
   let [name, setName] =useState('');
   let [num, setNum] = useState('');
-
   let [FindButton, setFindButton] = useState(true);
 
+  //입력조건에 따른 버튼 활성화
   function changeButton() {
     name.length>=1 && num.length==11 ?  setFindButton(false) : setFindButton(true);
    }
 
+   // axios를 이용해 UUID를 검색 구현
    const Find = () => {
     axios
-      .get('http://203.250.32.29:2200/api/facility/find/manager/'+ name +'/' + num, {
-        managerName: name,
-        managerPhoneNumber: num,
-      })
+      .get('http://203.250.32.29:2200/api/facility/find/manager/'+ name +'/' + num)
       .then(response => {
-        // Handle success.
-        console.log('성공');
-        console.log(response.data.managerUuid)
+        // 서버통신 성공시
         alert( name +'님의 UUID가 등록되었습니다');
         localStorage.setItem('registerManager',response.data.managerUuid);
         
       })
       .catch(error => {
-        // Handle error.
-        console.log('실패', error.response);
-        console.log(name);
-        console.log(num);
+        // 서버통신 실패시
         alert(error.response.data);
       });
    }
  
     return (
+    //모달창
     <Modal
       {...props}
       size="mid"
@@ -51,23 +45,24 @@ function Search(props) {
       </Modal.Header>
       <Modal.Body>
       <Form>
+        {/* 이름 입력칸 */}
         <Form.Group className="mb-3">
           <Form.Label>이름</Form.Label>
-          <Form.Control type="text" placeholder="홍길동" value={name} onChange={(e)=> {
+          <Form.Control type="text" placeholder="홍길동" value={name} onChange={(e)=> {                     // onChange 함수를 통해 입력값 변경
                  setName(e.target.value);
               }}onKeyUp={changeButton}/>
         </Form.Group>
-
+        {/* 전화번호 입력칸 */}
         <Form.Group className="mb-3">
           <Form.Label>전화번호</Form.Label>
-          <Form.Control type="number" placeholder="'-'없이 입력해주세요" value={num} onChange={(e)=> {
+          <Form.Control type="number" placeholder="'-'없이 입력해주세요" value={num} onChange={(e)=> {       // onChange 함수를 통해 입력값 변경
                  setNum(e.target.value);
               }} onKeyUp={changeButton}/>
         </Form.Group>
       </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" type="button" disabled={FindButton} onClick={()=> {Find()}}>
+        <Button variant="primary" type="button" disabled={FindButton} onClick={()=> {Find()}}>                {/* onChange 함수를 통해 입력값 변경 */}
             검색하기
         </Button>
       </Modal.Footer>

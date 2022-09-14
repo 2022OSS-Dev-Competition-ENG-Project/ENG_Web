@@ -109,7 +109,7 @@ function ResetPw() {
 
     if(pw1==pw2){  //새로운 비밀번호와 비밀번호 확인 같을시 통신
       axios
-      .post('http://203.250.32.29:2201/api/manager-service/myPage/changePW/', {
+      .post('http://203.250.32.29:2201/api/manager-service/myPage/changePW', {
       managerPassword: pw1,
       managerUuid: managerUuid,
       })

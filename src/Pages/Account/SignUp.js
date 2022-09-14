@@ -124,7 +124,7 @@ function SignUp() {
         alert('회원가입 조건을 다시 확인해주세요');
       });
    }
-
+    //메인페이지로 가는 함수
    const goToMain = () => {
     navigate('/');
    };
@@ -133,9 +133,7 @@ function SignUp() {
 
    const emailCheck = () => {
     axios
-    .get('http://203.250.32.29:2201/api/manager-service/register/check/email/' + email , {
-      managerEmail: email,
-    })
+    .get('http://203.250.32.29:2201/api/manager-service/register/check/email/' + email)
     .then(response => {
       // 서버 통신 성공시
       console.log('사용가능한 이메일');
@@ -153,9 +151,7 @@ function SignUp() {
 const emailNumCheck = () => {
     
   axios
-  .get(' http://203.250.32.29:2201/api/manager-service/register/check/email/'+ email + '/11111', {
-    managerEmail: emailcheck,
-  })
+  .get(' http://203.250.32.29:2201/api/manager-service/register/check/email/'+ email + '/' + emailcheck)
   .then(response => {
     // 서버 통신 성공시
     console.log('이메일 인증완료');
@@ -172,9 +168,7 @@ const emailNumCheck = () => {
  /*************** 이메일 인증 ***************/
  const nicknameCheck = () => {
   axios
-  .get('http://203.250.32.29:2201/api/manager-service/register/check/nickname/'+ nickname + '/' + email, {
-    managerNickname: nickname,
-  })
+  .get('http://203.250.32.29:2201/api/manager-service/register/check/nickname/'+ nickname + '/' + email)
   .then(response => {
     // 서버 통신 성공시
     console.log('사용가능한 닉네임');

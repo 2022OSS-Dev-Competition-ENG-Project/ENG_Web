@@ -8,14 +8,14 @@ import { useParams, useNavigate, Navigate } from 'react-router-dom';
 
 
 let Div = styled.div`
-background-color: #FAFAFA;
+  background-color: #FAFAFA;
 `
 
 let Body = styled.div`
-display: flex;
-justify-content: center;
-margin: 100px 0 0 0;
-background-color: #FAFAFA;
+  display: flex;
+  justify-content: center;
+  margin: 100px 0 0 0;
+  background-color: #FAFAFA;
 `
 let Box1 = styled.div`
   width: 200px;
@@ -52,13 +52,13 @@ let Button_box = styled.div`
   padding: 0;
 ` 
 let Button = styled.button`
-font-size: 20px;
-font-weight: 500;
-margin-right: 10px;
-color: black;
-background-color: white;
-border-radius:  5px;
-border-style: 1px solid #C6C6C6;
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 10px;
+  color: black;
+  background-color: white;
+  border-radius:  5px;
+  border-style: 1px solid #C6C6C6;
 `
 let Content_box=styled.div`
   widith: auto;
@@ -109,7 +109,7 @@ let Menu_ul = styled.ul`
     color: white;
   }
   `
-  let Text = styled.div`
+let Text = styled.div`
   width: auto;
   text-align: left;
   background-color: #FAFAFA;
@@ -140,56 +140,58 @@ let Img_box = styled.div`
   display: flex;
   justify-content: space-between;
 `
-
+//서버로 부터 데이터를 불러옴
 function GetData(itemI) {
   let navigate = useNavigate();
   const [data, setData] = useState({});
   const [image, setImage] = useState("");
 
+  //axios를 통해 공지글에 필요한 데이터를 불러옴
   useEffect((props)=> {
     axios.get('http://203.250.32.29:2200/api/report/' + itemI)
     .then((response)=> {
-      console.log(response.data);
       setData(response.data);
-
-      console.log(response.data.reportImg);
       setImage(response.data.reportImg);
-      console.log(image);
       
     })
   },[]);
 
-  let arr = image.split(" ");
-  console.log(arr);
+  let arr = image.split(" ");                          //띄어쓰기 기준으로 문자열 나누기
 
   const item =  (
   <>
       <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
+          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>     {/* 메뉴바에 관리자 등록항목 추가 */}
           <Box2>
             <Title_box>
               <Box>신고현황</Box>
               <Button_box>
+                {/* 신고처리 버튼 클릭시 */}
                 <Button type="button" onClick={()=> {
                     axios
                      .get('http://203.250.32.29:2200/api/report/'+ itemI +'/1')
+                     //서버 통신 성공시
                      .then((response)=> {
                         alert("처리완료");
-                        navigate('/report');
+                        navigate('/report'); //신고리스트로 페이지 이동
                      })
+                     //서버 통신 실패시
                      .catch(error => {
                       alert('처리실패')
                      })
-                }}>처리</Button>
+                  }}>처리</Button>
+                 {/* 신고반려 버튼 클릭시 */} 
                 <Button type="button" onClick={()=> {
                     axios
                      .get('http://203.250.32.29:2200/api/report/'+ itemI +'/2')
+                     //서버 통신 성공시
                      .then((response)=> {
                         alert("반려완료");
-                        navigate('/report');
+                        navigate('/report'); //신고리스트로 페이지 이동
                      })
+                     //서버 통신 실패시
                      .catch(error => {
                       alert('반려실패')
                      })
@@ -197,9 +199,9 @@ function GetData(itemI) {
               </Button_box>
             </Title_box><Hr></Hr>
             <Content_box>
-              <Title><h2>{data.reportTitle}</h2> </Title>
-              <Info><Date>등록일 : {data.reportDate}  신고종류: {data.reportType}</Date></Info>
-              <Post><Text>{data.reportText}</Text><Img_box><Img src={arr[0]}></Img><Img src={arr[1]}></Img><Img src={arr[2]}></Img></Img_box></Post></Content_box>
+              <Title><h2>{data.reportTitle}</h2> </Title>                                         {/* 신고글 제목 불러옴 */}
+              <Info><Date>등록일 : {data.reportDate}  신고종류: {data.reportType}</Date></Info>   {/* 신고 등록일, 종류을 불러옴 */}
+              <Post><Text>{data.reportText}</Text><Img_box><Img src={arr[0]}></Img><Img src={arr[1]}></Img><Img src={arr[2]}></Img></Img_box></Post></Content_box>  {/* 신고 사진 불러옴*/}
           </Box2>
         </Body>
         <Footer/>

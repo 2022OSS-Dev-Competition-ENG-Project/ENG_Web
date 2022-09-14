@@ -40,8 +40,7 @@ function PopupPostCode(props) {
 
     return(
         <div>
-            <DaumPostcode style={postCodeStyle} onComplete={handlePostCode} autoclose />
-       {/*  <Button type='button' onClick={() => {props.onClose()}} className='postCode_btn'>닫기</Button>*/}
+            <DaumPostcode style={postCodeStyle} onComplete={handlePostCode} autoclose /> {/* 주소검색완료시 자동으로 팝업창닫김 */}
         </div>
     )  
 }

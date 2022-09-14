@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import Header from '../../Components/Layout/Header';
 import Footer from '../../Components/Layout/Footer';
 import styled from 'styled-components';
@@ -13,10 +13,10 @@ import TableColumn from '../../Components/Table/TableColumn';
 import TableRow from '../../Components/Table/TableRow';
 
 let Div = styled.div`
-background-color: #FAFAFA;
+  background-color: #FAFAFA;
 `
 
-  let Box1 = styled.div`
+let Box1 = styled.div`
   width: 200px;
   height: auto;
   background-color: #FAFAFA;
@@ -33,23 +33,22 @@ let Box2 = styled.div`
   flex-direction: column;
 `
 let Title_box = styled.div`
-widith: auto;
-height: auto;
-display: flex;
-justify-content: flex-start;
-background-color:#FAFAFA;
-font-size: 50px;
-padding:0;
-margin:0 0 0 20px;
-    
+  widith: auto;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  background-color:#FAFAFA;
+  font-size: 50px;
+  padding:0;
+  margin:0 0 0 20px;
 `
 let Content_box=styled.div`
-widith: auto;
-height: 500px;
-background-color: #FAFAFA;
-display:flex;
-justify-content: center;
-flex-direction: column;
+  widith: auto;
+  height: 500px;
+  background-color: #FAFAFA;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
 `
 
 let Body = styled.div`
@@ -57,6 +56,7 @@ let Body = styled.div`
   justify-content: center;
   margin: 100px 0 0 0;
   background-color: #FAFAFA;
+  height: 71.5vh;
 `
 let Menu = styled.div`
   border: solid 3px;
@@ -66,7 +66,7 @@ let Menu = styled.div`
   border-radius: 20px;
   margin: 20px 10px;
 `
-  let Input_box = styled.div`
+let Input_box = styled.div`
   display:flex;
   justify-content: center;
   align-items: center;
@@ -93,12 +93,11 @@ let Uuid = styled.button`
 `
 
 let Register_button = styled.button`
- width: 100px;
- border-radius: 10px;
- background-color:  #0F4C75;
- color: white;
+  width: 100px;
+  border-radius: 10px;
+  background-color:  #0F4C75;
+  color: white;
 `
-
 let Flex = styled.div`
   margin-bottom: 10px;
   display: flex;
@@ -109,26 +108,21 @@ let Flex = styled.div`
 
 function GetData() {
   const [data,setData] = useState([]);
-  let navigate = useNavigate();
-  const uuid = localStorage.getItem('managerUuid');
   const facilityNo = localStorage.getItem('useFacility');
 
+  // 관리자 리스트
   useEffect(() => {
     axios
       .get('http://203.250.32.29:2200/api/facility/manager/'+ facilityNo +'/list')
       .then((response)=> {
-        console.log(response.data);
-        console.log('성공');
         setData(response.data);
-
     })
   }, []);
-  
+  // 관리자 리스트 삭제
   const onRemove = managerName => {
       setData(data.filter(data => data.managerName !== managerName));
-      
     }
-
+  // Object값만큼 반복문을 사용하여 리스트 구현  
     const item = (Object.values(data)).map((item,i) => (
       <TableRow key = {data[i].managerName}>
           <TableColumn>{i+1}</TableColumn>
@@ -138,7 +132,7 @@ function GetData() {
           <TableColumn>    
             <Button variant="outline-danger" 
               onClick={() =>{ 
-                onRemove(data[i].managerName); 
+                onRemove(data[i].managerName);  //삭제 버튼 클릭시 리스트 삭제
                 }
               }>삭제</Button>
           </TableColumn>
@@ -147,12 +141,8 @@ function GetData() {
 
     return item;
 
-
 }
 
-
-
-/**********************************Main************************************** */
 function ManagerRegister() {
 
   const [findOn, setFindModalOn] = React.useState(false);
@@ -160,29 +150,23 @@ function ManagerRegister() {
   const registerManager = localStorage.getItem('registerManager');
   const useFacility = localStorage.getItem('useFacility');
 
+  // 관리자 등록 
   const register = () => {
-
-  
+  // axios를 활용하여 관리자를 등록할 때 필요한 값 POST
     axios
     .post('http://203.250.32.29:2200/api/facility/join/mg', {
       uuid: registerManager,
       facilityNo : useFacility,
-      
     })
     .then(response => {
-      // Handle success.
-      console.log('시설물등록완료');
+    // 서버 통신 성공시
       alert('매니저가 등록되었습니다');
       
     })
     .catch(error => {
-      // Handle error.
-      console.log(error.response);
+    // 서버 통신 실패시
       alert(error.response.data);
     });
-  
-   
-    
   }
       
   return(
@@ -204,7 +188,7 @@ function ManagerRegister() {
               추가
             </Menu>
             <Input_box>
-            <Flex> 매니저고유번호 :<Uuid type="button" onClick={()=> setFindModalOn(true)}>검색하기</Uuid>
+            <Flex> 매니저고유번호 :<Uuid type="button" onClick={()=> setFindModalOn(true)}>검색하기</Uuid> {/* 검색하기 버튼 클릭시 검색모달창 구현 */}
               <Search
                   show = {findOn}
                   onHide={() => setFindModalOn(false)}
@@ -213,7 +197,8 @@ function ManagerRegister() {
             </Flex>
             <Register_button onClick={() => {
               register();
-            }}>등록하기</Register_button>
+            }}>등록하기                  {/* 등록하기 버튼 클릭시 관리자 등록 */}
+            </Register_button>
             </Input_box> 
             
           </Content_box>

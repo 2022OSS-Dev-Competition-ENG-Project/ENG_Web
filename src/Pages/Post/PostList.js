@@ -10,11 +10,10 @@ import Table from '../../Components/Table/Table';
 import TableColumn from '../../Components/Table/TableColumn';
 import TableRow from '../../Components/Table/TableRow';
 
-let Div = styled.div`
-  background-color: #FAFAFA;
-`
-  
-    let Box1 = styled.div`
+  let Div = styled.div`
+    background-color: #FAFAFA;
+  `
+  let Box1 = styled.div`
     width: 200px;
     height: auto;
     background-color: #FAFAFA;
@@ -31,77 +30,66 @@ let Div = styled.div`
     flex-direction: column;
   `
   let Title_box = styled.div`
-  widith: auto;
-  height: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  background-color:#FAFAFA;
-  font-size: 50px;
-  padding:0;
-  margin:0 0 0 20px;
-      
+    widith: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-color:#FAFAFA;
+    font-size: 50px;
+    padding:0;
+    margin:0 0 0 20px;
   `
   let Content_box=styled.div`
-  widith: auto;
-  height: auto;
-  background-color: #FAFAFA;
-  display:flex;
-  align-items: flex-start;
-  justify-content: center;
-`
+    widith: auto;
+    height: auto;
+    background-color: #FAFAFA;
+    display:flex;
+    align-items: flex-start;
+    justify-content: center;
+  `
 
   let Body = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 100px 0 0 0;
-  background-color: #FAFAFA;
+    display: flex;
+    justify-content: center;
+    margin: 100px 0 0 0;
+    background-color: #FAFAFA;
   `
 
-  let WriteButton = styled.button`
-  width: 100px;
-  font-size: 20px;
-  height: 50px;
-`
-
-let Menu_ul = styled.ul`
-  background-color:#FAFAFA;
-  font-size: 20px;
-  width: 130px;
-  margin:0;
-  padding:5px;
-  border-bottom: 2px solid  grey;
-  cursor: pointer;
-  &:hover {
-    background-color :  #0F4C75;
-    color: white;
-  }
+  let Menu_ul = styled.ul`
+    background-color:#FAFAFA;
+    font-size: 20px;
+    width: 130px;
+    margin:0;
+    padding:5px;
+    border-bottom: 2px solid  grey;
+    cursor: pointer;
+    &:hover {
+      background-color :  #0F4C75;
+      color: white;
+    }
   `
 
-const StyledNavLink = styled(NavLink)`
+  const StyledNavLink = styled(NavLink)`
     color:black;
     text-decoration: none;
   `
 
-
+  //안전소통게시판 리스트 불러오는 함수
   function GetData() {
     const [data, setData] = useState([]);
     const useFacility = localStorage.getItem('useFacility');
-    
+
+    // axios를 통해 리스트에 필요한값 불러옴
     useEffect(() => {
       axios
         .get('http://203.250.32.29:2200/api/facility/content/'+  useFacility + '/0/0/list')
         .then((response)=> {
-          console.log(response.data);
-          console.log('성공');
           setData(response.data);
-          
-          
       })
     }, []);
     
-    
-     
+    // Object개수만큼 행을 반복하여 리스트 구현
     const item = (Object.values(data)).map((item, i) => (
       <TableRow key = {item.contentNum}>
         <TableColumn>{item.contentNum}</TableColumn>
@@ -109,18 +97,16 @@ const StyledNavLink = styled(NavLink)`
           <StyledNavLink to={`/post/${item.contentNum}`}>{item.contentTitle}</StyledNavLink>
         </TableColumn>
         <TableColumn>{item.name}</TableColumn>
-        <TableColumn>{item.contentDate.substring(0,10)}</TableColumn>
+        <TableColumn>{item.contentDate.substring(0,10)}</TableColumn>       {/* 등록일만 보이도록 substring이용 */}
       </TableRow>
     ));
   
     return item; 
 
-  
   }
     
 
 function PostList() {
-
   const item = GetData();
   let navigate = useNavigate();
       
@@ -129,26 +115,19 @@ function PostList() {
     <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
+          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>     {/* 메뉴바에 관리자 등록항목 추가 */}
           <Box2>
-            <Title_box>안전소통게시판</Title_box><hr></hr>
+            <Title_box>안전소통게시판</Title_box><hr></hr>                                                           {/* 공지작성 페이지로 이동 */}
             <Content_box>
-              <Table headersName={['글번호', '제목', '작성자', '등록일']}>
+              <Table headersName={['글번호', '제목', '작성자', '등록일']}>      {/* 리스트 항목들 */}
                 {item}
               </Table>
             </Content_box>
-            
           </Box2>
-          
         </Body>
         <Footer/>
-        
     </Div>
-    </>
-
-
-        
-    
+    </>   
   );
 }
 
