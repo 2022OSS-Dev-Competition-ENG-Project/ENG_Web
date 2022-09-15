@@ -78,11 +78,49 @@
 
 
 
-##  :herb: 설치 
+##  :herb: React 설치 
+> npm을 이용해서 설치 <br>
+
+ 해당 링크를 통해 node.js 설치 <br>
+ : https://nodejs.org/ko/
+
+```
+$ mkdir [폴더명]                    // 프로젝트 폴더 생성
+$ cd [폴더명]                       // 프로젝트 폴더 이동 
+$ npx crate-react-app [프로젝트명]  //프로젝트 파일 생성
+=> VsCode로 폴더 오픈
+$ npm start                         
+```
 <br>
 
-## :cactus: 프로젝트 초기 설정 
-<br>
+## :cactus: 모듈 추가 설치 
+### Axios
+**: node.js와 브라우저를 위한 Promise 기반 HTTP 클라이언트**
+```
+$ npm install axios
+```
+### react-router-dom
+**: SPA에서 화면 전환을 위해 사용하는 모듈**
+```
+$ npm install react-router-dom --save
+```
+
+### styled-component
+**: javascript에서 css를 사용 할 수 있도록 도와주는 스타일링 프레임워크**
+```
+$ npm install styled-components
+```
+### react-bootstrap
+**: 오픈소스 프론트엔드 프레임워크으로 각종 레이아웃, 버튼, 입력창 등의 디자인을 CSS와 Javascript로 만들어 제공**
+```
+$ npm install react-bootstrap bootstrap 
+```
+
+### react-daum-postcode
+**: Daum 우편번호 검색 서비스**
+```
+$ npm install react-daum-postcode
+```
 
 
 ## :computer: UI Image
