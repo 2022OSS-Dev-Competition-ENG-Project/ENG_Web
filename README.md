@@ -130,5 +130,5 @@
 
 ## :angel:개발자
 
-- 조승현 [seunghyeon-Cho](:https://github.com/Cho-Seung-Hyeon) : ENG Project 웹 개발자
+- 조승현 [Cho-Seung-Hyeon](https://github.com/Cho-Seung-Hyeon) : ENG Project Web 클라이언트 개발
 
