@@ -125,11 +125,11 @@ function GetData(itemI) {
   let navigate = useNavigate();
   const [data, setData] = useState({});
   const uuid = localStorage.getItem('managerUuid');
-  const useFacility = localStorage.getItem('useFacility');
+  const facilityNum = localStorage.getItem('facilityNum');
   
 //axios를 통해 공지글에 필요한 데이터를 불러옴
   useEffect(()=> {
-    axios.get('http://203.250.32.29:2200/api/facility/content/'+uuid+'/'+ itemI)
+    axios.get('http://jlchj.iptime.org:8000/facility-service/notice/view/'+ itemI)
     .then((response)=> {
       setData(response.data);
       
@@ -148,15 +148,17 @@ function GetData(itemI) {
                 <Button type="button" onClick={()=> {
                    if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){                //confirm 창을 통해 삭제를 다시 한번 확인
                     axios    
-                     .get('http://203.250.32.29:2200/api/facility/content/delete/mg/'+useFacility+'/'+itemI)        //공지글 삭제 통신
+                     .get('http://jlchj.iptime.org:8000/facility-service/notice/delete/'+ itemI )        //공지글 삭제 통신
                      //서버통신 성공시
                      .then((response)=> {
                         alert("삭제되었습니다.");
                         navigate('/notice');
+                        console.log(response);
                      })
                      //서버통신 실패시
                      .catch(error => {
                       alert('게시물삭제를 실패하였습니다.')
+                      console.log(error);
                      })
                      //취소 버튼 눌렀을시
                   } else {
@@ -166,8 +168,8 @@ function GetData(itemI) {
                 }}>삭제</Button>
               </Button_box>
             </Title_box><Hr></Hr>
-            <Content_box><Title><h2>{data.contentTitle}</h2><Date>등록일 : {data.contentDate}</Date> </Title> {/* 공지글 제목과 등록일을 불러옴 */}
-            <Post><Text>{data.contentText}</Text><Img src={data.contentImg}></Img></Post></Content_box>       {/* 공지글과 이미지를 불러옴 */}
+            <Content_box><Title><h2>{data.noticeTitle}</h2><Date>등록일 : {data.noticeDate}</Date> </Title> {/* 공지글 제목과 등록일을 불러옴 */}
+            <Post><Text>{data.noticeText}</Text><Img src={data.noticeImages}></Img></Post></Content_box>       {/* 공지글과 이미지를 불러옴 */}
           </Box2>
         </Body>
         <Footer/>

@@ -118,14 +118,15 @@ import { useNavigate} from 'react-router-dom';
     const [data, setData] = useState({});
     let navigate = useNavigate();
     const uuid = localStorage.getItem('managerUuid');
-    const useFacility = localStorage.getItem('useFacility');
+    const facilitynum = localStorage.getItem('facilitynum');
 
     // axios를 통해 리스트에 필요한값 불러옴
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/content/'+uuid+'/'+ itemI)
+        .get('http://jlchj.iptime.org:8000/facility-service/content/'+uuid+'/'+ itemI)
         .then((response)=> {
           setData(response.data);
+          console.log(response);
       })
     }, []);
 
@@ -141,7 +142,7 @@ import { useNavigate} from 'react-router-dom';
                 <Button type="button" onClick={()=> {
                    if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){             //confirm 창을 통해 삭제를 다시 한번 확인
                     axios
-                     .get('http://203.250.32.29:2200/api/facility/content/delete/mg/'+useFacility+'/'+itemI)     //게시글 삭제 통신
+                     .get('http://jlchj.iptime.org:8000/facility-service/content/delete/mg/'+ itemI +'/'+ uuid)     //게시글 삭제 통신
                      //서버통신 성공시
                      .then((response)=> {
                         alert("삭제되었습니다.");
@@ -161,7 +162,7 @@ import { useNavigate} from 'react-router-dom';
               </Button_box>
             </Title_box><Hr></Hr>
             <Content_box>
-              <Title><h2>{data.contentTitle}</h2> <Date>등록일 : {data.contentDate} 작성자: {data.writerNickname}</Date></Title>  {/* 게시글 제목과 등록일,작성자를 불러옴 */}
+              <Title><h2>{data.contentTitle}</h2> <Date>등록일 : {data.contentDate} 작성자: {data.writerNickName}</Date></Title>  {/* 게시글 제목과 등록일,작성자를 불러옴 */}
               <Post>{data.contentText}</Post></Content_box>           {/* 게시글을 불러옴 */}
           </Box2>
         </Body>

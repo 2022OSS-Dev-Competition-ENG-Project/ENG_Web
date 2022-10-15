@@ -148,15 +148,15 @@ function GetData(itemI) {
 
   //axios를 통해 공지글에 필요한 데이터를 불러옴
   useEffect((props)=> {
-    axios.get('http://203.250.32.29:2200/api/report/' + itemI)
+    axios.get('http://jlchj.iptime.org:8000/facility-service/report/' + itemI)
     .then((response)=> {
       setData(response.data);
       setImage(response.data.reportImg);
-      
+      console.log(response);
     })
   },[]);
 
-  let arr = image.split(" ");                          //띄어쓰기 기준으로 문자열 나누기
+  // let arr = image.split(" ");                          //띄어쓰기 기준으로 문자열 나누기
 
   const item =  (
   <>
@@ -171,7 +171,7 @@ function GetData(itemI) {
                 {/* 신고처리 버튼 클릭시 */}
                 <Button type="button" onClick={()=> {
                     axios
-                     .get('http://203.250.32.29:2200/api/report/'+ itemI +'/1')
+                     .get('http://jlchj.iptime.org:8000/facility-service/report/'+ itemI +'/1')
                      //서버 통신 성공시
                      .then((response)=> {
                         alert("처리완료");
@@ -185,7 +185,7 @@ function GetData(itemI) {
                  {/* 신고반려 버튼 클릭시 */} 
                 <Button type="button" onClick={()=> {
                     axios
-                     .get('http://203.250.32.29:2200/api/report/'+ itemI +'/2')
+                     .get('http://jlchj.iptime.org:8000/facility-service/report/'+ itemI +'/2')
                      //서버 통신 성공시
                      .then((response)=> {
                         alert("반려완료");
@@ -201,7 +201,9 @@ function GetData(itemI) {
             <Content_box>
               <Title><h2>{data.reportTitle}</h2> </Title>                                         {/* 신고글 제목 불러옴 */}
               <Info><Date>등록일 : {data.reportDate}  신고종류: {data.reportType}</Date></Info>   {/* 신고 등록일, 종류을 불러옴 */}
-              <Post><Text>{data.reportText}</Text><Img_box><Img src={arr[0]}></Img><Img src={arr[1]}></Img><Img src={arr[2]}></Img></Img_box></Post></Content_box>  {/* 신고 사진 불러옴*/}
+              <Post><Text>{data.reportText}</Text>
+                {/* <Img_box><Img src={arr[0]}></Img><Img src={arr[1]}></Img><Img src={arr[2]}></Img></Img_box> */}
+              </Post></Content_box>  {/* 신고 사진 불러옴*/}
           </Box2>
         </Body>
         <Footer/>

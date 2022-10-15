@@ -91,7 +91,7 @@ function ReportList() {
   const [reportStatus, setReportStatus] = useState(''); 
   const [Selected, setSelected] = useState("");
   const [data, setData] = useState([]);
-  const useFacility = localStorage.getItem('useFacility');
+  const facilityNum = localStorage.getItem('facilityNum');
   const selectList = ["미처리", "처리"];
   
   // 처리/미처리 선택에 따른 값
@@ -103,27 +103,28 @@ function ReportList() {
   useEffect(() => {
   //axios를 이용한 미처리 신고리스트만 불러옴
    axios
-     .get('http://203.250.32.29:2200/api/report/list/'+ useFacility+'/0')
+     .get('http://jlchj.iptime.org:8000/facility-service/report/list/'+ facilityNum+'/0')
      .then((response)=> {
        setData(response.data);
+       console.log(response);
    })
  }, []);
   //axios를 이용한 처리 신고리스트만 불러옴
   if(reportStatus=='처리') {
     axios
-    .get('http://203.250.32.29:2200/api/report/list/'+ useFacility+'/1')
+    .get('http://jlchj.iptime.org:8000/facility-service/report/list/'+ facilityNum+'/1')
     .then((response)=> {
       setData(response.data);
-      
+      console.log(response);
   })
   }
   //axios를 이용한 미처리 신고리스트만 불러옴
   if(reportStatus=='미처리') {
     axios
-    .get('http://203.250.32.29:2200/api/report/list/'+ useFacility+'/0')
+    .get('http://jlchj.iptime.org:8000/facility-service/report/list/'+ facilityNum+'/0')
     .then((response)=> {
       setData(response.data);     
-      
+      console.log(response);
   })
   }
   // Object개수만큼 행을 반복하여 리스트 구현
@@ -134,7 +135,7 @@ function ReportList() {
       <StyledNavLink to={`/report/${item.reportNum}`} >{item.reportTitle}</StyledNavLink>
      </TableColumn>
      <TableColumn>{item.reportType}</TableColumn>
-     <TableColumn>{item.userNickname}</TableColumn>
+     <TableColumn>{item.userName}</TableColumn>
      <TableColumn>{item.reportDate.substring(0,10)}</TableColumn>
    </TableRow>
  ));

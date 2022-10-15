@@ -40,29 +40,28 @@ const Write = () =>  {
   let formData = new FormData();      
   let [title, setTitle] =useState('');
   let [content, setContent] = useState('');
-  const facilityNo = localStorage.getItem('useFacility');
+  const facilityNum = localStorage.getItem('facilityNum');
   const managerUuid = localStorage.getItem('managerUuid');
   let navigate = useNavigate();
 
 /*********** 파일선택시 파일 정보 저장 **********/
 
     const onFileChange = (e) => {
-      if(e.target && e.target.files[0]) {
-        formData.append("images", e.target.files[0], "notice.png");
+      if(e.target && e.target.image[0]) {
+        formData.append("image", e.target.image[0], "notice.png");
       }
       
     }
 /************ 파일 제외 필요한 정보 저장 *********/
     let dataSet = {
-      contentTitle : title,
-      contentText : content,
-      contentLook : 100,
-      contentType : 1,
-      facilityNo : facilityNo,
-      userUuid :  managerUuid
+      noticeTitle : title,
+      noticeText : content,
+      noticeLook : 1,
+      facilityNum : facilityNum,
+      managerUuid :  managerUuid
     }
 /************ formData에 해당 key(facilityContentDto)값과 value값을 application/json타입으로 저장 ************/
-    formData.append("facilityContentDto", new Blob([JSON.stringify(dataSet)], {
+    formData.append("facilityNotice", new Blob([JSON.stringify(dataSet)], {
       type: "application/json"
   }));
 
@@ -73,7 +72,7 @@ const Write = () =>  {
         console.log(pair[0]+ ', '+ pair[1]);
       }
       axios({
-        url:'http://203.250.32.29:2200/api/facility/content/register',
+        url:'http://jlchj.iptime.org:8000/facility-service/notice/create',
         method: "POST",
         headers:{                                // Header에 서버에 맞는 데이터 타입 명시
           'Content-Type': 'multipart/form-data', // 사진은 두종류의 content type이 필요=> multipart/form-data 
@@ -97,7 +96,7 @@ const Write = () =>  {
                  setTitle(e.target.value);
               }}
         ></Title_input> 
-        <input type = "file"  name="files" onChange={onFileChange}/>
+        <input type = "file"  name="image" onChange={onFileChange}/>
         <Content_input placeholder='내용을 입력하세요' name='content' type="text"  value={content} onChange={(e)=> {
                  setContent(e.target.value);
               }}></Content_input> 

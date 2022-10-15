@@ -87,25 +87,29 @@ import { FaPen } from "react-icons/fa";
   //공지 리스트 불러오는 함수
   function GetData() {
     const [data, setData] = useState([]);
-    const useFacility = localStorage.getItem('useFacility');
+    const facilityNum = localStorage.getItem('facilityNum');
   
     // axios를 통해 리스트에 필요한값 불러옴
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/content/'+ useFacility +'/1/0/list')
+        .get('http://jlchj.iptime.org:8000/facility-service/notice/'+ facilityNum )
         .then((response)=> {
-          setData(response.data);       
+          setData(response.data);
+          console.log(response);       
+      })
+      .catch(error => {
+        console.log(facilityNum);
       })
     }, []);
     // Object개수만큼 행을 반복하여 리스트 구현
     const item = (Object.values(data)).map((item) => (
-      <TableRow key = {item.contentNum}>
-        <TableColumn>{item.contentNum}</TableColumn>
+      <TableRow key = {item.noticeNum}>
+        <TableColumn>{item.noticeNum}</TableColumn>
         <TableColumn>
-          <StyledNavLink to={`/notice/${item.contentNum}`} >{item.contentTitle}</StyledNavLink>
+          <StyledNavLink to={`/notice/${item.noticeNum}`} >{item.noticeTitle}</StyledNavLink>
         </TableColumn>
-        <TableColumn>{item.name}</TableColumn>
-        <TableColumn>{item.contentDate.substring(0,10)}</TableColumn>    {/* 등록일만 보이도록 substring이용 */}
+        <TableColumn>{item.writerNickName}</TableColumn>
+        <TableColumn>{item.noticeDate.substring(0,10)}</TableColumn>    {/* 등록일만 보이도록 substring이용 */}
       </TableRow>
     ));
   
