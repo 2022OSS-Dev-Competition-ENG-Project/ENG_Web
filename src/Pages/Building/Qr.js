@@ -71,16 +71,15 @@ function GetData(itemI) {
   const [data, setData] = useState({});
   const facilityName = localStorage.getItem('facilityName');
   const facilityAddress = localStorage.getItem('facilityAddress');
+  const facilityNum = localStorage.getItem('facilityNum');
 
 // URL형식으로 해당 건물의 QR코드 이미지를  받아옴 
   useEffect(()=> {
     axios
-    .post('http://203.250.32.29:2200/api/facility/qr/getUrl', {
-      facilityName: facilityName,
-      facilityAddress: facilityAddress,
-    })
+    .get('http://jlchj.iptime.org:8000/facility-service/find/qr/' + facilityNum)
     .then((response)=> {
       console.log('성공');
+      console.log(response);
       setData(response.data);
     })
   },[]);
