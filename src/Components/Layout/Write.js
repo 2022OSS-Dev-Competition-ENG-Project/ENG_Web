@@ -1,5 +1,6 @@
 import {React, useState} from 'react';
 import styled from 'styled-components';
+import { useNavigate} from 'react-router-dom';
 import axios from 'axios';
 /*******************공지글 작성 페이지에서 작성 부분*****************/
 
@@ -39,8 +40,9 @@ const Write = () =>  {
   let formData = new FormData();      
   let [title, setTitle] =useState('');
   let [content, setContent] = useState('');
-  const facilityNo = localStorage.getItem('useFacility')
-  const managerUuid = localStorage.getItem('managerUuid')
+  const facilityNo = localStorage.getItem('useFacility');
+  const managerUuid = localStorage.getItem('managerUuid');
+  let navigate = useNavigate();
 
 /*********** 파일선택시 파일 정보 저장 **********/
 
@@ -79,7 +81,7 @@ const Write = () =>  {
         data: formData
       }).then((res)=>{
         alert('공지가 등록되었습니다');          // 공지가 등록되었을 때 알림창
-
+        navigate('/notice');
       },(err)=>{
         console.log(err);
       })

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 let List = styled.table`
-    width: 80%;
+    width: 95%;
     margin: 0 auto;
     text-align: center;
     border-spacing: 0;

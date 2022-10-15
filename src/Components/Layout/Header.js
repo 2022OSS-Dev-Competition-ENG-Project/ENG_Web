@@ -42,7 +42,10 @@ function Header() {
         margin: 0;
         padding: 0;
       `
+
+      
   const  user = localStorage.getItem('managerName');
+  
     
   return(
     <>

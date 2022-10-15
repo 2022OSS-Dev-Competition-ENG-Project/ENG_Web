@@ -105,7 +105,7 @@ function MainLog() {
       
       // axios를 이용해 로그인할 때 필요한 값 POST
       axios
-      .post('http://203.250.32.29:2201/api/manager-service/login', {
+      .post('http://jlchj.iptime.org:8000/manager-service/login', {
         managerEmail: id,
         managerPassword: pw,
       })

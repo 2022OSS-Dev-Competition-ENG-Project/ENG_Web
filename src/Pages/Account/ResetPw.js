@@ -95,6 +95,7 @@ function ResetPw() {
 
   const [pw1, setPw1] = useState('');
   const [pw2, setPw2] = useState('');
+  const [currentPw, setCurrentPw] = useState('');
   
   const managerUuid = localStorage.getItem('managerUuid');
 
@@ -109,9 +110,10 @@ function ResetPw() {
 
     if(pw1==pw2){  //새로운 비밀번호와 비밀번호 확인 같을시 통신
       axios
-      .post('http://203.250.32.29:2201/api/manager-service/myPage/changePW', {
-      managerPassword: pw1,
+      .post('http://jlchj.iptime.org:8000/manager-service/myPage/change/password', {
+      changePassword: pw1,
       managerUuid: managerUuid,
+      currentPassword: currentPw,
       })
       .then(response => {
       // 서버통신 성공시
@@ -145,6 +147,12 @@ function ResetPw() {
             <Sub_Title>
               비밀번호 재설정
             </Sub_Title>
+
+            <Input_box>
+              <Input type="password" placeholder='현재 비밀번호'  value={currentPw} onChange={(e)=> {      //onChange 함수를 통해 입력값 변경
+                setCurrentPw(e.target.value);
+              }}></Input>
+            </Input_box>
           
             <Input_box>
               <Input type="password" placeholder='새 비밀번호'  value={pw1} onChange={(e)=> {      //onChange 함수를 통해 입력값 변경

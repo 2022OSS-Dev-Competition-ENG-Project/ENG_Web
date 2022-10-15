@@ -123,10 +123,10 @@ function BuildingRegister() {
     
     // 등록에 필요한 정보를 서버에 POST함
     axios
-    .post('http://203.250.32.29:2200/api/facility/register', {
+    .post('http://jlchj.iptime.org:8000/facility-service/register', {
+      managerUuid: userId,
       facilityName: facilityName,
       facilityAddress: facilityAddress,
-      facilityOwner: userId,
     })
     .then(response => {
       // 서버와 통신 성공시

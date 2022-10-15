@@ -67,7 +67,7 @@ import { FaPen } from "react-icons/fa";
   let Menu_ul = styled.ul`
     background-color:#FAFAFA;
     font-size: 20px;
-    width: 130px;
+    width: 170px;
     margin:0;
     padding:5px;
     border-bottom: 2px solid  grey;
@@ -82,6 +82,8 @@ import { FaPen } from "react-icons/fa";
     color:black;
     text-decoration: none;
   `
+  const  facility = localStorage.getItem('facilityName');
+
   //공지 리스트 불러오는 함수
   function GetData() {
     const [data, setData] = useState([]);
@@ -114,14 +116,20 @@ import { FaPen } from "react-icons/fa";
 function NoticeList() {
 
   const item = GetData();
+  
   let navigate = useNavigate();
       
   return(
     <>
     <Div>
-      <Header/>
+      <Header></Header>
         <Body>
-          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>                                  {/* 리스트 항목들 */}
+          <Box1><Navigation/>
+            <Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/banner')}}>{facility}</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/post')}}>안전소통게시판</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/report')}}>신고현황</Menu_ul>
+          </Box1>                                  {/* 리스트 항목들 */}
           <Box2>
             <Title_box>공지사항<WriteButton onClick={()=> {navigate('/notice/write')}}><FaPen/> 작성하기</WriteButton></Title_box><hr></hr>      {/* 리스트 항목들 */}
             <Content_box>

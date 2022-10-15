@@ -10,7 +10,7 @@ function Navigation() {
 let Menu_ul = styled.ul`
   background-color:#FAFAFA;
   font-size: 20px;
-  width: 130px;
+  width: 170px;
   margin:0;
   padding:5px;
   border-bottom: 2px solid  grey;

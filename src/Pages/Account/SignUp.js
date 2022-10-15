@@ -104,12 +104,12 @@ function SignUp() {
     const register = () => {
 
       axios
-      .post('http://203.250.32.29:2201/api/manager-service/signup', {
+      .post('http://jlchj.iptime.org:8000/manager-service/register', {
         managerEmail: email,
         managerPassword: pwd,
         managerName: name,
         managerNickname: nickname,
-        managerPhoneNum: phonenum,
+        managerPhoneNumber: phonenum,
       })
       .then(response => {
         // 서버 통신 성공시
@@ -133,17 +133,19 @@ function SignUp() {
 
    const emailCheck = () => {
     axios
-    .get('http://203.250.32.29:2201/api/manager-service/register/check/email/' + email)
+    .get('http://jlchj.iptime.org:8000/manager-service/register/check/email/' + email)
     .then(response => {
       // 서버 통신 성공시
       console.log('사용가능한 이메일');
       alert('사용가능한 이메일입니다.\n해당 이메일로 인증번호가 전송되었습니다.');
+      console.log(response);
       
     })
     .catch(error => {
       // 서버 통신 실패시
-      console.log('사용불가한 이메일', error.response);
+      console.log('사용불가');
       alert('이미사용중인 이메일입니다');
+      console.log(error.response);
     });
  }
 
@@ -151,34 +153,38 @@ function SignUp() {
 const emailNumCheck = () => {
     
   axios
-  .get(' http://203.250.32.29:2201/api/manager-service/register/check/email/'+ email + '/' + emailcheck)
+  .get('http://jlchj.iptime.org:8000/manager-service/register/check/email/'+ email + '/' + emailcheck)
   .then(response => {
     // 서버 통신 성공시
     console.log('이메일 인증완료');
     alert('인증되었습니다 \n 해당 이메일로 인증번호가');
+    console.log(response);
     
   })
   .catch(error => {
     // 서버 통신 실패시
-    console.log('인증번호 틀림', error.response);
+    console.log('인증번호 틀림');
+    console.log(error.response);
     alert('인증번호가 틀렸습니다.');
+    
   });
 }
 
- /*************** 이메일 인증 ***************/
+ /*************** 닉네임 인증 ***************/
  const nicknameCheck = () => {
   axios
-  .get('http://203.250.32.29:2201/api/manager-service/register/check/nickname/'+ nickname + '/' + email)
+  .get('http://jlchj.iptime.org:8000/manager-service/register/check/nickname/'+ nickname)
   .then(response => {
     // 서버 통신 성공시
     console.log('사용가능한 닉네임');
     alert('사용가능한 닉네임입니다');
-    
+    console.log(response);
   })
   .catch(error => {
     // 서버 통신 실패시
     console.log('사용불가한 닉네임', error.response);
     alert('중복된 닉네임입니다');
+    console.log(error.response);
   });
 }
 /*************** 이메일 형식 유효성 검사 ***************/
@@ -217,7 +223,7 @@ const CheckEmail = (e) => {
                   <Input type="email" value={email} onChange={(e)=> { // onChange 함수를 통해 입력값 변경
                  setEmail(e.target.value);
               }} onBlur={CheckEmail}/>                                {/* 입력칸을 벗어났을때 이메일 형식 검사 */}
-                <button onClick={() => {
+                <button type="button" onClick={() => {
                 emailCheck();                                         // 버튼 클릭시 이메일 중복검사
                }} disabled={actEmailCheck == false}>중복확인</button>  {/* 이메일 형식 맞을시 버튼 활성화 */}
                 </Group><br/>
@@ -227,7 +233,7 @@ const CheckEmail = (e) => {
                   <Input type="text"  value={emailcheck} onChange={(e)=> { // onChange 함수를 통해 입력값 변경
                  setEmailcheck(e.target.value);
               }}/>
-                  <button onClick={() => {                                 //버튼 클릭시 인증번호 확인
+                  <button type="button"  onClick={() => {                                 //버튼 클릭시 인증번호 확인
                     emailNumCheck();
                   }} disabled={!emailcheck}>인증하기</button>              {/* 입력이 없으면 버튼 비활성화 */}
                 </Group><br/>
@@ -237,7 +243,7 @@ const CheckEmail = (e) => {
                   <Input type="text" value={nickname}  onChange={(e)=> {   // onChange 함수를 통해 입력값 변경
                  setNickname(e.target.value);
               }}/>
-              <button onClick={() => {
+              <button type="button"  onClick={() => {
                 nicknameCheck();                                          // 버튼 클릭시 닉네임 중복검사
                }} disabled={!nickname}>중복확인</button>                  {/* 입력이 없으면 버튼 비활성화 */}
                 </Group><br/>
@@ -264,18 +270,18 @@ const CheckEmail = (e) => {
                 </Group><br/>
 
                <hr></hr> 
-               <Signup_button disabled={SignupButton} onClick={() => {       //회원가입 조건에 따른 버튼 비활성화 유무
+               <Signup_button type="button"  disabled={SignupButton} onClick={() => {       //회원가입 조건에 따른 버튼 비활성화 유무
                 register();
                }}>
                 가입하기
                </Signup_button>
               <hr></hr>
-                <Button onClick={()=> setFindIDModalOn(true)}>아이디 찾기</Button>    {/* 버튼클릭시 아이디 찾기 모달창 실행 */}
+                <Button type="button" onClick={()=> setFindIDModalOn(true)}>아이디 찾기</Button>    {/* 버튼클릭시 아이디 찾기 모달창 실행 */}
                   <FindID
                     show = {findIDOn}
                     onHide={() => setFindIDModalOn(false)}
                   />
-                <Button onClick={()=> setFindPWModalOn(true)}>비밀번호 찾기</Button>  {/* 버튼클릭시 비밀번호 찾기 모달창 실행 */}
+                <Button type="button" onClick={()=> setFindPWModalOn(true)}>비밀번호 찾기</Button>  {/* 버튼클릭시 비밀번호 찾기 모달창 실행 */}
                   <FindPW
                     show = {findPWOn}
                     onHide={() => setFindPWModalOn(false)}

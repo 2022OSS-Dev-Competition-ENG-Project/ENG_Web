@@ -15,7 +15,7 @@ function FindID(props) {
    /************ axios로 이름과 전화번호 서버로 Post ************/
    const Find = () => {
     axios
-      .post('http://203.250.32.29:2201/api/manager-service/FindManagerId', {
+      .post('http://jlchj.iptime.org:8000/manager-service/find/id', {
         managerName: name,
         managerPhoneNumber: num,
       })

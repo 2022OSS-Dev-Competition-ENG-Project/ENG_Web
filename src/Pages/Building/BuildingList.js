@@ -67,9 +67,10 @@ import TableRow from '../../Components/Table/TableRow';
     
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/join/'+ uuid +'/mg/list')
+        .get('http://jlchj.iptime.org:8000/facility-service/join/' + uuid + '/manager/list')
         .then((response)=> {
           setData(response.data); 
+          console.log(response);
         })
       }, []);
     
@@ -85,36 +86,30 @@ import TableRow from '../../Components/Table/TableRow';
           <TableColumn>{i+1}</TableColumn>
           <TableColumn><StyledNavLink to={'/banner'} onClick={()=>             //클릭시 메인 배너로 이동
             {localStorage.setItem('facilityName',data[i].facilityName);  
-             localStorage.setItem('useFacility',data[i].useFacility);
+             localStorage.setItem('facilityNum',data[i].facilityNum);
              localStorage.setItem('facilityAddress',data[i].facilityAddress); }}>
               {item.facilityName}</StyledNavLink>
           </TableColumn>
-          <TableColumn>{item.name}</TableColumn>
+          <TableColumn>{item.facilityOwnerName}</TableColumn>
         <TableColumn>
           <NavLink to={`/building/${data[i].facilityName}`}><Button variant="outline-secondary"    //해당 건물 클릭시 해당건물의 배너로 넘어가도록 route를 유동적으로 줌
              onClick={()=>{
-              localStorage.setItem('facilityName',data[i].facilityName);                           //클릭시 로컬스토리지에 건물의 이름과 주소 저장
-              localStorage.setItem('facilityAddress',data[i].facilityAddress);
+              localStorage.setItem('facilityNum',data[i].facilityNum);                           //클릭시 로컬스토리지에 건물의 이름과 주소 저장
              }}>QR</Button>
           </NavLink>
           <Button variant="outline-danger" 
             onClick={() =>{ 
-              if(data[i].facilityOwner != data[i].uuid)                       // 해당 건물의 마스터인 경우 시설물을 지울 수 없음
-                { 
                   onRemove(data[i].facilityName);
                   axios
-                    .get('http://203.250.32.29:2200/api/facility/my/delete/mg/'+ uuid + '/' + data[i].useFacility)
+                    .get('http://jlchj.iptime.org:8000/facility-service/resignation/manager/' + data[i].facilityNum + '/'+ uuid) 
                     .then(()=> {
                       console.log('성공');
                       alert('시설물이 삭제되었습니다')
                     })
                     .catch(error => {
-                      alert('시설물삭제에 실패하였습니다')
+                      alert('시설물삭제에 실패하였습니다');
+                      console.log(data[i].facilityNum);
                     })
-               } 
-              else if (data[i].facilityOwner == data[i].uuid) {
-                alert('자신이 마스터로 관리하는 건물은 삭제할 수 없습니다')       
-               }
               }
             }>삭제</Button>
         </TableColumn>
