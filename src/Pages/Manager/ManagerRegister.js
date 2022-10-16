@@ -154,7 +154,7 @@ function ManagerRegister() {
   const register = () => {
   // axios를 활용하여 관리자를 등록할 때 필요한 값 POST
     axios
-    .post('http://jlchj.iptime.org:8000/facility-service/join/user', {
+    .post('http://jlchj.iptime.org:8000/facility-service/join/manager', {
       uuid: registerManager,
       facilityNum : facilityNum,
     })

@@ -253,7 +253,7 @@ function Banner(props) {
     // 인공지능 화재예측 데이터 불러오기
     useEffect(() => {
       axios
-        .post('http://203.250.32.29:2222/api/ai/firePredict', {
+        .post('http://jlchj.iptime.org:2222/api/ai/firePredict', {
           facilityAddress : address,
       })
         .then((response)=> {

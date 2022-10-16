@@ -157,7 +157,7 @@ const emailNumCheck = () => {
   .then(response => {
     // 서버 통신 성공시
     console.log('이메일 인증완료');
-    alert('인증되었습니다 \n 해당 이메일로 인증번호가');
+    alert('인증되었습니다 \n 해당 이메일로 인증번호가 전송되었습니다');
     console.log(response);
     
   })
