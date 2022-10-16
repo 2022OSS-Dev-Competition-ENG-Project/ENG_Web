@@ -44,14 +44,7 @@ const Write = () =>  {
   const managerUuid = localStorage.getItem('managerUuid');
   let navigate = useNavigate();
 
-/*********** 파일선택시 파일 정보 저장 **********/
 
-    const onFileChange = (e) => {
-      if(e.target && e.target.image[0]) {
-        formData.append("image", e.target.image[0], "notice.png");
-      }
-      
-    }
 /************ 파일 제외 필요한 정보 저장 *********/
     let dataSet = {
       noticeTitle : title,
@@ -60,10 +53,20 @@ const Write = () =>  {
       facilityNum : facilityNum,
       managerUuid :  managerUuid
     }
-/************ formData에 해당 key(facilityContentDto)값과 value값을 application/json타입으로 저장 ************/
+/************ formData에 해당 key(facilityNotice)값과 value값을 application/json타입으로 저장 ************/
     formData.append("facilityNotice", new Blob([JSON.stringify(dataSet)], {
       type: "application/json"
   }));
+
+
+/*********** 파일선택시 파일 정보 저장 **********/
+
+  const onFileChange = (e) => {
+    if(e.target && e.target.files[0]) {
+      formData.append("image", e.target.files[0], "notice.png");
+    }
+    
+  }
 
 /************ 입력된 파일 및 정보를 axios를 통해 전송 ************/
     const SubmitFileData = () => {
@@ -96,7 +99,7 @@ const Write = () =>  {
                  setTitle(e.target.value);
               }}
         ></Title_input> 
-        <input type = "file"  name="image" onChange={onFileChange}/>
+        <input type = "file"  name="files" onChange={onFileChange}/>
         <Content_input placeholder='내용을 입력하세요' name='content' type="text"  value={content} onChange={(e)=> {
                  setContent(e.target.value);
               }}></Content_input> 

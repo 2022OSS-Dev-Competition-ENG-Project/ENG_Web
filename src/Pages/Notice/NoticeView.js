@@ -104,7 +104,7 @@ let Hr = styled.hr`
 let Menu_ul = styled.ul`
   background-color:#FAFAFA;
   font-size: 20px;
-  width: 130px;
+  width: 170px;
   margin:0;
   padding:5px;
   border-bottom: 2px solid  grey;
@@ -113,7 +113,7 @@ let Menu_ul = styled.ul`
     background-color :  #0F4C75;
     color: white;
   }
-  `
+`
   let Img = styled.img`
   background-color:#FAFAFA;
   font-size: 20px;
@@ -124,8 +124,7 @@ let Menu_ul = styled.ul`
 function GetData(itemI) {
   let navigate = useNavigate();
   const [data, setData] = useState({});
-  const uuid = localStorage.getItem('managerUuid');
-  const facilityNum = localStorage.getItem('facilityNum');
+  const  facility = localStorage.getItem('facilityName');
   
 //axios를 통해 공지글에 필요한 데이터를 불러옴
   useEffect(()=> {
@@ -140,7 +139,12 @@ function GetData(itemI) {
       <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>    {/* 메뉴바에 관리자 등록항목 추가 */}
+          <Box1><Navigation/>
+            <Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/banner')}}>{facility}</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/post')}}>안전소통게시판</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/report')}}>신고현황</Menu_ul>
+          </Box1>    {/* 메뉴바에 관리자 등록항목 추가 */}
           <Box2>
             <Title_box>
               <Box>공지사항</Box>

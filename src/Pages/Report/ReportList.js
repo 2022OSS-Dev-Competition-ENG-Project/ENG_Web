@@ -69,7 +69,7 @@ import TableRow from '../../Components/Table/TableRow';
   let Menu_ul = styled.ul`
     background-color:#FAFAFA;
     font-size: 20px;
-    width: 130px;
+    width: 170px;
     margin:0;
     padding:5px;
     border-bottom: 2px solid  grey;
@@ -83,6 +83,8 @@ import TableRow from '../../Components/Table/TableRow';
     color:black;
     text-decoration: none;
   `
+
+  const  facility = localStorage.getItem('facilityName');
   
 //서버로 부터 데이터를 불러옴
 function ReportList() {
@@ -145,7 +147,12 @@ function ReportList() {
     <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>           {/* 리스트 항목들 */}
+          <Box1><Navigation/>
+            <Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/banner')}}>{facility}</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/notice')}}>공지사항</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/post')}}>안전소통게시판</Menu_ul>
+          </Box1>           {/* 리스트 항목들 */}
           <Box2>
             <Title_box>신고현황
               <Select onChange={handleSelect} value={Selected}>                                                         {/* 처리/미처리에 따른 값변환 */}

@@ -108,7 +108,7 @@ let Flex = styled.div`
 
 function GetData() {
   const [data,setData] = useState([]);
-  const facilityNo = localStorage.getItem('useFacility');
+  const facilityNo = localStorage.getItem('facilityNum');
 
   // 관리자 리스트
   useEffect(() => {
@@ -148,15 +148,15 @@ function ManagerRegister() {
   const [findOn, setFindModalOn] = React.useState(false);
   const item = GetData();
   const registerManager = localStorage.getItem('registerManager');
-  const useFacility = localStorage.getItem('useFacility');
+  const facilityNum = localStorage.getItem('facilityNum');
 
   // 관리자 등록 
   const register = () => {
   // axios를 활용하여 관리자를 등록할 때 필요한 값 POST
     axios
-    .post('http://203.250.32.29:2200/api/facility/join/mg', {
+    .post('http://jlchj.iptime.org:8000/facility-service/join/user', {
       uuid: registerManager,
-      facilityNo : useFacility,
+      facilityNum : facilityNum,
     })
     .then(response => {
     // 서버 통신 성공시
@@ -193,7 +193,7 @@ function ManagerRegister() {
                   show = {findOn}
                   onHide={() => setFindModalOn(false)}
                 />
-              시설물번호: <Input> {localStorage.getItem('useFacility')}</Input>
+              시설물번호: <Input> {facilityNum}</Input>
             </Flex>
             <Register_button onClick={() => {
               register();

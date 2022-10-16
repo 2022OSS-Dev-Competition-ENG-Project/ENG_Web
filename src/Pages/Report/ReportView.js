@@ -99,16 +99,16 @@ let Hr = styled.hr`
 let Menu_ul = styled.ul`
   background-color:#FAFAFA;
   font-size: 20px;
-  width: 130px;
+  width: 170px;
   margin:0;
   padding:5px;
   border-bottom: 2px solid  grey;
   cursor: pointer;
   &:hover {
-    background-color :  #0F4C75;
-    color: white;
+   background-color :  #0F4C75;
+   color: white;
   }
-  `
+`
 let Text = styled.div`
   width: auto;
   text-align: left;
@@ -140,6 +140,9 @@ let Img_box = styled.div`
   display: flex;
   justify-content: space-between;
 `
+
+const  facility = localStorage.getItem('facilityName');
+
 //서버로 부터 데이터를 불러옴
 function GetData(itemI) {
   let navigate = useNavigate();
@@ -163,7 +166,12 @@ function GetData(itemI) {
       <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>     {/* 메뉴바에 관리자 등록항목 추가 */}
+          <Box1><Navigation/>
+            <Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/banner')}}>{facility}</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/notice')}}>공지사항</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/post')}}>안전소통게시판</Menu_ul>
+          </Box1>     {/* 메뉴바에 관리자 등록항목 추가 */}
           <Box2>
             <Title_box>
               <Box>신고현황</Box>

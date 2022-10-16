@@ -133,7 +133,7 @@ function NoticeList() {
             <Menu_ul onClick={()=>{navigate('/banner')}}>{facility}</Menu_ul>
             <Menu_ul onClick={()=>{navigate('/post')}}>안전소통게시판</Menu_ul>
             <Menu_ul onClick={()=>{navigate('/report')}}>신고현황</Menu_ul>
-          </Box1>                                  {/* 리스트 항목들 */}
+          </Box1>                                  {/* 메뉴바에 메뉴 추가 */} 
           <Box2>
             <Title_box>공지사항<WriteButton onClick={()=> {navigate('/notice/write')}}><FaPen/> 작성하기</WriteButton></Title_box><hr></hr>      {/* 리스트 항목들 */}
             <Content_box>

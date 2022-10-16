@@ -16,12 +16,12 @@ function Search(props) {
    // axios를 이용해 UUID를 검색 구현
    const Find = () => {
     axios
-      .get('http://203.250.32.29:2200/api/facility/find/manager/'+ name +'/' + num)
+      .get('http://jlchj.iptime.org:8000/facility-service/join/find/manager/'+ name +'/' + num)
       .then(response => {
         // 서버통신 성공시
         alert( name +'님의 UUID가 등록되었습니다');
-        localStorage.setItem('registerManager',response.data.managerUuid);
-        
+        localStorage.setItem('registerManager',response.data);
+        console.log(response);
       })
       .catch(error => {
         // 서버통신 실패시
