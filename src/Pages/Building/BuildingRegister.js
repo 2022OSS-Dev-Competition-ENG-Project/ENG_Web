@@ -6,6 +6,7 @@ import Navigation from '../../Components/Layout/Navigation';
 import axios from 'axios';
 import PopupDom from '../../Components/Address/PopupDom';
 import PopupPostCode from '../../Components/Address/PopupPostCode';
+import { useNavigate } from 'react-router-dom';
 
 
 // styled-component
@@ -101,7 +102,8 @@ function BuildingRegister() {
  const [userId, setUserId] = useState(localStorage.getItem('managerUuid'));
  const [isPopupOpen, setIsPopupOpen] = useState(false);
  const facilityAddress = localStorage.getItem('facilityAddress');
- 
+ let navigate = useNavigate();
+
 	// 팝업창 열기
     const openPostCode = () => {
         setIsPopupOpen(true)
@@ -132,7 +134,7 @@ function BuildingRegister() {
       // 서버와 통신 성공시
       console.log('시설물등록완료');
       alert('시설물이 등록되었습니다.');
-      
+      navigate('/BuildingList');
     })
     .catch(error => {
       // 서버와 통신 실패시

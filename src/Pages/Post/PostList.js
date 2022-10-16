@@ -59,7 +59,7 @@ import TableRow from '../../Components/Table/TableRow';
   let Menu_ul = styled.ul`
     background-color:#FAFAFA;
     font-size: 20px;
-    width: 130px;
+    width: 170px;
     margin:0;
     padding:5px;
     border-bottom: 2px solid  grey;
@@ -75,15 +75,17 @@ import TableRow from '../../Components/Table/TableRow';
     text-decoration: none;
   `
 
+  const  facility = localStorage.getItem('facilityName');
+
   //안전소통게시판 리스트 불러오는 함수
   function GetData() {
     const [data, setData] = useState([]);
-    const useFacility = localStorage.getItem('useFacility');
+    const facilityNum = localStorage.getItem('facilityNum');
 
     // axios를 통해 리스트에 필요한값 불러옴
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/content/'+  useFacility + '/0/0/list')
+        .get('http://jlchj.iptime.org:8000/facility-service/content/'+  facilityNum)
         .then((response)=> {
           setData(response.data);
       })
@@ -96,7 +98,7 @@ import TableRow from '../../Components/Table/TableRow';
         <TableColumn>
           <StyledNavLink to={`/post/${item.contentNum}`}>{item.contentTitle}</StyledNavLink>
         </TableColumn>
-        <TableColumn>{item.name}</TableColumn>
+        <TableColumn>{item.writerNickName}</TableColumn>
         <TableColumn>{item.contentDate.substring(0,10)}</TableColumn>       {/* 등록일만 보이도록 substring이용 */}
       </TableRow>
     ));
@@ -115,7 +117,12 @@ function PostList() {
     <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>     {/* 메뉴바에 관리자 등록항목 추가 */}
+          <Box1><Navigation/>
+            <Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/banner')}}>{facility}</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/notice')}}>공지사항</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/report')}}>신고현황</Menu_ul>
+          </Box1>     {/* 메뉴바에 메뉴 추가 */}
           <Box2>
             <Title_box>안전소통게시판</Title_box><hr></hr>                                                           {/* 공지작성 페이지로 이동 */}
             <Content_box>

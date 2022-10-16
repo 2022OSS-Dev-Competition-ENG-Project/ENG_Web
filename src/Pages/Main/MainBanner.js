@@ -170,21 +170,22 @@ import { FcScatterPlot, FcHighPriority } from "react-icons/fc";
 /******************************공지배너****************************** */
   function GetNoticeData() {
     const [data, setData] = useState([]);
-    const useFacility = localStorage.getItem('useFacility');
+    const facilityNum = localStorage.getItem('facilityNum');
 
     //최근 공지글 5개를 불러옴
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/'+ useFacility + '/content/1/main')
+        .get('http://jlchj.iptime.org:8000/facility-service/notice/'+ facilityNum + '/main')
         .then((response)=> {
           setData(response.data);
+          console.log(response);
       })
     }, []);
     
     //Object값만큼 반복하여 리스트 생성
     const notice = (Object.values(data)).map((item,i) => (
       <ul key = {item.i}>
-        <li>{item.contentTitle}</li>
+        <li>{item.noticeTitle}</li>
       </ul>
     ));
   
@@ -193,15 +194,16 @@ import { FcScatterPlot, FcHighPriority } from "react-icons/fc";
 /******************************안전게시판 배너****************************** */
   function GetPostData() {
     const [data, setData] = useState([]);
-    const useFacility = localStorage.getItem('useFacility');
+    const facilityNum = localStorage.getItem('facilityNum');
 
     //최근 게시판 게시글 5개를 불러옴
     
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/'+ useFacility + '/content/0/main')
+        .get('http://jlchj.iptime.org:8000/facility-service/content/'+ facilityNum + '/main')
         .then((response)=> {
-          setData(response.data);                  
+          setData(response.data);
+          console.log(response);                  
       })
     }, []);
     //Object값만큼 반복하여 리스트 생성 
@@ -220,12 +222,12 @@ import { FcScatterPlot, FcHighPriority } from "react-icons/fc";
 
   function GetReportData() {
     const [data, setData] = useState([]);
-    const useFacility = localStorage.getItem('useFacility');
+    const facilityNum = localStorage.getItem('facilityNum');
     
     //최근 신고글 5개를 불러옴
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/report/list/mg/lt/'+ useFacility)
+        .get('http://jlchj.iptime.org:8000/facility-service/report/list/main/'+ facilityNum)
         .then((response)=> {
           setData(response.data);    
       })

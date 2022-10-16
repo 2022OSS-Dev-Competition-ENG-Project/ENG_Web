@@ -69,7 +69,7 @@ import TableRow from '../../Components/Table/TableRow';
   let Menu_ul = styled.ul`
     background-color:#FAFAFA;
     font-size: 20px;
-    width: 130px;
+    width: 170px;
     margin:0;
     padding:5px;
     border-bottom: 2px solid  grey;
@@ -83,6 +83,8 @@ import TableRow from '../../Components/Table/TableRow';
     color:black;
     text-decoration: none;
   `
+
+  const  facility = localStorage.getItem('facilityName');
   
 //서버로 부터 데이터를 불러옴
 function ReportList() {
@@ -91,7 +93,7 @@ function ReportList() {
   const [reportStatus, setReportStatus] = useState(''); 
   const [Selected, setSelected] = useState("");
   const [data, setData] = useState([]);
-  const useFacility = localStorage.getItem('useFacility');
+  const facilityNum = localStorage.getItem('facilityNum');
   const selectList = ["미처리", "처리"];
   
   // 처리/미처리 선택에 따른 값
@@ -103,27 +105,28 @@ function ReportList() {
   useEffect(() => {
   //axios를 이용한 미처리 신고리스트만 불러옴
    axios
-     .get('http://203.250.32.29:2200/api/report/list/'+ useFacility+'/0')
+     .get('http://jlchj.iptime.org:8000/facility-service/report/list/'+ facilityNum+'/0')
      .then((response)=> {
        setData(response.data);
+       console.log(response);
    })
  }, []);
   //axios를 이용한 처리 신고리스트만 불러옴
   if(reportStatus=='처리') {
     axios
-    .get('http://203.250.32.29:2200/api/report/list/'+ useFacility+'/1')
+    .get('http://jlchj.iptime.org:8000/facility-service/report/list/'+ facilityNum+'/1')
     .then((response)=> {
       setData(response.data);
-      
+      console.log(response);
   })
   }
   //axios를 이용한 미처리 신고리스트만 불러옴
   if(reportStatus=='미처리') {
     axios
-    .get('http://203.250.32.29:2200/api/report/list/'+ useFacility+'/0')
+    .get('http://jlchj.iptime.org:8000/facility-service/report/list/'+ facilityNum+'/0')
     .then((response)=> {
       setData(response.data);     
-      
+      console.log(response);
   })
   }
   // Object개수만큼 행을 반복하여 리스트 구현
@@ -134,7 +137,7 @@ function ReportList() {
       <StyledNavLink to={`/report/${item.reportNum}`} >{item.reportTitle}</StyledNavLink>
      </TableColumn>
      <TableColumn>{item.reportType}</TableColumn>
-     <TableColumn>{item.userNickname}</TableColumn>
+     <TableColumn>{item.userName}</TableColumn>
      <TableColumn>{item.reportDate.substring(0,10)}</TableColumn>
    </TableRow>
  ));
@@ -144,7 +147,12 @@ function ReportList() {
     <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>           {/* 리스트 항목들 */}
+          <Box1><Navigation/>
+            <Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/banner')}}>{facility}</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/notice')}}>공지사항</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/post')}}>안전소통게시판</Menu_ul>
+          </Box1>           {/* 리스트 항목들 */}
           <Box2>
             <Title_box>신고현황
               <Select onChange={handleSelect} value={Selected}>                                                         {/* 처리/미처리에 따른 값변환 */}

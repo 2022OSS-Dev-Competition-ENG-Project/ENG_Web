@@ -98,7 +98,7 @@ import { useNavigate} from 'react-router-dom';
   let Menu_ul = styled.ul`
     background-color:#FAFAFA;
     font-size: 20px;
-    width: 130px;
+    width: 170px;
     margin:0;
     padding:5px;
     border-bottom: 2px solid  grey;
@@ -113,19 +113,22 @@ import { useNavigate} from 'react-router-dom';
     font-weight: 500;
     margin-right:  10px;
 `
+
+const  facility = localStorage.getItem('facilityName');
   //게시글 불러오는 함수
   function GetData(itemI) {
     const [data, setData] = useState({});
     let navigate = useNavigate();
     const uuid = localStorage.getItem('managerUuid');
-    const useFacility = localStorage.getItem('useFacility');
+    const facilitynum = localStorage.getItem('facilitynum');
 
     // axios를 통해 리스트에 필요한값 불러옴
     useEffect(() => {
       axios
-        .get('http://203.250.32.29:2200/api/facility/content/'+uuid+'/'+ itemI)
+        .get('http://jlchj.iptime.org:8000/facility-service/content/'+uuid+'/'+ itemI)
         .then((response)=> {
           setData(response.data);
+          console.log(response);
       })
     }, []);
 
@@ -133,7 +136,12 @@ import { useNavigate} from 'react-router-dom';
       <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>  {/* 메뉴바에 관리자 등록항목 추가 */}
+          <Box1><Navigation/>
+            <Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/banner')}}>{facility}</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/notice')}}>공지사항</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/report')}}>신고현황</Menu_ul>
+          </Box1>  {/* 메뉴바에 메뉴 추가 */}
           <Box2>
             <Title_box>
               <Box>안전소통게시판</Box>
@@ -141,7 +149,7 @@ import { useNavigate} from 'react-router-dom';
                 <Button type="button" onClick={()=> {
                    if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){             //confirm 창을 통해 삭제를 다시 한번 확인
                     axios
-                     .get('http://203.250.32.29:2200/api/facility/content/delete/mg/'+useFacility+'/'+itemI)     //게시글 삭제 통신
+                     .get('http://jlchj.iptime.org:8000/facility-service/content/delete/mg/'+ itemI +'/'+ uuid)     //게시글 삭제 통신
                      //서버통신 성공시
                      .then((response)=> {
                         alert("삭제되었습니다.");
@@ -161,7 +169,7 @@ import { useNavigate} from 'react-router-dom';
               </Button_box>
             </Title_box><Hr></Hr>
             <Content_box>
-              <Title><h2>{data.contentTitle}</h2> <Date>등록일 : {data.contentDate} 작성자: {data.writerNickname}</Date></Title>  {/* 게시글 제목과 등록일,작성자를 불러옴 */}
+              <Title><h2>{data.contentTitle}</h2> <Date>등록일 : {data.contentDate} 작성자: {data.writerNickName}</Date></Title>  {/* 게시글 제목과 등록일,작성자를 불러옴 */}
               <Post>{data.contentText}</Post></Content_box>           {/* 게시글을 불러옴 */}
           </Box2>
         </Body>
