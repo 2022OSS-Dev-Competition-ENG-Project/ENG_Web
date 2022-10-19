@@ -106,17 +106,24 @@ let Flex = styled.div`
   width: 1100px;
 `
 
+
 function GetData() {
   const [data,setData] = useState([]);
-  const facilityNo = localStorage.getItem('facilityNum');
+  const facilityNum = localStorage.getItem('facilityNum');
+  const uuid = localStorage.getItem('managerUuid')
 
   // 관리자 리스트
   useEffect(() => {
     axios
-      .get('http://203.250.32.29:2200/api/facility/manager/'+ facilityNo +'/list')
+      .get('http://jlchj.iptime.org:8000/facility-service/join/manager/'+ facilityNum )
       .then((response)=> {
         setData(response.data);
+        console.log(response);
     })
+    .catch(error => {
+      // 서버 통신 실패시
+        console.log(error);
+      });
   }, []);
   // 관리자 리스트 삭제
   const onRemove = managerName => {
@@ -129,13 +136,39 @@ function GetData() {
           <TableColumn> {item.managerName}</TableColumn> 
           <TableColumn>{item.facilityName}</TableColumn>
           <TableColumn>{item.managerPhoneNumber}</TableColumn>
-          <TableColumn>    
+          <TableColumn>{item.managerGrade}</TableColumn>
+          <TableColumn>
+            <Button variant="outline-danger"
+              onClick={()=> {
+                axios
+                    .get('http://jlchj.iptime.org:8000/manager-service/change/grade/'+ uuid + '/' + data[i].managerUuid + '/' + facilityNum + '/' + data[i].managerGrade)
+                    .then(()=> {
+                      console.log('성공');
+                      alert('직급이 변경되었습니다')
+                    })
+                    .catch(error => {
+                      alert('직급변경에 실패하였습니다');
+                      
+                    })
+              }} 
+              >변경</Button>    
             <Button variant="outline-danger" 
               onClick={() =>{ 
-                onRemove(data[i].managerName);  //삭제 버튼 클릭시 리스트 삭제
+                onRemove(data[i].managerName); //삭제 버튼 클릭시 리스트 삭제
+                axios
+                    .get('http://jlchj.iptime.org:8000/facility-service/join/delete/'+ facilityNum +'/' + uuid + '/' + data[i].managerUuid)
+                    .then(()=> {
+                      console.log('성공');
+                      alert('삭제되었습니다')
+                    })
+                    .catch(error => {
+                      alert('삭제에 실패하였습니다');
+                    })
                 }
               }>삭제</Button>
+              
           </TableColumn>
+          
       </TableRow>
     ));
 
@@ -149,6 +182,7 @@ function ManagerRegister() {
   const item = GetData();
   const registerManager = localStorage.getItem('registerManager');
   const facilityNum = localStorage.getItem('facilityNum');
+  const facilityName = localStorage.getItem('facilityName');
 
   // 관리자 등록 
   const register = () => {
@@ -180,7 +214,7 @@ function ManagerRegister() {
             <Menu>
               관리자
             </Menu>
-            <Table headersName={['No', '이름', '담당위치', '전화번호', '관리']}>
+            <Table headersName={['No', '이름', '담당위치', '전화번호','직급', '관리']}>
                   {item}
               </Table>
             
@@ -193,7 +227,7 @@ function ManagerRegister() {
                   show = {findOn}
                   onHide={() => setFindModalOn(false)}
                 />
-              시설물번호: <Input> {facilityNum}</Input>
+              시설물명: <Input> {facilityName}</Input>
             </Flex>
             <Register_button onClick={() => {
               register();
