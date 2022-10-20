@@ -100,9 +100,9 @@ const Write = () =>  {
               }}
         ></Title_input> 
         <input type = "file"  name="files" onChange={onFileChange}/>
-        <Content_input placeholder='내용을 입력하세요' name='content' type="text"  value={content} onChange={(e)=> {
+       {/*<Content_input placeholder='내용을 입력하세요' name='content' type="text"  value={content} onChange={(e)=> {
                  setContent(e.target.value);
-              }}></Content_input> 
+              }}></Content_input> */} 
       </div> <br></br>
       <Register_button type="button" onClick={SubmitFileData} >등록하기</Register_button>
 

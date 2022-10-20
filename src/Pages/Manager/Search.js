@@ -50,6 +50,7 @@ function Search(props) {
           <Form.Label>이름</Form.Label>
           <Form.Control type="text" placeholder="홍길동" value={name} onChange={(e)=> {                     // onChange 함수를 통해 입력값 변경
                  setName(e.target.value);
+                 localStorage.setItem('registerName', name);
               }}onKeyUp={changeButton}/>
         </Form.Group>
         {/* 전화번호 입력칸 */}
@@ -62,7 +63,7 @@ function Search(props) {
       </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" type="button" disabled={FindButton} onClick={()=> {Find()}}>                {/* onChange 함수를 통해 입력값 변경 */}
+        <Button variant="primary" type="button" disabled={FindButton} onClick={()=> {Find(); window.location.reload();}}>                {/* onChange 함수를 통해 입력값 변경 */}
             검색하기
         </Button>
       </Modal.Footer>
@@ -72,4 +73,4 @@ function Search(props) {
 
 }
 
-export default Search;
+export  default Search;

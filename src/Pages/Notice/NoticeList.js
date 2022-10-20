@@ -129,7 +129,7 @@ function NoticeList() {
       <Header></Header>
         <Body>
           <Box1><Navigation/>
-            <Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/register/manager'); localStorage.removeItem('registerName');}}>직원관리</Menu_ul>
             <Menu_ul onClick={()=>{navigate('/banner')}}>{facility}</Menu_ul>
             <Menu_ul onClick={()=>{navigate('/post')}}>안전소통게시판</Menu_ul>
             <Menu_ul onClick={()=>{navigate('/report')}}>신고현황</Menu_ul>

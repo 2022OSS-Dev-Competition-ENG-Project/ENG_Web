@@ -253,7 +253,7 @@ function Banner(props) {
     // 인공지능 화재예측 데이터 불러오기
     useEffect(() => {
       axios
-        .post('http://jlchj.iptime.org:2222/api/ai/firePredict', {
+        .post('http://203.250.32.29:2222/api/ai/firePredict', {
           facilityAddress : address,
       })
         .then((response)=> {
@@ -267,22 +267,22 @@ function Banner(props) {
     <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul></Box1>
+          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager'); localStorage.removeItem('registerName');}}>직원관리</Menu_ul></Box1>
           <Box2>
             <Title_box>{localStorage.getItem('facilityName')}</Title_box><hr></hr>
             <Content_box>
                 <Spo>
-                  <Top><Sub_title><AiTwotoneNotification size="50" color='#FFB200'/>공지사항</Sub_title><TopButton onClick={()=> {navigate('/notice')}}>더보기+</TopButton></Top>  {/* 더보기클릭시 공지리스트로 페이지 이동 */}
+                  <Top><Sub_title><AiTwotoneNotification size="50" color='#FFB200'/>공지사항</Sub_title><TopButton onClick={()=> {navigate('/notice'); window.location.reload();}}>더보기+</TopButton></Top>  {/* 더보기클릭시 공지리스트로 페이지 이동 */}
                   <Sub_content>{notice}</Sub_content>
                 </Spo>
 
                 <Spo>
-                  <Top><Sub_title><FaComments size="50" color='#3282B8'/>안전소통게시판</Sub_title><TopButton onClick={()=> {navigate('/post')}}>더보기+</TopButton></Top> {/* 더보기클릭시 게시판리스트로 페이지 이동 */}
+                  <Top><Sub_title><FaComments size="50" color='#3282B8'/>안전소통게시판</Sub_title><TopButton onClick={()=> {navigate('/post'); window.location.reload();}}>더보기+</TopButton></Top> {/* 더보기클릭시 게시판리스트로 페이지 이동 */}
                   <Sub_content>{post}</Sub_content>
                 </Spo>
 
                 <Spo>
-                  <Top><Sub_title><AiFillAlert size="50" color='red'/>신고현황</Sub_title><TopButton onClick={()=> {navigate('/report')}}>더보기+</TopButton></Top> {/* 더보기클릭시 신고현황리스트로 페이지 이동 */}
+                  <Top><Sub_title><AiFillAlert size="50" color='red'/>신고현황</Sub_title><TopButton onClick={()=> {navigate('/report'); window.location.reload();}}>더보기+</TopButton></Top> {/* 더보기클릭시 신고현황리스트로 페이지 이동 */}
                   <Sub_content>{report}</Sub_content>
                 </Spo>  
 

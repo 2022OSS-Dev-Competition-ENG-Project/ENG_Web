@@ -60,7 +60,7 @@ import FindPW from './FindPW';
     padding: 2px;
   `
   const Formbox = styled.div`
-    width: 500px;  
+    width: 420px;  
   `
   const Signup_button = styled.button`
     width: 100%;
@@ -230,7 +230,7 @@ const CheckEmail = (e) => {
                 
                 <Group>
                   <label>이메일인증</label>
-                  <Input type="text"  value={emailcheck} onChange={(e)=> { // onChange 함수를 통해 입력값 변경
+                  <Input type="text"  value={emailcheck} disabled={actEmailCheck == false} onChange={(e)=> { // onChange 함수를 통해 입력값 변경
                  setEmailcheck(e.target.value);
               }}/>
                   <button type="button"  onClick={() => {                                 //버튼 클릭시 인증번호 확인
@@ -240,7 +240,7 @@ const CheckEmail = (e) => {
 
                 <Group>
                   <label>닉네임</label>
-                  <Input type="text" value={nickname}  onChange={(e)=> {   // onChange 함수를 통해 입력값 변경
+                  <Input type="text" value={nickname} disabled={!emailcheck} onChange={(e)=> {   // onChange 함수를 통해 입력값 변경
                  setNickname(e.target.value);
               }}/>
               <button type="button"  onClick={() => {

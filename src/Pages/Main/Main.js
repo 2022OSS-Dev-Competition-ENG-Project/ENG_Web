@@ -40,7 +40,7 @@ function Main() {
       <Header /> 
       <Menu>
         <Main_button onClick={()=> {navigate('/BuildingList')}}>나의 시설물 <br/>리스트 보기</Main_button>       {/* 버튼클릭시 시설물리스트 페이지로 이동 */}
-        <Main_button onClick={()=> {navigate('/register/building')}}>관리 시설물 <br/>등록하기</Main_button>     {/* 버튼클릭시 시설물 등록 페이지로 이동 */}
+        <Main_button onClick={()=> {navigate('/register/building'); localStorage.removeItem('facilityAddress');}}>관리 시설물 <br/>등록하기</Main_button>     {/* 버튼클릭시 시설물 등록 페이지로 이동 */}
       </Menu>
       <Footer />
     </body>

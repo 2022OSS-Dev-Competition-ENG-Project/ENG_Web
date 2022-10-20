@@ -11,6 +11,7 @@ import Button from 'react-bootstrap/Button';
 import Table from '../../Components/Table/Table';
 import TableColumn from '../../Components/Table/TableColumn';
 import TableRow from '../../Components/Table/TableRow';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 let Div = styled.div`
   background-color: #FAFAFA;
@@ -84,9 +85,14 @@ let Input = styled.div`
   border: solid 1px;
   border-radius: 10px;
 `
+
+let Input_name =  styled.div`
+  width : 200px;
+  border : solid 1px;
+`
 let Uuid = styled.button`
   padding: 2px;
-  width: 400px;
+  width: 100px;
   margin: 0 10px;
   border: solid 1px;
   border-radius: 10px;
@@ -103,14 +109,28 @@ let Flex = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: #FAFAFA;
-  width: 1100px;
+  width: 1000px;
 `
 
+let Menu_ul = styled.ul`
+  background-color:#FAFAFA;
+  font-size: 20px;
+  width: 170px;
+  margin:0;
+  padding:5px;
+  border-bottom: 2px solid  grey;
+  cursor: pointer;
+  &:hover {
+    background-color :  #0F4C75;
+    color: white;
+  }
+`
+const  facility = localStorage.getItem('facilityName');
 
 function GetData() {
   const [data,setData] = useState([]);
   const facilityNum = localStorage.getItem('facilityNum');
-  const uuid = localStorage.getItem('managerUuid')
+  const uuid = localStorage.getItem('managerUuid');
 
   // 관리자 리스트
   useEffect(() => {
@@ -140,29 +160,58 @@ function GetData() {
           <TableColumn>
             <Button variant="outline-danger"
               onClick={()=> {
-                axios
-                    .get('http://jlchj.iptime.org:8000/manager-service/change/grade/'+ uuid + '/' + data[i].managerUuid + '/' + facilityNum + '/' + data[i].managerGrade)
+                console.log(data[i].managerGrade);
+                if(data[i].managerGrade === '매니저') {
+                  axios
+                    .get('http://jlchj.iptime.org:8000/manager-service/change/grade/'+ uuid + '/' + data[i].managerUuid + '/' + facilityNum + '/마스터')
                     .then(()=> {
                       console.log('성공');
                       alert('직급이 변경되었습니다')
+                      console.log(uuid);
+                      console.log(data[i].managerUuid);
+                      console.log(data[i].managerGrade);
+                      window.location.reload();
                     })
                     .catch(error => {
-                      alert('직급변경에 실패하였습니다');
+                      alert('권한이 없습니다');
+                      console.log(error);
                       
                     })
+                }
+                else if(data[i].managerGrade == '마스터') {
+                  axios
+                    .get('http://jlchj.iptime.org:8000/manager-service/change/grade/'+ uuid + '/' + data[i].managerUuid + '/' + facilityNum + '/매니저')
+                    .then(()=> {
+                      console.log('성공');
+                      alert('직급이 변경되었습니다')
+                      console.log(uuid);
+                      console.log(data[i].managerUuid);
+                      console.log(data[i].managerGrade);
+                      window.location.reload();
+                    })
+                    .catch(error => {
+                      alert('권한이 없습니다');
+                      console.log(error);
+                      
+                    })
+                }
+                else {
+                  alert('권한이 없습니다');
+                }
               }} 
               >변경</Button>    
             <Button variant="outline-danger" 
               onClick={() =>{ 
-                onRemove(data[i].managerName); //삭제 버튼 클릭시 리스트 삭제
+                 //삭제 버튼 클릭시 리스트 삭제
                 axios
                     .get('http://jlchj.iptime.org:8000/facility-service/join/delete/'+ facilityNum +'/' + uuid + '/' + data[i].managerUuid)
                     .then(()=> {
                       console.log('성공');
-                      alert('삭제되었습니다')
+                      alert('삭제되었습니다');
+                      window.location.reload();
                     })
                     .catch(error => {
-                      alert('삭제에 실패하였습니다');
+                      alert('권한이 없습니다');
                     })
                 }
               }>삭제</Button>
@@ -176,14 +225,14 @@ function GetData() {
 
 }
 
-function ManagerRegister() {
+function ManagerRegister(props) {
 
   const [findOn, setFindModalOn] = React.useState(false);
   const item = GetData();
   const registerManager = localStorage.getItem('registerManager');
   const facilityNum = localStorage.getItem('facilityNum');
   const facilityName = localStorage.getItem('facilityName');
-
+  let navigate = useNavigate();
   // 관리자 등록 
   const register = () => {
   // axios를 활용하여 관리자를 등록할 때 필요한 값 POST
@@ -208,8 +257,13 @@ function ManagerRegister() {
     <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/></Box1>
-          <Box2><Title_box>관리자등록</Title_box><hr></hr>
+          <Box1><Navigation/>
+            <Menu_ul onClick={()=>{navigate('/banner')}}>{facility}</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/notice')}}>공지사항</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/post')}}>안전소통게시판</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/report')}}>신고현황</Menu_ul>
+          </Box1>
+          <Box2><Title_box>직원관리</Title_box><hr></hr>
           <Content_box>
             <Menu>
               관리자
@@ -222,7 +276,7 @@ function ManagerRegister() {
               추가
             </Menu>
             <Input_box>
-            <Flex> 매니저고유번호 :<Uuid type="button" onClick={()=> setFindModalOn(true)}>검색하기</Uuid> {/* 검색하기 버튼 클릭시 검색모달창 구현 */}
+            <Flex> 등록할 관리자 :<Input_name>{localStorage.getItem('registerName')}</Input_name><Uuid type="button" onClick={()=> setFindModalOn(true)}>검색하기</Uuid> {/* 검색하기 버튼 클릭시 검색모달창 구현 */}
               <Search
                   show = {findOn}
                   onHide={() => setFindModalOn(false)}
@@ -231,6 +285,7 @@ function ManagerRegister() {
             </Flex>
             <Register_button onClick={() => {
               register();
+              window.location.reload();
             }}>등록하기                  {/* 등록하기 버튼 클릭시 관리자 등록 */}
             </Register_button>
             </Input_box> 

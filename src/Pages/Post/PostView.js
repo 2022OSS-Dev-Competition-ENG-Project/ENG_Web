@@ -137,7 +137,7 @@ const  facility = localStorage.getItem('facilityName');
       <Header/>
         <Body>
           <Box1><Navigation/>
-            <Menu_ul onClick={()=>{navigate('/register/manager')}}>관리자등록</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/register/manager'); localStorage.removeItem('registerName');}}>관리자등록</Menu_ul>
             <Menu_ul onClick={()=>{navigate('/banner')}}>{facility}</Menu_ul>
             <Menu_ul onClick={()=>{navigate('/notice')}}>공지사항</Menu_ul>
             <Menu_ul onClick={()=>{navigate('/report')}}>신고현황</Menu_ul>
