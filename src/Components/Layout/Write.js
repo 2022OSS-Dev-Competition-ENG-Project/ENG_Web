@@ -2,6 +2,7 @@ import {React, useState} from 'react';
 import styled from 'styled-components';
 import { useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import Form from 'react-bootstrap/Form';
 /*******************공지글 작성 페이지에서 작성 부분*****************/
 
 let Wirte_box = styled.form`
@@ -13,8 +14,8 @@ let Wirte_box = styled.form`
 let Title_input = styled.input`
   width: 100%;
   margin : 10px;
-  height: 40px;
-  border: solid 3px grey;
+  height: 50px;
+  border: solid 2px grey;
   border-radius: 10px;
 `
 
@@ -95,11 +96,15 @@ const Write = () =>  {
       {/************** onChange함수를 이용하여 입력값 변경 ************/}
       <Wirte_box encType='multipart/formdata'>
       <div>
+        
         <Title_input placeholder='제목을 입력하세요' name='title' type="text" value={title} onChange={(e)=> {
                  setTitle(e.target.value);
               }}
         ></Title_input> 
-        <input type = "file"  name="files" onChange={onFileChange}/>
+
+        <Form.Group controlId="formFile" className="mb-3">
+          <Form.Control type="file" name="files" onChange={onFileChange}/>
+        </Form.Group>
        {/*<Content_input placeholder='내용을 입력하세요' name='content' type="text"  value={content} onChange={(e)=> {
                  setContent(e.target.value);
               }}></Content_input> */} 

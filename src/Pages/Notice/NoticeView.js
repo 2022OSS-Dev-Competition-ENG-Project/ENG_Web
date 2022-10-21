@@ -120,18 +120,21 @@ let Menu_ul = styled.ul`
   width: 300px;
   margin:50px;
   `
+
+  
 //서버로 부터 데이터를 불러옴
 function GetData(itemI) {
   let navigate = useNavigate();
   const [data, setData] = useState({});
   const  facility = localStorage.getItem('facilityName');
-  
+  const [date, setDate] = useState(); 
+
 //axios를 통해 공지글에 필요한 데이터를 불러옴
   useEffect(()=> {
     axios.get('http://jlchj.iptime.org:8000/facility-service/notice/view/'+ itemI)
     .then((response)=> {
       setData(response.data);
-      
+      setDate(response.data.noticeDate);
     })
   },[]);
 
@@ -172,7 +175,7 @@ function GetData(itemI) {
                 }}>삭제</Button>
               </Button_box>
             </Title_box><Hr></Hr>
-            <Content_box><Title><h2>{data.noticeTitle}</h2><Date>등록일 : {data.noticeDate}</Date> </Title> {/* 공지글 제목과 등록일을 불러옴 */}
+            <Content_box><Title><h2>{data.noticeTitle}</h2><Date>등록일 : {date}</Date> </Title> {/* 공지글 제목과 등록일을 불러옴 */}
             <Post><Text>{data.noticeText}</Text><Img src={data.noticeImages}></Img></Post></Content_box>       {/* 공지글과 이미지를 불러옴 */}
           </Box2>
         </Body>

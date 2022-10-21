@@ -99,19 +99,23 @@ import TableRow from '../../Components/Table/TableRow';
           </NavLink>
           <Button variant="outline-danger" 
             onClick={() =>{ 
-                  onRemove(data[i].facilityName);
-                  axios
-                    .get('http://jlchj.iptime.org:8000/facility-service/resignation/manager/' + data[i].facilityNum + '/'+ uuid) 
-                    .then(()=> {
-                      console.log('성공');
-                      alert('시설물이 삭제되었습니다')
-                    })
-                    .catch(error => {
-                      alert('시설물삭제에 실패하였습니다');
-                      console.log(data[i].facilityNum);
-                    })
+              if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){
+                axios
+                .get('http://jlchj.iptime.org:8000/facility-service/resignation/manager/' + data[i].facilityNum + '/'+ uuid) 
+                .then(()=> {
+                  console.log('성공');
+                  alert('시설물이 삭제되었습니다');
+                  window.location.reload();
+                })
+                .catch(error => {
+                  alert('시설물삭제에 실패하였습니다');
+                  console.log(data[i].facilityNum);
+                })
               }
-            }>삭제</Button>
+              else {
+                alert("취소합니다.");
+              }  
+              }}>삭제</Button>
         </TableColumn>
       </TableRow>
     ));
