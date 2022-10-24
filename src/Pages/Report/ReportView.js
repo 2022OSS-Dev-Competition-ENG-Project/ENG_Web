@@ -210,7 +210,7 @@ function GetData(itemI) {
               <Title><h2>{data.reportTitle}</h2> </Title>                                         {/* 신고글 제목 불러옴 */}
               <Info><Date>등록일 : {data.reportDate}  신고종류: {data.reportType}</Date></Info>   {/* 신고 등록일, 종류을 불러옴 */}
               <Post><Text>{data.reportText}</Text>
-                {/* <Img_box><Img src={arr[0]}></Img><Img src={arr[1]}></Img><Img src={arr[2]}></Img></Img_box> */}
+                {/* <Img_box><Img src={arr[0]} alt="이미지없음"></Img><Img src={arr[1]}  alt="이미지없음"></Img><Img src={arr[2]}  alt="이미지없음"></Img></Img_box> */}
               </Post></Content_box>  {/* 신고 사진 불러옴*/}
           </Box2>
         </Body>

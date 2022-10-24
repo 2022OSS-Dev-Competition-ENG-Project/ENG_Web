@@ -82,6 +82,9 @@ function GetData(itemI) {
       console.log(response);
       setData(response.data);
     })
+    .catch(error => {
+      console.log(error);
+    })
   },[]);
 
   const item = (<>

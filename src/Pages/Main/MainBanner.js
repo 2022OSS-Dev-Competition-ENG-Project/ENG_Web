@@ -287,7 +287,7 @@ function Banner(props) {
                 </Spo>  
 
                 <Spo>
-                  <Top><Sub_title><FcScatterPlot size="50"/> AI를 통한 화재 예측</Sub_title><TopButton>UPDATE</TopButton></Top>
+                  <Top><Sub_title><FcScatterPlot size="50"/> AI를 통한 화재 예측</Sub_title><TopButton onClick={()=>{window.location.reload();}}>UPDATE</TopButton></Top>
                   <Sub_licontent>
                       <Today>오늘의 화재 위험도</Today>
                       <Today_content>

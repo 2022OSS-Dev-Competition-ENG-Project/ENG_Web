@@ -108,7 +108,7 @@ import { FaPen } from "react-icons/fa";
         <TableColumn>
           <StyledNavLink to={`/notice/${item.noticeNum}`} >{item.noticeTitle}</StyledNavLink>
         </TableColumn>
-        <TableColumn>{item.writerNickName}</TableColumn>
+        <TableColumn>{item.writerName}</TableColumn>
         <TableColumn>{item.noticeDate.substring(0,10)}</TableColumn>    {/* 등록일만 보이도록 substring이용 */}
       </TableRow>
     ));

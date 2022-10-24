@@ -125,6 +125,7 @@ function ResetPw() {
       .catch(error => {
       //서버통신 실패시
         console.log(error.response);
+        alert(error.response.data);
       });
 
 

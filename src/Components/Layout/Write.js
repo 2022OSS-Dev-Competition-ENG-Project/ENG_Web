@@ -14,7 +14,7 @@ let Wirte_box = styled.form`
 let Title_input = styled.input`
   width: 100%;
   margin : 10px;
-  height: 50px;
+  height: 40px;
   border: solid 2px grey;
   border-radius: 10px;
 `
@@ -109,8 +109,10 @@ const Write = () =>  {
                  setContent(e.target.value);
               }}></Content_input> */} 
       </div> <br></br>
+      <div>* 사진형태로 공지를 제작하여 올리십시오. 사진비율 - 가로3 : 세로1</div>
+      <br></br>
       <Register_button type="button" onClick={SubmitFileData} >등록하기</Register_button>
-
+      
       </Wirte_box> 
       </>
 
