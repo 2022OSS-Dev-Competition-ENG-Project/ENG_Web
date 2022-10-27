@@ -127,10 +127,10 @@ let Menu_ul = styled.ul`
 `
 const facility = localStorage.getItem('facilityName');
 const facilityNum = localStorage.getItem('facilityNum');
-
+const uuid = localStorage.getItem('managerUuid');
 function GetData() {
   const [data,setData] = useState([]);
-  const uuid = localStorage.getItem('managerUuid');
+  
 
   // 관리자 리스트
   useEffect(() => {
@@ -267,15 +267,19 @@ function ManagerRegister(props) {
             onClick={()=> {
               if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){
                 axios
-                .post('http://jlchj.iptime.org:8000/facility-service/facility/delete', {
+                .post('http://jlchj.iptime.org:8000/facility-service/delete', {
                   facilityNum: facilityNum,
+                  managerUuid: uuid,
                 })
                 .then(reponse => {
                   alert("삭제되었습니다.");
                   navigate('/BuildingList');
+                  console.log(facilityNum);
+                  
               })
               .catch(error => {
                 alert('시설물 삭제를 실패하였습니다.');
+                console.log(facilityNum);
               })
               }
               else {

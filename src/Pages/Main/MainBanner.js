@@ -267,7 +267,7 @@ function Banner(props) {
     <Div>
       <Header/>
         <Body>
-          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager'); localStorage.removeItem('registerName');}}>직원 및 시설 관리</Menu_ul></Box1>
+          <Box1><Navigation/><Menu_ul onClick={()=>{navigate('/register/manager'); localStorage.removeItem('registerName');window.location.reload();}}>직원 및 시설 관리</Menu_ul></Box1>
           <Box2>
             <Title_box>{localStorage.getItem('facilityName')}</Title_box><hr></hr>
             <Content_box>
