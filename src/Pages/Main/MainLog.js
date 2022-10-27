@@ -141,7 +141,7 @@ function MainLog() {
                 <h3>Login</h3><hr></hr>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>아이디</Form.Label>
-                  <Form.Control type="email" placeholder="이메일을 입력해주세요" value={id} onChange={(e)=> {
+                  <Form.Control type="email" placeholder="아이디을 입력해주세요" value={id} onChange={(e)=> {
                   setId(e.target.value);
                 }} onKeyUp={changeButton}/>
                 </Form.Group>

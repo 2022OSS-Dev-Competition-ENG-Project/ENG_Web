@@ -25,7 +25,7 @@ let Box1 = styled.div`
 `
 let Box2 = styled.div`
   width: 1300px;
-  height: 70vh;
+  height: 71.5vh;
   background-color:#FAFAFA;
   margin: 0 ;
   display: flex;

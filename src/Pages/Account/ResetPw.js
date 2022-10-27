@@ -28,7 +28,7 @@ const Box1 = styled.div`
 `
 const Box2 = styled.div`
   width: 1300px;
-  height: 70vh;
+  height: 71.5vh;
   display: flex;
   flex-direction: column;
   background-color:#FAFAFA;
