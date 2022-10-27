@@ -148,7 +148,7 @@ function ReportList() {
       <Header/>
         <Body>
           <Box1><Navigation/>
-            <Menu_ul onClick={()=>{navigate('/register/manager'); localStorage.removeItem('registerName');}}>직원관리</Menu_ul>
+            <Menu_ul onClick={()=>{navigate('/register/manager'); localStorage.removeItem('registerName');}}>직원 및 시설 관리</Menu_ul>
             <Menu_ul onClick={()=>{navigate('/banner')}}>{facility}</Menu_ul>
             <Menu_ul onClick={()=>{navigate('/notice')}}>공지사항</Menu_ul>
             <Menu_ul onClick={()=>{navigate('/post')}}>안전소통게시판</Menu_ul>

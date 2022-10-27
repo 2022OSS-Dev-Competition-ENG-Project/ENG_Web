@@ -37,7 +37,7 @@ let Title_box = styled.div`
   widith: auto;
   height: auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   background-color:#FAFAFA;
   font-size: 50px;
   padding:0;
@@ -125,11 +125,11 @@ let Menu_ul = styled.ul`
     color: white;
   }
 `
-const  facility = localStorage.getItem('facilityName');
+const facility = localStorage.getItem('facilityName');
+const facilityNum = localStorage.getItem('facilityNum');
 
 function GetData() {
   const [data,setData] = useState([]);
-  const facilityNum = localStorage.getItem('facilityNum');
   const uuid = localStorage.getItem('managerUuid');
 
   // 관리자 리스트
@@ -263,7 +263,26 @@ function ManagerRegister(props) {
             <Menu_ul onClick={()=>{navigate('/post')}}>안전소통게시판</Menu_ul>
             <Menu_ul onClick={()=>{navigate('/report')}}>신고현황</Menu_ul>
           </Box1>
-          <Box2><Title_box>직원관리</Title_box><hr></hr>
+          <Box2><Title_box>직원 및 시설관리<Button variant="outline-danger"
+            onClick={()=> {
+              if(window.confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){
+                axios
+                .post('http://jlchj.iptime.org:8000/facility-service/facility/delete', {
+                  facilityNum: facilityNum,
+                })
+                .then(reponse => {
+                  alert("삭제되었습니다.");
+                  navigate('/BuildingList');
+              })
+              .catch(error => {
+                alert('시설물 삭제를 실패하였습니다.');
+              })
+              }
+              else {
+                alert("취소합니다.");
+              }
+              
+            }}>시설물 영구 삭제</Button></Title_box><hr></hr>
           <Content_box>
             <Menu>
               관리자
