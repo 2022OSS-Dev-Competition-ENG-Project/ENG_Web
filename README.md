@@ -168,5 +168,5 @@ $ npm install react-daum-postcode
 
 ## :angel:개발자
 
-- 조승현 [Cho-Seung-Hyeon](https://github.com/Cho-Seung-Hyeon) : ENG Project Web 클라이언트 개발
+- 조승현 [ChoSeunghyeon](https://github.com/ChoSeunghyeon) : ENG Project Web 클라이언트 개발
 
